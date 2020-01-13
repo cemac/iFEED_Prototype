@@ -1,0 +1,117 @@
+<html lang="en-UK">
+{% extends 'layout.html.j2' %}
+
+{% block body %}
+
+<div style="text-align: justify">
+  <p>
+    This online tool presents data and descriptors for future scenarios and the impact these scenarios will have on crop yields and diets [more accurate description once full use of tool is crystalised]</p>
+  <p> This tool is made in conjunction with the <a href="https://africap.info">GCRF Africap</a> project.</p>
+
+  <p><center> Interactive Map of the AFRICAP countries </center></p>
+</div><!-- .entry-content -->
+<div id="map" style="height: 640px; width:720px; display:block; margin:auto;"></div>
+
+<script src="{{ url_for ('static', filename='geojson/countries.js')}}", type="text/javascript"></script>
+<script type="text/javascript">
+// The first parameter are the coordinates of the center of the map
+// The second parameter is the zoom level
+  var map = L.map('map', {
+    minZoom: 0,
+    zoomSnap: 0.25,
+  }).setView([-18.5, 30.0], 4.5);
+
+  // {z}, {x} and {y} are placeholders for map tiles
+  // {x} and {y} are the x/y of where you are on the map
+  // {z} is the zoom level
+
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2VtYWMtY2NzIiwiYSI6ImNrNTVraHB1YjBzamUza29maHpuaXhxMDUifQ.TeGCFnu6MhaZXNw80EWWdw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/light-v9'
+	}).addTo(map);
+
+  // control that shows country name on hover
+  var info = L.control();
+
+  info.onAdd = function (map) {
+  	this._div = L.DomUtil.create('div', 'info');
+  	this.update();
+  	return this._div;
+  };
+
+  info.update = function (props) {
+  	this._div.innerHTML = '<h4>AFRICAP Country:</h4>' +  (props ?
+  		'<b>' + props.name : 'Hover over a country');
+  };
+
+  info.addTo(map);
+
+  // get color depending on population density value
+  function getColor(c) {
+  	return c == "ZAF" ? '#800026' :
+  			c == "ZMB"  ? '#BD0026' :
+  			c == "TZA"  ? '#E31A1C' :
+  			c == "MWI"  ? '#FC4E2A' :
+  						'#FFEDA0';
+  }
+
+  function style(feature) {
+  	return {
+  		weight: 2,
+  		opacity: 1,
+  		color: 'white',
+  		dashArray: '3',
+  		fillOpacity: 0.7,
+  		fillColor: getColor(feature.properties.code)
+  	};
+  }
+
+  function highlightFeature(e) {
+  	var layer = e.target;
+
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature.properties);
+
+	}
+
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+    layer.bindPopup('<a href="/countries/'+feature.properties.code+'">Inspect AFRICAP data from'+feature.properties.name+'</a>')
+	}
+
+	geojson = L.geoJson(countries, {
+		style: style,
+		onEachFeature: onEachFeature
+	}).addTo(map);
+
+</script>
+{% endblock %}
+</html>
