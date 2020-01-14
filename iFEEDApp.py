@@ -29,10 +29,33 @@ from access import *
 
 
 app = Flask(__name__)
+# Connect to database
+DATABASE = 'iFEED.db'
+assert os.path.exists(DATABASE), "Unable to locate database"
+app.secret_key = 'secret'
+conn = sqlite3.connect(DATABASE, check_same_thread=False)
+counter = 1
 
-@app.route('/')
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        conn.close()
+
+
+# Index
+@app.route('/', methods=["GET"])
 def index():
     return render_template('home.html.j2')
+
+
+@app.route("/")
+def hitcounter():
+    global counter
+    counter += 1
+    return str(counter)
+
 
 # Access ----------------------------------------------------------------------
 
@@ -240,7 +263,7 @@ def internal_error(error):
 @app.errorhandler(Exception)
 def unhandled_exception(e):
     app.logger.error('Unhandled Exception: %s', (e))
-    return render_template('500.html.j2'), 500
+    return render_template('501.html.j2'), 500
 
 
 if __name__ == '__main__':

@@ -60,7 +60,6 @@ def table_list(tableClass, col, conn):
         list.append((element, element))
     return list
 
-
 def yesno_list():
     """generate yes no list for forms
     """
@@ -71,51 +70,51 @@ def yesno_list():
     return list
 
 
-def option_list(col_name, conn):
-    """Create list of options on forms
-    args:
-        col_name(str): e.g. Area or country (must match db col name)
-        conn: database connection
-    returns: list
-    """
-    # Columns: area and regions
-    list = []
-    list.append(('blank', '--Please select--'))
-    if col_name == 'country':
-        # find unique values
-        df = pd.read_sql_query("select " + col_name +
-                               ", Area from  'VolcDB1'; ", conn)
-    else:
-        df = pd.read_sql_query("select " + col_name + " from  'VolcDB1'; ",
-                               conn)
-    existing = df.drop_duplicates()
-    # get rid of any missing values
-    existing = existing.dropna()
-    # Order by Region
-    existing = existing.sort_values('Area')
-    existing = existing.reset_index(drop=True)
-    # Remove incorrect values
-    existing = existing[~existing.Area.str.contains('0')]
-    # make a list
-    if col_name == 'country':
-        # there is one crazy volcano ?!?! remove it dropdown!!
-        existing = existing[~existing.country.str.contains('161.08')]
-        for element in existing.iterrows():
-            list.append((element[1][0], str(element[1][0]) +
-                         '(' + element[1][1] + ')'))
-    else:
-        for element in existing.iterrows():
-            list.append((element[1][0], element[1][0]))
-
-    # add the option of other
-    if list[-1][0] == '0':
-        list[-1] = (('other', 'other --Please Specify--'))
-    else:
-        list.append(('other', 'other --Please Specify--'))
-        # Find all current options
-    return list
-
-
+#def option_list(col_name, conn):
+#    """Create list of options on forms
+#    args:
+#        col_name(str): e.g. Area or country (must match db col name)
+#        conn: database connection
+#    returns: list
+#    """
+#    # Columns: area and regions
+#    list = []
+#    list.append(('blank', '--Please select--'))
+#    if col_name == 'country':
+#        # find unique values
+#        df = pd.read_sql_query("select " + col_name +
+#                               ", Area from  'VolcDB1'; ", conn)
+#    else:
+#        df = pd.read_sql_query("select " + col_name + " from  'VolcDB1'; ",
+#                               conn)
+#    existing = df.drop_duplicates()
+#    # get rid of any missing values
+#    existing = existing.dropna()
+#    # Order by Region
+#    existing = existing.sort_values('Area')
+#    existing = existing.reset_index(drop=True)
+#    # Remove incorrect values
+#    existing = existing[~existing.Area.str.contains('0')]
+#    # make a list
+#    if col_name == 'country':
+#        # there is one crazy volcano ?!?! remove it dropdown!!
+#        existing = existing[~existing.country.str.contains('161.08')]
+#        for element in existing.iterrows():
+#            list.append((element[1][0], str(element[1][0]) +
+#                         '(' + element[1][1] + ')'))
+#    else:
+#        for element in existing.iterrows():
+#            list.append((element[1][0], element[1][0]))
+#
+#    # add the option of other
+#    if list[-1][0] == '0':
+#        list[-1] = (('other', 'other --Please Specify--'))
+#    else:
+#        list.append(('other', 'other --Please Specify--'))
+#        # Find all current options
+#    return list
+#
+#
 # ------------------------- is logged in wrappers --------------------------- #
 #                        logged_in as user editor admin                       #
 # --------------------------------------------------------------------------- #
