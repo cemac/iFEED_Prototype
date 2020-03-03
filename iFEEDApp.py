@@ -232,7 +232,6 @@ def contribute():
 def about():
     return render_template('about.html.j2')
 
-
 @app.route('/contact', methods=["GET"])
 def contact():
     return render_template('contact.html.j2')
@@ -240,6 +239,32 @@ def contact():
 @app.route('/glossary', methods=["GET"])
 def glossary():
     return render_template('glossary.html.j2')
+
+@app.route('/infopage1', methods=["GET"])
+def infopage1():
+    return render_template('infopage1.html.j2')
+
+@app.route('/infopage2', methods=["GET"])
+def infopage2():
+    return render_template('infopage2.html.j2')
+
+@app.route('/infopage3', methods=["GET"])
+def infopage3():
+    return render_template('infopage3.html.j2')
+
+@app.route('/countries/<string:ccode>', methods=["GET"])
+def countries(ccode):
+
+    countries = {
+        'MWI' : 'Malawi',
+        'TZA' : 'Tanzania',
+        'ZAF' : 'South Africa',
+        'ZMB' : 'Zambia'
+    }
+
+    country=countries.get(ccode, "Unrecognised Country Code")
+
+    return render_template('countrygrid.html.j2', ccode=ccode, country=country)
 
 # Error Pages ----------------------------------------------------------------
 @app.errorhandler(404)

@@ -1,23 +1,42 @@
 {% extends 'layout.html.j2' %}
 {% block body %}
+{% if ccode == "MWE" %}
+  {% set yax = ['High', 'Irrigation', 'Modification', 'Low'] %}
+{% elif ccode == "TZA" %}
+  {% set yax = ['High', 'Production', 'Modification', 'Low'] %}
+{% elif ccode == "ZMB" %}
+  {% set yax = ['High', 'Irrigation', 'Modification', 'Low'] %}
+{% elif ccode == "ZAF" %}
+  {% set yax = ['High', 'Production', 'Modification', 'Low'] %}
+{% endif %}
+
 <div>
   <h1> Country Descriptor Grid for {{country}} </h1>
   <p> Country is {{country}},
   <p> Country code is {{ccode}}
   <div class="grdouterbox">
     <div class="grdcontainer">
+      <div class="uaxislbl">{{yax[0]}}</div>
+      <div class="ar-up"></div>
       <div class="row">
         <div class="box"><img class="grow", src="https://dummyimage.com/200x200/2bb8b8/fff.png&text=Dummy+Image" > </div>
-        <div class="verline arrow-up"></div>
+        <div class="upline">{{yax[1]}}</div>
         <div class="box"><img class="grow", src="https://dummyimage.com/200x200/2bb8b8/fff.png&text=Dummy+Image" > </div>
       </div>
-      <div class="horline arrow-left"></div>
-      <div class="horline arrow-right"></div>
+      <div class="row2">
+        <div class="laxislbl">Low</div>
+        <div class="ar-left"></div>
+        <div class="horline">Climate Impact</div>
+        <div class="ar-right"></div>
+        <div class="raxislbl">High</div>
+      </div>
       <div class="row">
         <div class="box"><img class="grow", src="https://dummyimage.com/200x200/2bb8b8/fff.png&text=Dummy+Image" > </div>
-        <div class="verline arrow-down"></div>
+        <div class="dnline">{{yax[2]}}</div>
         <div class="box"><img class="grow", src="https://dummyimage.com/200x200/2bb8b8/fff.png&text=Dummy+Image" > </div>
       </div>
+      <div class="ar-down"></div>
+      <div class="daxislbl">{{yax[3]}}</div>
     </div>
   </div>
 </div><!-- .entry-content -->

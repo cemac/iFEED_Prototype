@@ -1,4 +1,3 @@
-<html lang="en-UK">
 {% extends 'layout.html.j2' %}
 
 {% block body %}
@@ -104,7 +103,7 @@
 			mouseout: resetHighlight,
 			click: zoomToFeature
 		});
-    layer.bindPopup('<a href="/countries/'+feature.properties.code+'">Inspect AFRICAP data from'+feature.properties.name+'</a>')
+    layer.bindPopup('<a href="/countries/'+feature.properties.code+'">Inspect AFRICAP data from '+feature.properties.name+'</a>')
 	}
 
 	geojson = L.geoJson(countries, {
