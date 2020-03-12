@@ -1,20 +1,7 @@
-'''
-iFEEDApp.py:
-
-This module was developed by CEMAC ...................
-Example:
-    To use::
-        python manage.py
-
-Attributes:
-
-.. CEMAC_iFEED:
-   https://github.com/cemac/iFEED_prototype
-'''
-
-
+"""Routes for core Flask app."""
+from flask import current_app as app
 from flask import Flask, render_template, flash, redirect, url_for, request
-from flask import g, session, abort, make_response
+from flask import g, session, abort, make_response, Blueprint
 from wtforms import Form, validators, StringField, SelectField, TextAreaField
 from wtforms import IntegerField, PasswordField, SelectMultipleField, widgets
 import sqlite3
@@ -25,10 +12,8 @@ import io
 import json
 from passlib.hash import sha256_crypt
 # Modules for this site
-from access import *
+from .access import *
 
-
-app = Flask(__name__)
 # Connect to database
 DATABASE = 'iFEED.db'
 assert os.path.exists(DATABASE), "Unable to locate database"
@@ -36,56 +21,51 @@ app.secret_key = 'secret'
 conn = sqlite3.connect(DATABASE, check_same_thread=False)
 counter = 1
 
-
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        conn.close()
+main_bp = Blueprint('main_bp', __name__,
+                    template_folder='templates',
+                    static_folder='static')
 
 
-# Index
-@app.route('/', methods=["GET"])
+@main_bp.route('/', methods=["GET"])
 def index():
+    """Landing page."""
     return render_template('home.html.j2')
 
-
-@app.route("/")
+@main_bp.route("/")
 def hitcounter():
     global counter
     counter += 1
     return str(counter)
 
-
 # Access ----------------------------------------------------------------------
 
 # Login
-@app.route('/login', methods=["GET", "POST"])
+@main_bp.route('/login', methods=["GET", "POST"])
 def login():
     if 'logged_in' in session:
         flash('Already logged in', 'warning')
-        return redirect(url_for('index'))
+        return redirect(url_for('main_bp.index'))
     if request.method == 'POST':
         # Get form fields
         username = request.form['username']
         password_candidate = request.form['password']
         user_login(username, password_candidate, conn)
-        return redirect(url_for('index'))
+        return redirect(url_for('main_bp.index'))
     if request.method == 'GET':
         return render_template('login.html.j2')
 
 
 # Logout
-@app.route('/logout')
+@main_bp.route('/logout')
 @is_logged_in
 def logout():
     session.clear()
     flash('You are now logged out', 'success')
-    return redirect(url_for('index'))
+    return redirect(url_for('main_bp.index'))
 
 
 # Change password
-@app.route('/change-pwd', methods=["GET", "POST"])
+@main_bp.route('/change-pwd', methods=["GET", "POST"])
 @is_logged_in
 def change_pwd():
     username = session['username']
@@ -102,15 +82,15 @@ def change_pwd():
             cur.execute(sql, (user.password[0], str(username)))
             conn.commit()
             flash('Password changed', 'success')
-            return redirect(url_for('change_pwd'))
+            return redirect(url_for('main_bp.change_pwd'))
         else:
             flash('Current password incorrect', 'danger')
-            return redirect(url_for('change_pwd'))
+            return redirect(url_for('main_bp.change_pwd'))
     return render_template('change-pwd.html.j2', form=form)
 
 
 # Access settings for a given user
-@app.route('/account/<string:username>', methods=['GET', 'POST'])
+@main_bp.route('/account/<string:username>', methods=['GET', 'POST'])
 @is_logged_in
 def account(username):
     role = session['usertype']
@@ -123,13 +103,13 @@ def account(username):
 # Additional logged in as Admin only pages ------------------------------
 
 
-@app.route('/admin/information', methods=['GET', 'POST'])
+@main_bp.route('/admin/information', methods=['GET', 'POST'])
 @is_logged_in_as_admin
 def admininfo():
     return render_template('admininfo.html.j2')
 
 
-@app.route('/admin/users', methods=['GET', 'POST'])
+@main_bp.route('/admin/users', methods=['GET', 'POST'])
 @is_logged_in_as_admin
 def ViewOrAddUsers():
     df = pd.read_sql_query("SELECT * FROM Users ;", conn)
@@ -149,7 +129,7 @@ def ViewOrAddUsers():
 
 
 # Add entry
-@app.route('/add/Users', methods=["GET", "POST"])
+@main_bp.route('/add/Users', methods=["GET", "POST"])
 @is_logged_in_as_admin
 def add():
     form = eval("Users_Form")(request.form)
@@ -165,13 +145,13 @@ def add():
             formdata.append(field.data)
         InsertUser(formdata[0], formdata[1], conn)
         flash('User Added', 'success')
-        return redirect(url_for('add', tableClass='Users'))
+        return redirect(url_for('main_bp.add', tableClass='Users'))
     return render_template('add.html.j2', title='Add Users', tableClass='Users',
                            form=form)
 
 
 # Delete entry
-@app.route('/delete/<string:tableClass>/<string:id>', methods=['POST'])
+@main_bp.route('/delete/<string:tableClass>/<string:id>', methods=['POST'])
 @is_logged_in_as_admin
 def delete(tableClass, id):
     # Retrieve DB entry:
@@ -180,11 +160,11 @@ def delete(tableClass, id):
     username = user.username
     DeleteUser(username[0], conn)
     flash('User Deleted', 'success')
-    return redirect(url_for('ViewOrAddUsers'))
+    return redirect(url_for('main_bp.ViewOrAddUsers'))
 
 
 # Access settings for a given user
-@app.route('/access/<string:id>', methods=['GET', 'POST'])
+@main_bp.route('/access/<string:id>', methods=['GET', 'POST'])
 @is_logged_in_as_admin
 def access(id):
     form = AccessForm(request.form)
@@ -207,52 +187,17 @@ def access(id):
         print('test')
         # Return with success
         flash('Edits successful', 'success')
-        return redirect(url_for('ViewOrAddUsers'))
+        return redirect(url_for('main_bp.ViewOrAddUsers'))
     # Pre-populate form fields with existing data:
     form.username.render_kw = {'readonly': 'readonly'}
     form.username.data = user.username[0]
     form.Role.data = current_role.name[0]
     return render_template('access.html.j2', form=form, id=id)
 
-# static information pages ---------------------------------------------------
+# data exploration pages -----------------------------------------------------
 
-@app.route('/copyright', methods=["GET"])
-def copyright():
-    return render_template('copyright.html.j2')
 
-@app.route('/privacy', methods=["GET"])
-def privacy():
-    return render_template('privacy.html.j2')
-
-@app.route('/contribute', methods=["GET"])
-def contribute():
-    return render_template('contributor_guidelines.html.j2')
-
-@app.route('/about', methods=["GET"])
-def about():
-    return render_template('about.html.j2')
-
-@app.route('/contact', methods=["GET"])
-def contact():
-    return render_template('contact.html.j2')
-
-@app.route('/glossary', methods=["GET"])
-def glossary():
-    return render_template('glossary.html.j2')
-
-@app.route('/infopage1', methods=["GET"])
-def infopage1():
-    return render_template('infopage1.html.j2')
-
-@app.route('/infopage2', methods=["GET"])
-def infopage2():
-    return render_template('infopage2.html.j2')
-
-@app.route('/infopage3', methods=["GET"])
-def infopage3():
-    return render_template('infopage3.html.j2')
-
-@app.route('/countries/<string:ccode>', methods=["GET"])
+@main_bp.route('/countries/<string:ccode>', methods=["GET"])
 def countries(ccode):
 
     countries = {
@@ -262,35 +207,60 @@ def countries(ccode):
         'ZMB' : 'Zambia'
     }
 
-    country=countries.get(ccode, "Unrecognised Country Code")
+    country=countries.get(ccode,"Unrecognised")
+
+    if country=="Unrecognised":
+        abort(404)
 
     return render_template('countrygrid.html.j2', ccode=ccode, country=country)
 
-# Error Pages ----------------------------------------------------------------
-@app.errorhandler(404)
-def page_not_found(e):
-    # note that we set the 404 status explicitly
-    return render_template('404.html.j2'), 404
+#@main_bp.route('/countries/<string:ccode>/<string:quadrant>', methods=["GET"])
+#def quadrants(ccode, quadrant):
 
+#    ccode_val=["MWE","TZA","ZAF","ZMB"]
 
-@app.errorhandler(403)
-def page_not_found(e):
-    # note that we set the 403 status explicitly
-    return render_template('403.html.j2'), 403
+#    if not ccode in ccode_val:
+#        abort(404)
 
+#    quad_val=["00","01","10","11"]
 
-@app.errorhandler(500)
-def internal_error(error):
-    app.logger.error('Server Error: %s', (error))
-    return render_template('500.html.j2'), 500
+#    if not quadrant in quad_val:
+#        abort(404)
 
+# static information pages ---------------------------------------------------
 
-@app.errorhandler(Exception)
-def unhandled_exception(e):
-    app.logger.error('Unhandled Exception: %s', (e))
-    return render_template('501.html.j2'), 500
+@main_bp.route('/copyright', methods=["GET"])
+def copyright():
+    return render_template('copyright.html.j2')
 
+@main_bp.route('/privacy', methods=["GET"])
+def privacy():
+    return render_template('privacy.html.j2')
 
-if __name__ == '__main__':
-    app.run(host='129.11.85.32', debug=True, port=5900)
-    #app.run(debug=True)
+@main_bp.route('/contribute', methods=["GET"])
+def contribute():
+    return render_template('contributor_guidelines.html.j2')
+
+@main_bp.route('/about', methods=["GET"])
+def about():
+    return render_template('about.html.j2')
+
+@main_bp.route('/contact', methods=["GET"])
+def contact():
+    return render_template('contact.html.j2')
+
+@main_bp.route('/glossary', methods=["GET"])
+def glossary():
+    return render_template('glossary.html.j2')
+
+@main_bp.route('/infopage1', methods=["GET"])
+def infopage1():
+    return render_template('infopage1.html.j2')
+
+@main_bp.route('/infopage2', methods=["GET"])
+def infopage2():
+    return render_template('infopage2.html.j2')
+
+@main_bp.route('/infopage3', methods=["GET"])
+def infopage3():
+    return render_template('infopage3.html.j2')

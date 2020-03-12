@@ -126,7 +126,7 @@ def is_logged_in(f):
             return f(*args, **kwargs)
         else:
             flash('Unauthorised, please login', 'danger')
-            return redirect(url_for('index'))
+            return redirect(url_for('main_bp.index'))
     return wrap
 
 
@@ -139,7 +139,7 @@ def is_logged_in_as_editor(f):
             return f(*args, **kwargs)
         else:
             flash('Unauthorised, please login as a editor/admin', 'danger')
-            return redirect(url_for('index'))
+            return redirect(url_for('main_bp.index'))
     return wrap
 
 
@@ -151,7 +151,7 @@ def is_logged_in_as_admin(f):
             return f(*args, **kwargs)
         else:
             flash('Unauthorised, please login as admin', 'danger')
-            return redirect(url_for('index'))
+            return redirect(url_for('main_bp.index'))
     return wrap
 
 # ------------------------- User Access and Login --------------------------- #
@@ -285,7 +285,7 @@ def user_login(username, password_candidate, conn):
     elif user.empty is True and str(username) != 'admin':
         # Username not found:
         flash('Username ' + str(username) + ' not found', 'danger')
-        return redirect(url_for('login'))
+        return redirect(url_for('main_bp.login'))
     if str(username) == 'admin':
         password = 'password'
         if password_candidate == password:
@@ -294,8 +294,8 @@ def user_login(username, password_candidate, conn):
             session['username'] = 'admin'
             session['usertype'] = 'Admins'
             flash('You are now logged in as admin', 'success')
-            return redirect(url_for('login'))
+            return redirect(url_for('main_bp.login'))
         else:
             flash('Incorrect password', 'danger')
-            return redirect(url_for('login'))
+            return redirect(url_for('main_bp.login'))
     return
