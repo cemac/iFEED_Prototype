@@ -1,7 +1,7 @@
 external_stylesheets = [
-    '/static/styles/dash.css',
-    '/static/styles/stylev1.css',
+    #'/static/styles/dash.css',
     '/static/styles/CEMACv1.css',
+    '/static/styles/stylev1.css',
     'https://use.fontawesome.com/releases/v5.8.1/css/all.css',
     'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800',
     'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
