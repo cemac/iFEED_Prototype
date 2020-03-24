@@ -1,5 +1,5 @@
 external_stylesheets = [
-    #'/static/styles/dash.css',
+    '/static/styles/dash.css',
     '/static/styles/CEMACv1.css',
     '/static/styles/stylev1.css',
     'https://use.fontawesome.com/releases/v5.8.1/css/all.css',

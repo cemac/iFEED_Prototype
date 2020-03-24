@@ -1,7 +1,7 @@
 __pycache__/
 *.pyc
-*.nc
+data/*.nc
 Applications/__pycache__/
 Applications/DashApp/__pycache__/
 Applications/FlaskApp/__pycache__/
-
+.idea/

@@ -1,6 +1,12 @@
 from pathlib import Path
 import dash_table
 import pandas as pd
+import iris
+import iris.pandas
+import plotly.graph_objs as go
+import dash_core_components as dcc
+import iris.analysis.cartography
+
 
 def get_datasets():
     """Return previews of all CSVs saved in /data directory."""
@@ -18,3 +24,125 @@ def get_datasets():
         )
         arr.append(table_preview)
     return arr
+
+
+def get_cubedata(ccode, quad):
+    if ccode == 'MWI':
+        fname = 'data/malawi.nc'
+    else:
+        fname = 'data/malawi.nc'
+
+    field = iris.Constraint('yield')
+
+    if quad == '01':
+        quadselect = iris.Constraint(rcp=2, irr_lev=0, prod_lev=0.5)
+    elif quad == '10':
+        quadselect = iris.Constraint(rcp=0, irr_lev=2, prod_lev=0.5)
+    elif quad == '11':
+        quadselect = iris.Constraint(rcp=2, irr_lev=2, prod_lev=0.5)
+    else:
+        quadselect = iris.Constraint(rcp=0, irr_lev=0, prod_lev=0.5)
+
+    cube = iris.load(fname).extract(field)
+
+    for coord in cube[0].coords():
+        coord.rename(coord.var_name)
+
+    quadcube = cube[0].extract(quadselect)
+
+    quadcube.coord('lat').guess_bounds()
+    quadcube.coord('lon').guess_bounds()
+
+    countrycube = quadcube.collapsed(['lat', 'lon'], iris.analysis.MEAN)
+
+    dflst = []
+
+    for crop in countrycube.coord('crop').points:
+        df=iris.pandas.as_data_frame(countrycube.extract(iris.Constraint(crop=crop)))
+
+        dflst.append(df.quantile(q=[0.0, 0.25, 0.5, 0.75, 1.0], axis=1).T)
+
+    return dflst
+
+def testcrop(ccode, quad):
+
+    croplst=get_cubedata(ccode, quad)
+
+    df=croplst[0]
+
+    fig=go.Figure()
+    fig.add_trace(go.Scatter(x=df.index, y=df[0.00], name='Minima',
+                             line=dict(color='firebrick', width=2, dash='dot')))
+    fig.add_trace(go.Scatter(x=df.index, y=df[0.25], name='Lower Quartile',
+                             line=dict(color='firebrick',width=2,dash='dash')))
+    fig.add_trace(go.Scatter(x=df.index, y=df[0.50], name='Median',
+                             line=dict(color='firebrick',width=2)))
+    fig.add_trace(go.Scatter(x=df.index, y=df[0.75], name='Upper Quartile',
+                             line=dict(color='firebrick',width=2,dash='dash')))
+    fig.add_trace(go.Scatter(x=df.index, y=df[1.00], name='Maxima',
+                             line=dict(color='firebrick',width=2,dash='dot')))
+
+    fig.update_layout(title='Crop 0', xaxis_title='Year', yaxis_title='Yield')
+
+    return dcc.Graph(figure=fig, id='linegraph')
+
+def samplebox():
+    trace0 = go.Box(
+        y=[0.75, 5.25, 5.5, 6, 6.2, 6.6, 6.80, 7.0, 7.2, 7.5, 7.5, 7.75, 8.15,
+           8.15, 8.65, 8.93, 9.2, 9.5, 10, 10.25, 11.5, 12, 16, 20.90, 22.3, 23.25],
+        name="All Points",
+        jitter=0.3,
+        pointpos=-1.8,
+        boxpoints='all',
+        marker=dict(
+            color='rgb(7,40,89)'),
+        line=dict(
+            color='rgb(7,40,89)')
+    )
+
+    trace1 = go.Box(
+        y=[0.75, 5.25, 5.5, 6, 6.2, 6.6, 6.80, 7.0, 7.2, 7.5, 7.5, 7.75, 8.15,
+           8.15, 8.65, 8.93, 9.2, 9.5, 10, 10.25, 11.5, 12, 16, 20.90, 22.3, 23.25],
+        name="Only Whiskers",
+        boxpoints=False,
+        marker=dict(
+            color='rgb(9,56,125)'),
+        line=dict(
+            color='rgb(9,56,125)')
+    )
+
+    trace2 = go.Box(
+        y=[0.75, 5.25, 5.5, 6, 6.2, 6.6, 6.80, 7.0, 7.2, 7.5, 7.5, 7.75, 8.15,
+           8.15, 8.65, 8.93, 9.2, 9.5, 10, 10.25, 11.5, 12, 16, 20.90, 22.3, 23.25],
+        name="Suspected Outliers",
+        boxpoints='suspectedoutliers',
+        marker=dict(
+            color='rgb(8,81,156)',
+            outliercolor='rgba(219, 64, 82, 0.6)',
+            line=dict(
+                outliercolor='rgba(219, 64, 82, 0.6)',
+                outlierwidth=2)),
+        line=dict(
+            color='rgb(8,81,156)')
+    )
+
+    trace3 = go.Box(
+        y=[0.75, 5.25, 5.5, 6, 6.2, 6.6, 6.80, 7.0, 7.2, 7.5, 7.5, 7.75, 8.15,
+           8.15, 8.65, 8.93, 9.2, 9.5, 10, 10.25, 11.5, 12, 16, 20.90, 22.3, 23.25],
+        name="Whiskers and Outliers",
+        boxpoints='outliers',
+        marker=dict(
+            color='rgb(107,174,214)'),
+        line=dict(
+            color='rgb(107,174,214)')
+    )
+
+    data = [trace0, trace1, trace2, trace3]
+
+    layout = go.Layout(
+        title="Box Plot Styling Outliers"
+    )
+
+    fig = go.Figure(data=data, layout=layout)
+
+    return dcc.Graph(figure=fig, id='box-plot-2')

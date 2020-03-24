@@ -36,16 +36,3 @@ def display_page(pathname):
         return layout404
     else:
         return layoutquad(pathname[11:14],pathname[14:])
-
-
-#@app.callback(Output('page-content', 'children'),
-#              [Input('url', 'pathname')])
-#def display_page(pathname):
-#    if pathname == '/quadrants/index':
-#         return layoutindex
-#    elif pathname == '/quadrants/app1':
-#         return layout1
-#    elif pathname == '/quadrants/app2':
-#         return layout2
-#    else:
-#        return layout404
