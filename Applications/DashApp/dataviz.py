@@ -6,6 +6,7 @@ import iris.pandas
 import plotly.graph_objs as go
 import dash_core_components as dcc
 import iris.analysis.cartography
+from plotly.subplots import make_subplots
 
 
 def get_datasets():
@@ -58,31 +59,147 @@ def get_cubedata(ccode, quad):
     dflst = []
 
     for crop in countrycube.coord('crop').points:
-        df=iris.pandas.as_data_frame(countrycube.extract(iris.Constraint(crop=crop)))
+        df = iris.pandas.as_data_frame(countrycube.extract(iris.Constraint(crop=crop)))
 
-        dflst.append(df.quantile(q=[0.0, 0.25, 0.5, 0.75, 1.0], axis=1).T)
+        linedf = df.quantile(q=[0.0, 0.25, 0.5, 0.75, 1.0], axis=1).T
+
+        boxdf = df.iloc[[0,-1],:].T
+
+        dflst.append([linedf, boxdf])
 
     return dflst
 
+
 def testcrop(ccode, quad):
 
-    croplst=get_cubedata(ccode, quad)
+    croplst = get_cubedata(ccode, quad)
 
-    df=croplst[0]
+    df = croplst[0][0]
+    dfbox = croplst[0][1]
 
-    fig=go.Figure()
-    fig.add_trace(go.Scatter(x=df.index, y=df[0.00], name='Minima',
-                             line=dict(color='firebrick', width=2, dash='dot')))
-    fig.add_trace(go.Scatter(x=df.index, y=df[0.25], name='Lower Quartile',
-                             line=dict(color='firebrick',width=2,dash='dash')))
-    fig.add_trace(go.Scatter(x=df.index, y=df[0.50], name='Median',
-                             line=dict(color='firebrick',width=2)))
-    fig.add_trace(go.Scatter(x=df.index, y=df[0.75], name='Upper Quartile',
-                             line=dict(color='firebrick',width=2,dash='dash')))
-    fig.add_trace(go.Scatter(x=df.index, y=df[1.00], name='Maxima',
-                             line=dict(color='firebrick',width=2,dash='dot')))
+    x = list(df.index)
+    x_rev = x[::-1]
 
-    fig.update_layout(title='Crop 0', xaxis_title='Year', yaxis_title='Yield')
+    q1 = list(df[0.25])
+    q1_rev = q1[::-1]
+
+    q3 = list(df[0.75])
+
+    fig = make_subplots(
+        rows=1,
+        cols=2,
+        column_widths=[0.6, 0.4],
+        specs=[[{"type": "scatter"}, {"type": "box"}]]
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=df.index,
+            y=df[0.00],
+            line_color='firebrick',
+            line_width=1,
+            line_dash='dot',
+            name='Minima',
+        ),
+        row=1,
+        col=1
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=x+x_rev,
+            y=q3+q1_rev,
+            fill='toself',
+            fillcolor='rgba(231,107,243,0.2)',
+            line_color='firebrick',
+            line_width=0.5,
+            name='IQR',
+        ),
+        row=1,
+        col=1
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=df.index,
+            y=df[0.25],
+            line_color='firebrick',
+            line_width=0,
+            showlegend=False,
+            name='Lower Quartile',
+        ),
+        row=1,
+        col=1
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=df.index,
+            y=df[0.50],
+            line_color='firebrick',
+            line_width=2,
+            name='Median',
+        ),
+        row=1,
+        col=1
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=df.index,
+            y=df[0.75],
+            line_color='firebrick',
+            line_width=0,
+            showlegend=False,
+            name='Upper Quartile',
+        ),
+        row=1,
+        col=1
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=df.index,
+            y=df[1.00],
+            line_color='firebrick',
+            line_width=1,
+            line_dash='dot',
+            name='Maxima',
+        ),
+        row=1,
+        col=1
+    )
+
+    fig.add_trace(
+        go.Box(
+            y=dfbox.iloc[:,0],
+            name=list(dfbox.columns)[0],
+            boxpoints=False,
+            line=dict(
+                color='firebrick'),
+            showlegend=False
+        ),
+        row=1,
+        col=2
+    )
+
+    fig.add_trace(
+        go.Box(
+            y=dfbox.iloc[:,1],
+            name=list(dfbox.columns)[1],
+            boxpoints=False,
+            line=dict(
+                color='firebrick'),
+            showlegend=False
+        ),
+        row=1,
+        col=2
+    )
+
+    fig.update_layout(title='Maize in Malawi for quadrant ' + quad,
+                      xaxis_title='Year',
+                      yaxis=dict(title='Yield', hoverformat='.0f'),
+                      hovermode='x')
 
     return dcc.Graph(figure=fig, id='linegraph')
 

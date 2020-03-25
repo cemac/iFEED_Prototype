@@ -14,7 +14,7 @@ def layoutquad(ccode, quad):
 
     layout = html.Div([
         html.H3('Data Exploration for {country}, quadrant {quad}'.format(country=country, quad=quad)),
-        html.Div(id='dash-container',
+        html.Div(id='dash-container', style={'width':'85%', 'height': '75%'},
                  children=dataviz.testcrop(ccode, quad))
     ])
 
