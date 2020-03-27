@@ -11,12 +11,23 @@ from Applications.DashApp import dataviz
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
+    html.Div(id='intermediate-value', style={'display': 'none'}),
     html.Div(id='page-content')
 ])
 
 # Enforce only single quadrant pages - /quadrant/{{ccode}}{quadrant}} only valid pattern
 
-@app.callback(Output('page-content', 'children'),
+#@app.callback(Output('intermediate-value', 'children'),
+#              [Input('url', 'pathname')])
+#def store_data(pathname):
+#    ccode = pathname[11:14]
+#    quad = pathname[14:]
+#
+#    return [ccode, quad]
+
+
+@app.callback([Output('page-content', 'children'),
+               Output('intermediate-value', 'children')],
              [Input('url', 'pathname')])
 def display_page(pathname):
 
@@ -35,4 +46,4 @@ def display_page(pathname):
     if err:
         return layout404
     else:
-        return layoutquad(pathname[11:14],pathname[14:])
+        return layoutquad(pathname[11:14],pathname[14:]), [pathname[11:14],pathname[14:]]

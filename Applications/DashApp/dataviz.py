@@ -7,6 +7,7 @@ import plotly.graph_objs as go
 import dash_core_components as dcc
 import iris.analysis.cartography
 from plotly.subplots import make_subplots
+from Applications.DashApp.axisdicts import *
 
 
 def get_datasets():
@@ -27,13 +28,13 @@ def get_datasets():
     return arr
 
 
-def get_cubedata(ccode, quad):
+def get_cubedata(ccode, quad, field):
     if ccode == 'MWI':
         fname = 'data/malawi.nc'
     else:
         fname = 'data/malawi.nc'
 
-    field = iris.Constraint('yield')
+    fieldcon = iris.Constraint(field)
 
     if quad == '01':
         quadselect = iris.Constraint(rcp=2, irr_lev=0, prod_lev=0.5)
@@ -44,7 +45,7 @@ def get_cubedata(ccode, quad):
     else:
         quadselect = iris.Constraint(rcp=0, irr_lev=0, prod_lev=0.5)
 
-    cube = iris.load(fname).extract(field)
+    cube = iris.load(fname).extract(fieldcon)
 
     for coord in cube[0].coords():
         coord.rename(coord.var_name)
@@ -70,12 +71,10 @@ def get_cubedata(ccode, quad):
     return dflst
 
 
-def testcrop(ccode, quad):
+def cropgraph(ccode, quad, crop, croplst,field):
 
-    croplst = get_cubedata(ccode, quad)
-
-    df = croplst[0][0]
-    dfbox = croplst[0][1]
+    df = croplst[crop][0]
+    dfbox = croplst[crop][1]
 
     x = list(df.index)
     x_rev = x[::-1]
@@ -177,7 +176,8 @@ def testcrop(ccode, quad):
             boxpoints=False,
             line=dict(
                 color='firebrick'),
-            showlegend=False
+            showlegend=False,
+            boxmean='sd'
         ),
         row=1,
         col=2
@@ -190,18 +190,23 @@ def testcrop(ccode, quad):
             boxpoints=False,
             line=dict(
                 color='firebrick'),
-            showlegend=False
+            showlegend=False,
+            boxmean='sd',
+            yaxis='y'
         ),
         row=1,
         col=2
     )
 
-    fig.update_layout(title='Maize in Malawi for quadrant ' + quad,
+    fig.update_xaxes(title_text="Year", row=1, col=2)
+    fig.update_yaxes(title_text=fielddict[field], hoverformat='.4g', row=1, col=2)
+
+    fig.update_layout(title=cropdict[crop] + ' in ' + countrydict[ccode] + ' for quadrant ' + quad,
                       xaxis_title='Year',
-                      yaxis=dict(title='Yield', hoverformat='.0f'),
+                      yaxis=dict(title=fielddict[field], hoverformat='.4g'),
                       hovermode='x')
 
-    return dcc.Graph(figure=fig, id='linegraph')
+    return fig
 
 def samplebox():
     trace0 = go.Box(
