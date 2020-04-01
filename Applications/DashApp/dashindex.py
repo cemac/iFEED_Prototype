@@ -15,17 +15,6 @@ app.layout = html.Div([
     html.Div(id='page-content')
 ])
 
-# Enforce only single quadrant pages - /quadrant/{{ccode}}{quadrant}} only valid pattern
-
-#@app.callback(Output('intermediate-value', 'children'),
-#              [Input('url', 'pathname')])
-#def store_data(pathname):
-#    ccode = pathname[11:14]
-#    quad = pathname[14:]
-#
-#    return [ccode, quad]
-
-
 @app.callback([Output('page-content', 'children'),
                Output('intermediate-value', 'children')],
              [Input('url', 'pathname')])

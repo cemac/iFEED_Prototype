@@ -34,26 +34,3 @@ def update_graph(crop, field, loclst):
     fig = dataviz.cropgraph(ccode, quad, crop, df, field)
 
     return fig
-
-#@app.callback(Output('page-content', 'children'),
-#             [Input('url', 'pathname')])
-#def display_page(pathname):
-#
-#    ccodelst = ['MWI','TZA','ZAF','ZMB']
-#    quadlst = ['00','01','10','11']
-#
-#    err=False
-#
-#    if not pathname[:11] == "/quadrants/":
-#        err=True
-#    elif not pathname[11:14] in ccodelst:
-#        err=True
-#    elif not pathname[14:] in quadlst:
-#        err=True
-#
-#    if err:
-#        return abort(404)
-#    else:
-#        return html.Div([
-#            html.H3('You are on page {}'.format(pathname))
-#    ])
