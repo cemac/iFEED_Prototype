@@ -31,11 +31,18 @@ git clone https://github.com/cemac-ccs/iFEED_prototype.git
 cd iFEED_Prototype
 conda env create -f environment.yml
 conda activate iFEED
+python wgsi.py
+```
+Site can be viewed in a browser at
+```
+http://127.0.0.1:5000
 ```
 
 <hr>
 
 ## Usage
+
+To run, from the repository directory
 
 *Coming soon Recommended to write wiki for Developers and site Users*
 
