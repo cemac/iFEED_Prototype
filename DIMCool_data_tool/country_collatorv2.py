@@ -157,6 +157,8 @@ def catdata(catlist,outfil,dim):
 
 def combinedata(country):
 
+    print ("Collecting and merging data for {}".format(country))
+
     dataloc = os.path.join(outpth,'ind_rcp',country)
 
     for crop in crops.keys():
@@ -178,18 +180,10 @@ def combinedata(country):
 
 def singlecountry (dirlst,country):
 
-    print ("Collecting and merging data for {}".format(country))
-
-    bigcubelist=iris.cube.CubeList([])
-
     for direc in dirlst:
         rcp(direc)
 
     combinedata(country)
-
-    outcubelst=bigcubelist.concatenate()
-
-    return outcubelst
 
 def main():
 
@@ -203,19 +197,8 @@ def main():
 
         dirlst=filesincountry(country)
 
-        cubelst=iris.cube.CubeList([])
+        singlecountry(dirlst,country)
 
-        cubelst=singlecountry(dirlst,country)
-
-        print ("Cube output for %s\n" % country)
-        print (cubelst[0])
-
-        outfil = os.path.join(outpth,country+'.nc')
-
-        try:
-            iris.fileformats.netcdf.save(cubelst, outfil, zlib=True)
-        except:
-            raise errlib.NonFatal("Could not output the cube for %s" % country)
 
 if __name__=="__main__":
     main()
