@@ -15,7 +15,7 @@ import os
 import year_collator as rcpcol
 import errlib
 from glob import glob
-import nco
+from nco import Nco
 
 nco=Nco()
 
@@ -124,9 +124,9 @@ def rcp (ascdir):
         raise errlib.FatalError("No yearly folders found in {}\n".format(ascdir))
 
     try:
-        dimvals=[countries[valnames[0]],crops[valnames[1]],models[valnames[2]],rcps[valnames[3]]]
+        dimvals=[countries[simval[0]],crops[simval[1]],models[simval[2]],rcps[simval[3]]]
     except:
-        raise errlib.ArgumentsError("Could not assign dimensions based on the values: \n\ncountry = {},\ncrop = {},\nmodel = {},\nrcp = {}".format(*valnames))
+        raise errlib.ArgumentsError("Could not assign dimensions based on the values: \n\ncountry = {},\ncrop = {},\nmodel = {},\nrcp = {}".format(*simval))
 
     outfil=os.path.join(outpth,"ind_rcp",simval[0],"_".join(simval[1:]))
 
