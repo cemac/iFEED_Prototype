@@ -6,12 +6,12 @@ iFEED Data consolidation tool v1
 Name: rcp_collator.py
 
 Description:
-    Combine all data for a single rcp in the iFEED project. This data is comprised of
-    120 files per year (10 production levels, 10 irrigation levels), over 100 years.
-    Data is combined from 12000 individual ascii files (with 49 columns per file and each
-    row relating to a single 0.5degx0.5deg gridcell) into a single NetCDF file using
+    Combine all data for a each year in the iFEED project. This data is comprised of
+    120 files per year (10 production levels, 10 irrigation levels).
+    Data is combined from all 120 individual ascii files (with 49 columns per file and each
+    row relating to a single 0.5degx0.5deg gridcell) into a set of 100 NetCDF files using
     iris cubes. Program is set up to use multiprocessing also as the data combination
-    process can be time consuming.
+    process can be time consuming. Data will then be combined using nco.
 
 Arguments:
     dir   : Location of the folder containing the yearly raw GLAM outputs. This should
@@ -29,7 +29,7 @@ Restrictions:
     There should be a set of 120 folders with years from 1980 to 2099 in execution folder
     Assumption that folder structure is country/crop/model/rcp/years
 
-Created December 2019
+Created June 2020
 
 @author: Christopher Symonds, CEMAC, University of Leeds
 """
@@ -42,6 +42,51 @@ import argparse
 import time
 from multiprocessing import Pool
 import errlib
+from nco import Nco
+
+countries={
+        "malawi":0,
+        "safrica":1,
+        "tanzania":2,
+        "zambia":3
+        }
+crops={
+      "cassava":0,
+      "groundnut":1,
+      "maize":2,
+      "millet":3,
+      "potato":4,
+      "rice":5,
+      "sorghum":6,
+      "soybean":7,
+      "sugarcane":8,
+      "sweetpot":9,
+      "wheat":10
+      }
+models={
+       "bcc-csm1-1":0,
+       "bcc-csm1-1-m":1,
+       "BNU-ESM":2,
+       "CanESM2":3,
+       "CNRM-CM5":4,
+       "CSIRO-Mk3-6-0":5,
+       "GFDL-CM3":6,
+       "GFDL-ESM2G":7,
+       "GFDL-ESM2M":8,
+       "IPSL-CM5A-LR":9,
+       "IPSL-CM5A-MR":10,
+       "MIROC5":11,
+       "MIROC-ESM":12,
+       "MIROC-ESM-CHEM":13,
+       "MPI-ESM-LR":14,
+       "MPI-ESM-MR":15,
+       "MRI-CGCM3":16,
+       "NorESM1-M":17
+       }
+rcps={
+     "rcp26":0,
+     "rcp85":2
+     }
 
 prod_lst=["0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9","1"]
 irr_lst=["0","0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9","1","2"]
@@ -96,7 +141,6 @@ column={'V1': 'Year',
         'V48': 'Flowering date (DOY - Sorghum only)',
         'V49': 'Total supplementary irrigation added to VOLSW (1) if using SUP irrigation'
         }
-
 var_nm={'V1' : 'year',
         'V2' : 'latitude',
         'V3' : 'longitude',
@@ -147,7 +191,6 @@ var_nm={'V1' : 'year',
         'V48': 'flowr_date',
         'V49': 'tot_irr_sup'
         }
-
 var_units={'V1' : 'year',
            'V2' : 'degrees_north',
            'V3' : 'degrees_east',
@@ -198,6 +241,8 @@ var_units={'V1' : 'year',
            'V48': 'day',
            'V49': 'cm'
            }
+
+nco=Nco()
 
 def nextPath(path_pattern):
     """
@@ -273,8 +318,6 @@ def readargs():
     else:
         simval=ascdir.split('/')[-4:]
         ascdir=ascdir+"/"
-        
-    print (simval)
 
     if not os.path.exists(ascdir):
         raise errlib.ArgumentsError('Path to data files does not exist: '
@@ -288,20 +331,20 @@ def readargs():
                              'Directory checked was '+ascdir+'\n')
 
     if not os.path.exists(args.out):
-        	raise errlib.ArgumentsError('Directory to write netCDF file to'
-                             + ' does not exist\n')
+        raise errlib.ArgumentsError('Directory to write netCDF file to'
+                                    + ' does not exist\n')
 
     if args.out and not os.path.isdir(args.out):
-        	raise errlib.ArgumentsError('Directory to write netCDF file to'
-                             + ' does not exist\n')
+        raise errlib.ArgumentsError('Directory to write netCDF file to'
+                                    + ' does not exist\n')
 
     try:
-        os.makedirs(os.path.join(args.out,simval[0]))
+        os.makedirs(os.path.join(args.out,"ind_rcp",simval[0]))
     except FileExistsError:
         # directory already exists
         pass
 
-    outfil=os.path.join(args.out,"ind_rcp",simval[0],"_".join(simval[1:])+".nc")
+    outfil=os.path.join(args.out,"ind_rcp",simval[0],"_".join(simval[1:]))
 
     if args.proc > 40:
         raise errlib.ArgumentsError("Too many processes requested. Maximum of 40\n")
@@ -311,6 +354,7 @@ def readargs():
     retdata=[ascdir,simval,procs,outfil]
 
     return retdata
+
 
 def getyrs(locdir):
 
@@ -323,10 +367,11 @@ def getyrs(locdir):
 
     return yrs
 
+
 def readascii(path,dimvals):
 
     try:
-        df=pd.read_csv(path,sep=' ')
+        df = pd.read_csv(path, sep=' ')
     except:
         raise errlib.FileError("Error reading file at "+path+"\n")
 
@@ -383,36 +428,37 @@ def fullyr(data):
     valnames=data[1][0]
     ascdir = data[1][1]
     dimvals = data[1][2]
+    outfil=data[1][3]
     yr=data[0]
 
     cubelst=iris.cube.CubeList([])
 
+    tot=len(prod_lst)*len(irr_lst)
+    n=0
     for prod in prod_lst:
         for irr in irr_lst:
+            n+=1
             filenm=valnames[1]+"_"+valnames[0]+"_amma_"+valnames[2]+"_"
             filenm=filenm+valnames[3]+"_Fut_"+yr+"_"+prod+"_"+irr+"_1.out"
             path=ascdir+yr+"/"+filenm
 
             cubelst+=readascii(path, dimvals)
+            print ("cube {} of {} appended for year {}".format(n,tot,yr))
 
-    return cubelst.concatenate()
+    outnm="{}_{}.nc".format(outfil,data[0])
+    outcube(cubelst.concatenate(), outnm)
+
+    return outnm
 
 def multiprocess_rcp (indata):
 
-    [yrs,ascdir,valnames,procs,dimvals]=indata
+    [yrs,ascdir,valnames,procs,dimvals,outfil]=indata
 
-    bigcubelist=iris.cube.CubeList([])
-
-    intermediate_cubelist=iris.cube.CubeList([])
+    yearlist=[]
 
     locproc=min(len(yrs),procs)
 
-    try:
-        pool=Pool(processes=locproc)
-    except:
-        errlib.ArgumentsError("Setting processor pool failed\nprocs = {}\nlen(yrs) = {}\nlocproc= {}\n".format(procs,len(yrs),locproc))
-
-    args=[valnames,ascdir,dimvals]
+    args=[valnames,ascdir,dimvals,outfil]
 
     itterable = [[yr, args] for yr in yrs]
 
@@ -420,42 +466,41 @@ def multiprocess_rcp (indata):
 
     start=time.time()
 
-    for chunk in list_of_chunks:
-        intermediate_cubelist+=pool.map(fullyr,chunk)
+    with Pool(processes=locproc) as pool:
 
-    for cubelst in intermediate_cubelist:
-        bigcubelist+=cubelst
+        for chunk in list_of_chunks:
+            yearlist+=pool.map(fullyr,chunk)
+
+    yearlist.sort()
+
+    catdata(yearlist,outfil)
 
     end=time.time()
 
-    outcubelst=bigcubelist.concatenate()
-
     print ('time to combine ascii to a single nc:',int(end-start))
-
-    return outcubelst
 
 def singleprocess_rcp (indata):
 
-    [yrs,ascdir,valnames,procs,dimvals]=indata
-
-    bigcubelist=iris.cube.CubeList([])
+    [yrs,ascdir,valnames,procs,dimvals,outfil]=indata
 
     start=time.time()
 
-    args=[valnames,ascdir,dimvals]
+    args=[valnames,ascdir,dimvals,outfil]
 
     itterable = [[yr, args] for yr in yrs]
 
+    yearlist=[]
+
     for data in itterable:
-        bigcubelist+=fullyr(data)
+        yearlist.append(fullyr(data))
+
+    yearlist.sort()
+
+    catdata(yearlist,outfil)
 
     end=time.time()
 
-    outcubelst=bigcubelist.concatenate()
-
-    print ('time to combine ascii to a single nc:',int(end-start))
-
-    return outcubelst
+    print ('time to combine ascii to a set of nc files:',int(end-start))
 
 def outcube(cube, fname):
 
@@ -466,25 +511,40 @@ def outcube(cube, fname):
 
     iris.fileformats.netcdf.save(cube, outfile, zlib=True)
 
+def catdata(catlist,outfil):
+
+    nco.ncks(input=catlist[0], output="{}_recdim.nc".format(catlist[0][:-3]), options=['-O','-h', '--mk_rec_dmn time'])
+    catlist.insert(1,"{}_recdim.nc".format(catlist[0][:-3]))
+    newfile=outfil+'.nc'
+    (path, file) = os.path.split(newfile)
+    if not os.path.exists(path):
+        os.makedirs(path)
+    nco.ncrcat(input=catlist[1:], output=newfile)
+    
+    for file in catlist:
+        os.remove(file)
+
 def main():
 
     [ascdir,valnames,NBR_PROCESSES,outfil]=readargs()
 
     yrs=getyrs(ascdir)
 
-    dimvals=[0,0,0,0]
+    try:
+        dimvals=[countries[valnames[0]],crops[valnames[1]],models[valnames[2]],rcps[valnames[3]]]
+    except:
+        raise errlib.ArgumentsError("Could not assign dimensions based on the values: \n\ncountry = {},\ncrop = {},\nmodel = {},\nrcp = {}".format(*valnames))
 
-    indata=[yrs,ascdir,valnames,NBR_PROCESSES,dimvals]
+    indata=[yrs,ascdir,valnames,NBR_PROCESSES,dimvals,outfil]
 
     if NBR_PROCESSES>1:
 
-        rcp_cube=multiprocess_rcp(indata)
+        multiprocess_rcp(indata)
 
     else:
 
-        rcp_cube=singleprocess_rcp(indata)
+        singleprocess_rcp(indata)
 
-    outcube(rcp_cube, outfil)
 
 if __name__=="__main__":
     main()

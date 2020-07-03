@@ -606,7 +606,7 @@ footer {
 }
 
 .upline {
-  height: 235px;
+  height: 180px;
   width: 20px;
   background: #f2c951;
   position: relative;
@@ -618,7 +618,7 @@ footer {
   }
 
 .dnline {
-  height: 235px;
+  height: 180px;
   width: 20px;
   background: #f2c951;
   position: relative;

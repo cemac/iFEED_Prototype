@@ -9,7 +9,7 @@
 
   <p><center> Interactive Map of the AFRICAP countries </center></p>
 </div><!-- .entry-content -->
-<div id="map" style="height: 640px; width:720px; display:block; margin:auto;"></div>
+<div id="map" style="height: 550px; width:640px; display:block; margin:auto;"></div>
 
 <script src="{{ url_for ('static', filename='geojson/countries.js')}}", type="text/javascript"></script>
 <script type="text/javascript">
@@ -18,7 +18,7 @@
   var map = L.map('map', {
     minZoom: 0,
     zoomSnap: 0.25,
-  }).setView([-18.5, 30.0], 4.5);
+  }).setView([-18.5, 30.0], 4.25);
 
   // {z}, {x} and {y} are placeholders for map tiles
   // {x} and {y} are the x/y of where you are on the map

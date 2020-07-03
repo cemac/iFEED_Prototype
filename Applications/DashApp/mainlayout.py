@@ -12,7 +12,7 @@ class CustomDash(dash.Dash):
         <a href="http://africap.info"><img src="/static/logos/africap-logo.svg" alt="Africap Banner" style="float:left;width:100%;"></a>
       </div>
       <div>
-        <a href="/" title="iFEED Tool Dashboard" rel="home"><span style="font-size: 35px; color: #593c2f;">iFEED Tool Dashboard</span></a><span style="font-size: 15px; color: #593c2f;"><br><b>i</b>ntegrated <b>F</b>uture <b>E</b>stimator for <b>E</b>missions and <b>D</b>iets</span>
+        <a href="/" title="Climate Smart Food System Policy Pathway Tool" rel="home"><span style="font-size: 35px; color: #593c2f;">Climate Smart Food System Policy Pathway Tool</span></a><span style="font-size: 15px; color: #593c2f;"><br><b>i</b>ntegrated <b>F</b>uture <b>E</b>stimator for <b>E</b>missions and <b>D</b>iets</span>
       </div>
       <div class="divhead"></div>
     </div>

@@ -6,3 +6,4 @@ Applications/DashApp/__pycache__/
 Applications/FlaskApp/__pycache__/
 .idea/
 *.nc
+.spyproject

@@ -212,6 +212,6 @@ def cropgraph(ccode, quad, crop, croplst,field):
                         t=100,
                         pad=4
                       ),
-                      paper_bgcolor="LightSteelBlue",)
+                      paper_bgcolor="White",)
 
     return fig
