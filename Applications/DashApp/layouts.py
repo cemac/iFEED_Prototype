@@ -30,3 +30,81 @@ def layoutquad(ccode, quad):
     ])
 
     return layout
+
+def layoutcompar(ccode):
+
+    country = countrydict[ccode]
+
+    quaddict={"Quad 00":00,
+              "Quad 01":01,
+              "Quad 10":10,
+              "Quad 11":11}
+
+
+    layout = html.Div([
+        html.H3('Data Exploration for {country} with cross-quadrant comparisons'.format(country=country)),
+        html.Div([
+            html.Div([
+                dcc.Dropdown(
+                    id='quad1',
+                    options=[{'label': v, 'value': k} for k,v in quaddict.items()],
+                    value=0
+                    )
+                ], style={'width': '20%'}
+            ),
+            html.Div([
+                dcc.Dropdown(
+                    id='crop',
+                    options=[{'label': v, 'value': k} for k,v in cropdict.items()],
+                    value=0
+                    )
+                ], style={'width': '20%', 'display': 'inline-block'}
+            ),
+            html.Div([
+                dcc.Dropdown(
+                    id='field',
+                    options=[{'label': v, 'value': k} for k,v in fielddict.items()],
+                    value='yield'
+                    )
+                ], style={'width': '20%', 'display': 'inline-block'}
+            ),
+            dcc.Loading(
+                id='loading-1',
+                children=[dcc.Graph(id='cropgraph')],
+                type='circle',
+            )
+        ], style={'width': '50%', 'display': 'inline-block'}),
+        html.Div([
+            html.Div([
+                dcc.Dropdown(
+                    id='quad1',
+                    options=[{'label': v, 'value': k} for k,v in quaddict.items()],
+                    value=0
+                    )
+                ], style={'width': '20%'}
+            ),
+            html.Div([
+                dcc.Dropdown(
+                    id='crop',
+                    options=[{'label': v, 'value': k} for k,v in cropdict.items()],
+                    value=0
+                    )
+                ], style={'width': '20%', 'display': 'inline-block'}
+            ),
+            html.Div([
+                dcc.Dropdown(
+                    id='field',
+                    options=[{'label': v, 'value': k} for k,v in fielddict.items()],
+                    value='yield'
+                    )
+                ], style={'width': '20%', 'display': 'inline-block'}
+            ),
+            dcc.Loading(
+                id='loading-1',
+                children=[dcc.Graph(id='cropgraph')],
+                type='circle',
+            )
+        ], style={'width': '50%', 'display': 'inline-block'})
+    ])
+
+    return layout
