@@ -1,73 +1,76 @@
 {% extends 'layout.html.j2' %}
 {% block body %}
 {% if ccode == "MWI" %}
-  {% set yax = ['High', 'Irrigation', 'Modification', 'Low'] %}
+  {% set yax = ['High', 'Irrigation', 'Low'] %}
 {% elif ccode == "TZA" %}
-  {% set yax = ['High', 'Production', 'Modification', 'Low'] %}
+  {% set yax = ['High', 'Production', 'Low'] %}
 {% elif ccode == "ZMB" %}
-  {% set yax = ['High', 'Irrigation', 'Modification', 'Low'] %}
+  {% set yax = ['High', 'Irrigation', 'Low'] %}
 {% elif ccode == "ZAF" %}
-  {% set yax = ['High', 'Production', 'Modification', 'Low'] %}
+  {% set yax = ['High', 'Production', 'Low'] %}
 {% endif %}
 
 <div style="color: #593c2f">
   <h1> Country Descriptor Grid for {{country}} </h1>
   <div class="grdouterbox">
-    <div class="grdrow">
-    <div class="grdcontainer">
-      <div class="uaxislbl">{{yax[0]}}</div>
-      <div class="ar-up"></div>
-      <div class="grdrow">
-        <div class="box"><a href="/quadrants/{{ccode}}10"><img class="grow", src="https://dummyimage.com/200x125/fdf1d8/593c2f.png&text=Quadrant+10", alt="Quadrant (1,0)" ></a> </div>
-        <div class="upline">{{yax[1]}}</div>
-        <div class="box"><a href="/quadrants/{{ccode}}11"><img class="grow", src="https://dummyimage.com/200x125/fdf1d8/593c2f.png&text=Quadrant+11", alt="Quadrant (1,1)" ></a> </div>
+    <div class="grdcontainerrow">
+      <div class="grdcontainercol">
+        <div class="grdcontainerrow">
+          <div class="laxislbl">Low</div>
+          <div class="ar-left"></div>
+          <div class="grdcol">
+            <div class="box"><a href="/data_exploration/{{ccode}}10"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+10", alt="Quadrant (1,0)" ></a> </div>
+            <div class="leftline">Climate &nbsp</div>
+            <div class="box"><a href="/data_exploration/{{ccode}}00"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+00", alt="Quadrant (0,0)" ></a> </div>
+          </div>
+          <div class="grdcol2">
+            <div class="uaxislbl">{{yax[0]}}</div>
+            <div class="ar-up"></div>
+            <div class="vertline">{{yax[1]}}</div>
+            <div class="ar-down"></div>
+            <div class="daxislbl">{{yax[2]}}</div>
+          </div>
+          <div class="grdcol">
+            <div class="box"><a href="/data_exploration/{{ccode}}11"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+00", alt="Quadrant (0,0)" ></a> </div>
+            <div class="rightline">&nbsp Impact</div>
+            <div class="box"><a href="/data_exploration/{{ccode}}01"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+01", alt="Quadrant (0,1)" ></a> </div>
+          </div>
+          <div class="ar-right"></div>
+          <div class="raxislbl">High</div>
+        </div>
+        <div class="box"><a href="/data_exploration/{{ccode}}comp"><img class="grow", src="https://dummyimage.com/400x75/fdf1d8/593c2f.png&text=Interquadrant+Comparisons", alt="Quadrant (1,0)" ></a> </div>
+        <div class="daxislbl"></div>
       </div>
-      <div class="grdrow2">
-        <div class="laxislbl">Low</div>
-        <div class="ar-left"></div>
-        <div class="horline">Climate Impact</div>
-        <div class="ar-right"></div>
-        <div class="raxislbl">High</div>
+      <div style="width: 100px"></div>
+      <div>
+        <h1>Example accompanying text</h1>
+
+        <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+
+        <h2>Header Level 2</h2>
+
+        <ol>
+          <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+          <li>Aliquam tincidunt mauris eu risus.</li>
+        </ol>
+
+        <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
+
+        <h3>Header Level 3</h3>
+
+        <ul>
+          <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+          <li>Aliquam tincidunt mauris eu risus.</li>
+        </ul>
+
+        <pre><code>
+          #header h1 a {
+            display: block;
+            width: 300px;
+            height: 80px;
+          }
+        </code></pre>
       </div>
-      <div class="grdrow">
-        <div class="box"><a href="/quadrants/{{ccode}}00"><img class="grow", src="https://dummyimage.com/200x125/fdf1d8/593c2f.png&text=Quadrant+00", alt="Quadrant (0,0)" ></a> </div>
-        <div class="dnline">{{yax[2]}}</div>
-        <div class="box"><a href="/quadrants/{{ccode}}01"><img class="grow", src="https://dummyimage.com/200x125/fdf1d8/593c2f.png&text=Quadrant+01", alt="Quadrant (0,1)" ></a> </div>
-      </div>
-      <div class="ar-down"></div>
-      <div class="daxislbl">{{yax[3]}}</div>
-      <div class="box"><a href="/comparisons/{{ccode}}quad"><img class="grow", src="https://dummyimage.com/400x75/fdf1d8/593c2f.png&text=Interquadrant+Comparisons", alt="Quadrant (1,0)" ></a> </div>
-      <div class="daxislbl">(To Be Implemented)</div>
-    </div>
-    <div style="width: 100px"></div>
-    <div>
-      <h1>Example accompanying text</h1>
-
-      <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-
-      <h2>Header Level 2</h2>
-
-      <ol>
-        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-        <li>Aliquam tincidunt mauris eu risus.</li>
-      </ol>
-
-      <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
-
-      <h3>Header Level 3</h3>
-
-      <ul>
-        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-        <li>Aliquam tincidunt mauris eu risus.</li>
-      </ul>
-
-      <pre><code>
-        #header h1 a {
-          display: block;
-          width: 300px;
-          height: 80px;
-        }
-      </code></pre>
     </div>
   </div>
 </div><!-- .entry-content -->

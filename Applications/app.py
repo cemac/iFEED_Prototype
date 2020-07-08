@@ -40,8 +40,8 @@ app = CustomDash(server=fl_app,
                  external_stylesheets=external_stylesheets,
                  external_scripts=external_scripts,
                  meta_tags=meta_tags,
-                 requests_pathname_prefix='/quadrants/',
-                 routes_pathname_prefix='/quadrants/'
+                 requests_pathname_prefix='/data_exploration/',
+                 routes_pathname_prefix='/data_exploration/'
                  )
 server = app.server
 app.config.suppress_callback_exceptions = True

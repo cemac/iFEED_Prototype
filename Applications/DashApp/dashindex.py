@@ -20,19 +20,23 @@ app.layout = html.Div([
              [Input('url', 'pathname')])
 def display_page(pathname):
 
-    ccodelst = ['MWI','TZA','ZAF','ZMB']
-    quadlst = ['00','01','10','11']
+    ccodelst = ['MWI','TZA','ZAF','ZMB','ALL']
+    quadlst = ['00','01','10','11','comp']
 
     err=False
 
-    if not pathname[:11] == "/quadrants/":
+    if not pathname[:18] == "/data_exploration/":
         err=True
-    elif not pathname[11:14] in ccodelst:
+    elif not pathname[18:21] in ccodelst:
         err=True
-    elif not pathname[14:] in quadlst:
+    elif not pathname[21:] in quadlst:
         err=True
 
     if err:
         return layout404
+    elif pathname[18:] == 'ALLcomp':
+        return layoutfullcompar(), [pathname[18:21],pathname[21:]]
+    elif (pathname[21:] == 'comp' and pathname[18:21] != 'ALL'):
+        return layoutquadcompar(pathname[18:21]), [pathname[18:21],pathname[21:]]
     else:
-        return layoutquad(pathname[11:14],pathname[14:]), [pathname[11:14],pathname[14:]]
+        return layoutquad(pathname[18:21],pathname[21:]), [pathname[18:21],pathname[21:]]

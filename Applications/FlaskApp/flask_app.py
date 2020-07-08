@@ -197,35 +197,22 @@ def access(id):
 # data exploration pages -----------------------------------------------------
 
 
-@main_bp.route('/countries/<string:ccode>', methods=["GET"])
-def countries(ccode):
+@main_bp.route('/countries', methods=["GET"])
+def countries():
 
-    countries = {
-        'MWI' : 'Malawi',
-        'TZA' : 'Tanzania',
-        'ZAF' : 'South Africa',
-        'ZMB' : 'Zambia'
-    }
+    #countries = {
+    #    'MWI' : 'Malawi',
+    #    'TZA' : 'Tanzania',
+    #    'ZAF' : 'South Africa',
+    #    'ZMB' : 'Zambia'
+    #}
+    #
+    #country=countries.get(ccode,"Unrecognised")
 
-    country=countries.get(ccode,"Unrecognised")
+    #if country=="Unrecognised":
+    #    abort(404)
 
-    if country=="Unrecognised":
-        abort(404)
-
-    return render_template('countrygrid.html.j2', ccode=ccode, country=country)
-
-#@main_bp.route('/countries/<string:ccode>/<string:quadrant>', methods=["GET"])
-#def quadrants(ccode, quadrant):
-
-#    ccode_val=["MWE","TZA","ZAF","ZMB"]
-
-#    if not ccode in ccode_val:
-#        abort(404)
-
-#    quad_val=["00","01","10","11"]
-
-#    if not quadrant in quad_val:
-#        abort(404)
+    return render_template('bycountry.html.j2')
 
 # static information pages ---------------------------------------------------
 

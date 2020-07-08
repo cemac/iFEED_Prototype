@@ -1,0 +1,177 @@
+{% extends 'layout.html.j2' %}
+
+{% block body %}
+
+<div style="text-align: justify">
+
+  <p><center> <h2>Data Selection by Country </h2></center></p>
+</div><!-- .entry-content -->
+<div class="homerow">
+  <div class="homecol">
+    <p><center> Use the interactive map below to select your country of interest </center></p>
+    <div id="map" style="height: 550px; width:640px; grid-area: a"></div>
+  </div>
+  <div id="countrygrid" style="visibility: hidden">
+    <div class="homerow" style="justify-content: space-around;">
+      <div id="accomptext" class="grdcol" style="margin: 30px; width: 35%; text-align: justify"> Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text.
+      </div>
+      <div class="grdcontainercol" style="grid-area: c;">
+        <div class="grdcontainerrow">
+          <div class="laxislbl">Low</div>
+          <div class="ar-left"></div>
+          <div class="grdcol">
+            <div class="box"><a href="/data_exploration/AAA10"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+10", alt="Quadrant (1,0)" ></a> </div>
+            <div class="leftline">Climate &nbsp</div>
+            <div class="box"><a href="/data_exploration/AAA00"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+00", alt="Quadrant (0,0)" ></a> </div>
+          </div>
+          <div class="grdcol2">
+            <div class="uaxislbl">High</div>
+            <div class="ar-up"></div>
+            <div id= "axis" class="vertline">Placeholder</div>
+            <div class="ar-down"></div>
+            <div class="daxislbl">Low</div>
+          </div>
+          <div class="grdcol">
+            <div class="box"><a href="/data_exploration/AAA11"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+11", alt="Quadrant (1,1)" ></a> </div>
+            <div class="rightline">&nbsp Impact</div>
+            <div class="box"><a href="/data_exploration/AAA01"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+01", alt="Quadrant (0,1)" ></a> </div>
+          </div>
+          <div class="ar-right"></div>
+          <div class="raxislbl">High</div>
+        </div>
+        <div class="box"><a href="/data_exploration/AAAcomp"><img class="grow", src="https://dummyimage.com/400x75/fdf1d8/593c2f.png&text=Interquadrant+Comparisons", alt="Quadrant (1,0)" ></a> </div>
+        <div class="daxislbl"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for ('static', filename='geojson/countries.js')}}", type="text/javascript"></script>
+<script type="text/javascript">
+// The first parameter are the coordinates of the center of the map
+// The second parameter is the zoom level
+  var map = L.map('map', {
+    minZoom: 0,
+    zoomSnap: 0.25,
+  }).setView([-18.5, 30.0], 4.25);
+
+  // {z}, {x} and {y} are placeholders for map tiles
+  // {x} and {y} are the x/y of where you are on the map
+  // {z} is the zoom level
+
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2VtYWMtY2NzIiwiYSI6ImNrNTVraHB1YjBzamUza29maHpuaXhxMDUifQ.TeGCFnu6MhaZXNw80EWWdw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/light-v9'
+	}).addTo(map);
+
+  // control that shows country name on hover
+  var info = L.control();
+
+  info.onAdd = function (map) {
+  	this._div = L.DomUtil.create('div', 'info');
+  	this.update();
+  	return this._div;
+  };
+
+  info.update = function (props) {
+  	this._div.innerHTML = '<h4>AFRICAP Country:</h4>' +  (props ?
+  		'<b>' + props.name : 'Hover over a country');
+  };
+
+  info.addTo(map);
+
+  function showDiv(ccode) {
+    document.getElementById('countrygrid').style.visibility = "visible";
+    const regex = /\/data_exploration\/.../gi;
+    var links = document.getElementsByClassName('box')
+    for (var j = 0; j < links.length; j++) {
+      links[j].innerHTML = links[j].innerHTML.replace(regex, '\/data_exploration\/' + ccode);
+    }
+    if (ccode == "MWI") {
+      document.getElementById("axis").innerHTML = "Irrigation";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Malawi explore the effect of irrigation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p><br><br><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis aliquam faucibus purus in massa tempor nec feugiat nisl. Id volutpat lacus laoreet non curabitur. Non odio euismod lacinia at. Amet cursus sit amet dictum sit amet justo donec. Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere lorem. Placerat vestibulum lectus mauris ultrices eros in. Pulvinar elementum integer enim neque volutpat. Ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper. Sed egestas egestas fringilla phasellus faucibus. Id aliquet risus feugiat in ante. Vitae ultricies leo integer malesuada nunc vel risus. Porta lorem mollis aliquam ut porttitor.</p>";
+    } else if (ccode == "ZMB") {
+      document.getElementById("axis").innerHTML = "Irrigation";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Zambia explore the effect of irrigation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p><br><br><p>Praesent semper feugiat nibh sed pulvinar proin. Ac placerat vestibulum lectus mauris ultrices eros. Ligula ullamcorper malesuada proin libero nunc consequat interdum varius sit. Leo integer malesuada nunc vel risus. Sit amet aliquam id diam maecenas ultricies mi eget mauris. Ac felis donec et odio. Nunc mi ipsum faucibus vitae aliquet nec. Tortor id aliquet lectus proin nibh. Tellus elementum sagittis vitae et leo duis ut. Mattis molestie a iaculis at erat pellentesque. In massa tempor nec feugiat nisl pretium fusce. Nulla malesuada pellentesque elit eget gravida cum. Cursus eget nunc scelerisque viverra mauris in. In metus vulputate eu scelerisque felis imperdiet. Pretium vulputate sapien nec sagittis. Venenatis urna cursus eget nunc. Sed enim ut sem viverra aliquet eget sit amet tellus. Vitae turpis massa sed elementum tempus egestas sed. Ut porttitor leo a diam sollicitudin tempor id eu.</p>";
+    } else if (ccode == "TZA") {
+      document.getElementById("axis").innerHTML = "Production";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for the United Republic of Tanzania explore the effect of changes in production levels and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p><br><br><p>Imperdiet massa tincidunt nunc pulvinar sapien. Sed nisi lacus sed viverra tellus. Morbi tincidunt augue interdum velit euismod in pellentesque massa placerat. Consequat interdum varius sit amet mattis vulputate enim nulla. Mauris augue neque gravida in. Volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris. Egestas pretium aenean pharetra magna ac placerat vestibulum lectus mauris. Vel eros donec ac odio tempor orci dapibus. Et malesuada fames ac turpis egestas integer eget. Viverra vitae congue eu consequat ac felis donec et odio. Neque vitae tempus quam pellentesque nec nam aliquam. A arcu cursus vitae congue. Tellus integer feugiat scelerisque varius morbi. Diam in arcu cursus euismod quis viverra nibh cras. Risus feugiat in ante metus dictum. Justo laoreet sit amet cursus sit amet dictum sit. Cras adipiscing enim eu turpis egestas pretium aenean pharetra. Nibh venenatis cras sed felis.</p>";
+    } else {
+      document.getElementById("axis").innerHTML = "Production";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for the South Africa explore the effect of changes in production levels and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p><br><br><p>Egestas pretium aenean pharetra magna. Venenatis a condimentum vitae sapien pellentesque. Aliquam nulla facilisi cras fermentum odio eu feugiat pretium. Egestas tellus rutrum tellus pellentesque eu. Orci sagittis eu volutpat odio facilisis mauris sit amet. Eget nunc scelerisque viverra mauris in. Venenatis tellus in metus vulputate eu scelerisque. Lacus viverra vitae congue eu consequat ac. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. In iaculis nunc sed augue lacus viverra vitae. Quis varius quam quisque id diam vel quam elementum pulvinar. Morbi leo urna molestie at elementum eu. Id cursus metus aliquam eleifend mi in. Felis bibendum ut tristique et egestas quis ipsum. Nulla aliquet porttitor lacus luctus. Arcu bibendum at varius vel pharetra. Egestas sed sed risus pretium quam vulputate. Amet risus nullam eget felis eget nunc lobortis. Amet est placerat in egestas erat imperdiet sed euismod. Tellus id interdum velit laoreet id donec ultrices tincidunt.</p>";
+    }
+  }
+
+  // get color depending on population density value
+  function getColor(c) {
+  	return c == "ZAF" ? '#800026' :
+  			c == "ZMB"  ? '#BD0026' :
+  			c == "TZA"  ? '#E31A1C' :
+  			c == "MWI"  ? '#FC4E2A' :
+  						'#FFEDA0';
+  }
+
+  function style(feature) {
+  	return {
+  		weight: 2,
+  		opacity: 1,
+  		color: 'white',
+  		dashArray: '3',
+  		fillOpacity: 0.7,
+  		fillColor: getColor(feature.properties.code)
+  	};
+  }
+
+  function highlightFeature(e) {
+  	var layer = e.target;
+
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature.properties);
+
+	}
+
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: combFunc
+		});
+    /*layer.bindPopup('Select one of the quadrants to examine data for '+feature.properties.name+', or compare data between quadrants.')*/
+	}
+
+  function combFunc(e) {
+    var layer = e.target;
+    zoomToFeature(e);
+    showDiv(layer.feature.properties.code);
+  }
+
+	geojson = L.geoJson(countries, {
+		style: style,
+		onEachFeature: onEachFeature
+	}).addTo(map);
+
+</script>
+{% endblock %}

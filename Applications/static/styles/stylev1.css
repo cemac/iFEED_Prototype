@@ -491,21 +491,6 @@ footer {
   transform: scale(1.1);
 }
 
-.grdouterbox {
-  padding-top: 5px;
-  height: 70%;
-  width: 95%;
-}
-
-.grdcontainer{
-  display : flex;
-  flex-direction: column;
-  /*padding:5px;*/
-  margin: 0;
-  flex : 1 1 auto;
-  align-items: center;
-}
-
 .headbox{
   padding: 5px;
 }
@@ -522,21 +507,60 @@ footer {
   width: 20%;
 }
 
-.grdrow{
+.grdouterbox {
+  padding-top: 5px;
+  height: 70%;
+  width: 95%;
+}
+
+.grdcontainercol{
+  display : flex;
+  flex-direction: column;
+  /*padding:5px;*/
+  margin: 0;
+  flex : 1 1 auto;
+  align-items: center;
+}
+
+.grdcontainerrow{
   display : flex;
   flex-direction: row;
+  margin: 0;
+  flex : 1 1 auto;
+  align-items: center;
+}
+
+.homerow{
+  display : flex;
+  flex-direction: row;
+  margin: auto;
+  flex : 1 1 auto;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.homecol{
+  display : flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: center;
+}
+
+.grdcol{
+  display : flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
 }
 
-.grdrow2{
+.grdcol2{
   display : flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
-  height: 10px;
+  width: 15px;
 }
 
 .box img{
@@ -545,14 +569,27 @@ footer {
   margin:10px;
 }
 
-.horline {
-  flex: 1 1 auto;
+.leftline {
   height: 20px;
-  width: 490px;
+  width: 185px;
   background: #f2c951;
   position: relative;
+  text-orientation: upright;
+  text-align: right;
+  align-self: flex-start;
   align-items: center;
-  text-align: center;
+  color : #593c2f;
+  }
+
+.rightline {
+  height: 20px;
+  width: 185px;
+  background: #f2c951;
+  position: relative;
+  text-orientation: upright;
+  text-align: left;
+  align-self: flex-end;
+  align-items: center;
   color : #593c2f;
 }
 
@@ -605,27 +642,16 @@ footer {
   color : #593c2f;
 }
 
-.upline {
-  height: 180px;
+.vertline {
+  flex: 1 1 auto;
+  height: 308px;
   width: 20px;
   background: #f2c951;
-  position: relative;
   writing-mode: vertical-rl;
   text-orientation: upright;
-  text-align: center;
-  align-self: flex-end;
-  color : #593c2f;
-  }
-
-.dnline {
-  height: 180px;
-  width: 20px;
-  background: #f2c951;
   position: relative;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
+  align-items: center;
   text-align: center;
-  align-self: flex-start;
   color : #593c2f;
 }
 
