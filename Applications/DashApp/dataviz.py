@@ -205,7 +205,7 @@ def cropgraph(ccode, quad, crop, croplst, field):
     fig.update_xaxes(title_text="Year", row=1, col=2)
     fig.update_yaxes(title_text=fielddict[field], hoverformat='.4g', row=1, col=2)
 
-    fig.update_layout(title=cropdict[crop] + ' in ' + countrydict[ccode] + ' for quadrant ' + quad,
+    fig.update_layout(title=cropdict[crop] + ' in ' + countrydict[ccode] + ' for ' + re.sub(',',' and', quaddict[ccode][quad]),
                       xaxis_title='Year',
                       yaxis=dict(title=fielddict[field], hoverformat='.4g'),
                       hovermode='x',
