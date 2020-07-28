@@ -1,9 +1,7 @@
 __pycache__/
 *.pyc
-data/*.nc
-Applications/__pycache__/
-Applications/DashApp/__pycache__/
-Applications/FlaskApp/__pycache__/
+*/__pycache__/
 .idea/
 *.nc
 .spyproject
+*.zip
