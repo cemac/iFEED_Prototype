@@ -331,7 +331,9 @@ def readargs():
                              + ascdir+'\n')
 
     contents=[i for i in os.listdir(ascdir) if os.path.isdir(os.path.join(ascdir,i))]
-    if not contents==[str(i) for i in range(1980,2100)]:
+
+    years = [str(i) for i in range(1980,2100)]
+    if not all(x in contents for x in years):
         raise errlib.ArgumentsError('Data file directory expected to contain 120 numbered folders\n'+
                              'numbered from 1980 to 2099 inclusive, but these folders were\n'+
                              'not found. Check that the directory argument is correct.\n'+
@@ -423,6 +425,8 @@ def readascii(path,dimvals):
                 cube_layer.data[0,a[0][0],b[0][0],0,0,0,0,0]=row[col]
 
             cube_layer.data=np.ma.masked_equal(cube_layer.data,-99.)
+            cube_layer.long_name=column[col]
+            cube_layer.units=var_units[col]
             cube_layer.rename(var_nm[col])
             cube_layer.data.fill_value=-99.0
 
