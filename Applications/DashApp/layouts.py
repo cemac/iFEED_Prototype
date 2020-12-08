@@ -1,7 +1,7 @@
 import dash_html_components as html
 import dash_core_components as dcc
-from Applications.DashApp import dataviz
-from Applications.DashApp.axisdicts import *
+#from Applications.DashApp import dataviz
+from Applications.DashApp.axisdicts import countrydict, cropdict, fielddict, quaddict
 import re
 
 def layoutquad(ccode, quad):

@@ -1,0 +1,63 @@
+antlr4-python3-runtime @ file:///home/conda/feedstock_root/build_artifacts/antlr-python-runtime_1602363938695/work
+arrow==0.17.0
+bokeh @ file:///home/conda/feedstock_root/build_artifacts/bokeh_1606141204355/work
+Brotli==1.0.9
+Cartopy @ file:///home/conda/feedstock_root/build_artifacts/cartopy_1604218103017/work
+certifi==2020.12.5
+cf-units @ file:///home/conda/feedstock_root/build_artifacts/cf-units_1603235519417/work
+cftime @ file:///home/conda/feedstock_root/build_artifacts/cftime_1605566717222/work
+click==7.1.2
+cloudpickle @ file:///home/conda/feedstock_root/build_artifacts/cloudpickle_1598400192773/work
+cycler==0.10.0
+cytoolz==0.11.0
+dash==1.18.0
+dash-core-components==1.14.0
+dash-html-components==1.1.1
+dash-renderer==1.8.3
+dash-table==4.11.1
+dask @ file:///home/conda/feedstock_root/build_artifacts/dask-core_1602029610262/work
+distributed @ file:///home/conda/feedstock_root/build_artifacts/distributed_1604508005302/work
+Flask==1.1.2
+Flask-Assets==2.0
+Flask-Compress==1.8.0
+fsspec @ file:///home/conda/feedstock_root/build_artifacts/fsspec_1602700749102/work
+future==0.18.2
+HeapDict==1.0.1
+itsdangerous==1.1.0
+Jinja2==2.11.2
+kiwisolver @ file:///home/conda/feedstock_root/build_artifacts/kiwisolver_1604322297326/work
+locket==0.2.0
+MarkupSafe @ file:///home/conda/feedstock_root/build_artifacts/markupsafe_1602267316845/work
+matplotlib @ file:///home/conda/feedstock_root/build_artifacts/matplotlib-suite_1605180225469/work
+msgpack @ file:///home/conda/feedstock_root/build_artifacts/msgpack-python_1605895130094/work
+netCDF4 @ file:///home/conda/feedstock_root/build_artifacts/netcdf4_1588329193282/work
+numpy @ file:///home/conda/feedstock_root/build_artifacts/numpy_1604945996409/work
+olefile @ file:///home/conda/feedstock_root/build_artifacts/olefile_1602866521163/work
+packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1607083949101/work
+pandas==1.1.5
+partd==1.1.0
+passlib==1.7.4
+Pillow @ file:///home/conda/feedstock_root/build_artifacts/pillow_1604748693076/work
+plotly==4.14.0
+psutil @ file:///home/conda/feedstock_root/build_artifacts/psutil_1603570991184/work
+pyke @ file:///home/conda/feedstock_root/build_artifacts/pyke_1605710175691/work
+pyparsing==2.4.7
+pyshp @ file:///home/conda/feedstock_root/build_artifacts/pyshp_1599782465740/work
+python-dateutil==2.8.1
+pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1604321279890/work
+PyYAML==5.3.1
+retrying==1.3.3
+scipy @ file:///home/conda/feedstock_root/build_artifacts/scipy_1604304773994/work
+scitools-iris @ file:///home/conda/feedstock_root/build_artifacts/iris_1605742422766/work
+Shapely @ file:///home/conda/feedstock_root/build_artifacts/shapely_1602547946837/work
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1590081179328/work
+sortedcontainers @ file:///home/conda/feedstock_root/build_artifacts/sortedcontainers_1605110889605/work
+tblib==1.6.0
+toolz @ file:///home/conda/feedstock_root/build_artifacts/toolz_1600973991856/work
+tornado @ file:///home/conda/feedstock_root/build_artifacts/tornado_1604105014127/work
+typing-extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1602702424206/work
+webassets==2.0
+Werkzeug==1.0.1
+WTForms==2.3.3
+xxhash @ file:///home/conda/feedstock_root/build_artifacts/python-xxhash_1602278113699/work
+zict==2.0.0

@@ -1,13 +1,10 @@
-from pathlib import Path
-import dash_table
-import pandas as pd
 import iris
 import re
 import iris.pandas
 import plotly.graph_objs as go
 import iris.analysis.cartography
 from plotly.subplots import make_subplots
-from Applications.DashApp.axisdicts import *
+from Applications.DashApp.axisdicts import countrydict, cropdict, fielddict, quaddict
 
 def get_cubedata(ccode, quad, field):
 
@@ -228,7 +225,7 @@ def compgraph(ccode, quad, crop, croplst, field):
         quad='00'
 
     df = croplst[crop][0]
-    dfbox = croplst[crop][1]
+    #dfbox = croplst[crop][1]
 
     x = list(df.index)
     x_rev = x[::-1]
