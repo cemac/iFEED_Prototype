@@ -5,12 +5,10 @@ Module for a login page
 
 """
 
-from flask import Flask, render_template, flash, redirect, url_for, request
-from flask import g, session, abort
-from wtforms import Form, validators, StringField, SelectField, TextAreaField
-from wtforms import IntegerField, PasswordField, SelectMultipleField, widgets
-import datetime as dt
-import os
+from flask import flash, redirect, url_for
+from flask import session
+from wtforms import Form, validators, StringField, SelectField
+from wtforms import PasswordField, SelectMultipleField, widgets
 import pandas as pd
 from functools import wraps
 from passlib.hash import sha256_crypt
@@ -196,7 +194,7 @@ def OptionalInfo(username, conn, affiliation=None,
     Returns:
         commits user to database as registered user
     """
-    id = None
+    cur = conn.cursor()
     cur.execute("INSERT INTO users (affiliation,email) VALUES (?)",
                 (str(affiliation), str(email)))
     conn.commit()

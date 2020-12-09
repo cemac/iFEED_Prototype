@@ -1,13 +1,12 @@
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-from flask import abort
 
 from Applications.app import app
-from Applications.DashApp.layouts import *
-from Applications.DashApp.errors import *
 import Applications.DashApp.callbacks
 from Applications.DashApp import dataviz
+from Applications.DashApp.layouts import layoutquad, layoutquadcompar, layoutfullcompar
+from Applications.DashApp.errors import layout404
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),

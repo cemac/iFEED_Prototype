@@ -1,13 +1,13 @@
 """Initialize app."""
 from flask import Flask
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-from dash.dependencies import Input, Output
-import flask
-from Applications.DashApp.dashadds import *
-from Applications.FlaskApp.errorpages import *
+#from werkzeug.middleware.dispatcher import DispatcherMiddleware
+#import dash
+#import dash_core_components as dcc
+#import dash_html_components as html
+#from dash.dependencies import Input, Output
+#import flask
+from Applications.DashApp.dashadds import external_scripts, external_stylesheets, meta_tags
+from Applications.FlaskApp.errorpages import page_not_found, page_not_allowed, internal_error, unhandled_exception
 from Applications.DashApp.mainlayout import CustomDash
 #from Applications.DashApp.dataviz import *
 #from Applications.DashApp.callbacks import *

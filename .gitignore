@@ -6,3 +6,4 @@ __pycache__/
 .spyproject
 *.zip
 *.docx
+.venv/*

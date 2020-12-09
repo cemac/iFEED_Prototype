@@ -1,15 +1,13 @@
-from pathlib import Path
-import dash_table
-import pandas as pd
-import iris
+import numpy as np
 import re
-import iris.pandas
+import xarray as xr
 import plotly.graph_objs as go
-import iris.analysis.cartography
 from plotly.subplots import make_subplots
-from Applications.DashApp.axisdicts import *
+from Applications.DashApp.axisdicts import countrydict, cropdict, fielddict, quaddict
 
 def get_cubedata(ccode, quad, field):
+    
+    import os
 
     if ccode == None:
         ccode = "MWI"
@@ -24,50 +22,65 @@ def get_cubedata(ccode, quad, field):
         fname = 'data/malawi.nc'
     else:
         fname = 'data/safrica.nc'
-
-    fieldcon = iris.Constraint(field)
+        
+    if not os.path.exists(fname): 
+        print('Could not load file')
 
     if ccode == 'MWI' or ccode == 'ZMB':
         if quad == '01':
-            quadselect = iris.Constraint(rcp=2, irr_lev=0, prod_lev=0.5)
+            rcp=2
+            irr_lev=0
+            prod_lev=0.5
         elif quad == '10':
-            quadselect = iris.Constraint(rcp=0, irr_lev=2, prod_lev=0.5)
+            rcp=0
+            irr_lev=2
+            prod_lev=0.5
         elif quad == '11':
-            quadselect = iris.Constraint(rcp=2, irr_lev=2, prod_lev=0.5)
+            rcp=2
+            irr_lev=2
+            prod_lev=0.5
         else:
-            quadselect = iris.Constraint(rcp=0, irr_lev=0, prod_lev=0.5)
+            rcp=0
+            irr_lev=0
+            prod_lev=0.5
     else:
         if quad == '01':
-            quadselect = iris.Constraint(rcp=2, irr_lev=0.5, prod_lev=0.1)
+            rcp=2
+            irr_lev=0.5
+            prod_lev=0.1
         elif quad == '10':
-            quadselect = iris.Constraint(rcp=0, irr_lev=0.5, prod_lev=1.0)
+            rcp=0
+            irr_lev=0.5
+            prod_lev=1.0
         elif quad == '11':
-            quadselect = iris.Constraint(rcp=2, irr_lev=0.5, prod_lev=1.0)
+            rcp=2
+            irr_lev=0.5
+            prod_lev=1.0
         else:
-            quadselect = iris.Constraint(rcp=0, irr_lev=0.5, prod_lev=0.1)
+            rcp=0
+            irr_lev=0.5
+            prod_lev=0.1
 
-    cube = iris.load(fname).extract(fieldcon)
+    ds = xr.open_dataset(fname)
+            
+    da = ds[field].loc[dict(rcp=rcp, irr_lev=irr_lev, prod_lev=prod_lev)]
+    da = da.where((da <= 1e+20))
 
-    for coord in cube[0].coords():
-        coord.rename(coord.var_name)
-
-    quadcube = cube[0].extract(quadselect)
-
-    quadcube.coord('lat').guess_bounds()
-    quadcube.coord('lon').guess_bounds()
-
-    countrycube = quadcube.collapsed(['lat', 'lon'], iris.analysis.MEAN)
+    weights = np.cos(np.deg2rad(da.lat))
+    weighted_mean = da.weighted(weights).mean(("lon","lat"), skipna=True)
 
     dflst = []
 
-    for crop in countrycube.coord('crop').points:
-        df = iris.pandas.as_data_frame(countrycube.extract(iris.Constraint(crop=crop)))
+    for crop in range(weighted_mean.crop.shape[0]):
+        df = weighted_mean[dict(crop=crop)].to_pandas()
 
         linedf = df.quantile(q=[0.0, 0.25, 0.5, 0.75, 1.0], axis=1).T
 
         boxdf = df.iloc[[0,-1],:].T
 
         dflst.append([linedf, boxdf])
+
+    ds.close()
 
     return dflst
 
@@ -228,7 +241,7 @@ def compgraph(ccode, quad, crop, croplst, field):
         quad='00'
 
     df = croplst[crop][0]
-    dfbox = croplst[crop][1]
+    #dfbox = croplst[crop][1]
 
     x = list(df.index)
     x_rev = x[::-1]

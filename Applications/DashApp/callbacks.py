@@ -2,8 +2,7 @@ from dash.dependencies import Input, Output
 from Applications.DashApp import dataviz
 import dash_html_components as html
 from flask import abort
-from Applications.DashApp.axisdicts import *
-
+from Applications.DashApp.axisdicts import quaddict
 from Applications.app import app
 
 
