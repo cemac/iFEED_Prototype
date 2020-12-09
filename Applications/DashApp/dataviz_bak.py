@@ -1,7 +1,8 @@
-import numpy as np
+import iris
 import re
-import xarray as xr
+import iris.pandas
 import plotly.graph_objs as go
+import iris.analysis.cartography
 from plotly.subplots import make_subplots
 from Applications.DashApp.axisdicts import countrydict, cropdict, fielddict, quaddict
 
@@ -21,51 +22,43 @@ def get_cubedata(ccode, quad, field):
     else:
         fname = 'data/safrica.nc'
 
+    fieldcon = iris.Constraint(field)
+
     if ccode == 'MWI' or ccode == 'ZMB':
         if quad == '01':
-            rcp=2
-            irr_lev=0
-            prod_lev=0.5
+            quadselect = iris.Constraint(rcp=2, irr_lev=0, prod_lev=0.5)
         elif quad == '10':
-            rcp=0
-            irr_lev=2
-            prod_lev=0.5
+            quadselect = iris.Constraint(rcp=0, irr_lev=2, prod_lev=0.5)
         elif quad == '11':
-            rcp=2
-            irr_lev=2
-            prod_lev=0.5
+            quadselect = iris.Constraint(rcp=2, irr_lev=2, prod_lev=0.5)
         else:
-            rcp=0
-            irr_lev=0
-            prod_lev=0.5
+            quadselect = iris.Constraint(rcp=0, irr_lev=0, prod_lev=0.5)
     else:
         if quad == '01':
-            rcp=2
-            irr_lev=0.5
-            prod_lev=0.1
+            quadselect = iris.Constraint(rcp=2, irr_lev=0.5, prod_lev=0.1)
         elif quad == '10':
-            rcp=0
-            irr_lev=0.5
-            prod_lev=1.0
+            quadselect = iris.Constraint(rcp=0, irr_lev=0.5, prod_lev=1.0)
         elif quad == '11':
-            rcp=2
-            irr_lev=0.5
-            prod_lev=1.0
+            quadselect = iris.Constraint(rcp=2, irr_lev=0.5, prod_lev=1.0)
         else:
-            rcp=0
-            irr_lev=0.5
-            prod_lev=0.1
+            quadselect = iris.Constraint(rcp=0, irr_lev=0.5, prod_lev=0.1)
 
-    ds = xr.open_dataset(fname)
-    da = ds[field].loc[dict(rcp=rcp, irr_lev=irr_lev, prod_lev=prod_lev)]
+    cube = iris.load(fname).extract(fieldcon)
 
-    weights = np.cos(np.deg2rad(da.lat))
-    weighted_mean = da.weighted(weights).mean(("lon","lat"))
+    for coord in cube[0].coords():
+        coord.rename(coord.var_name)
+
+    quadcube = cube[0].extract(quadselect)
+
+    quadcube.coord('lat').guess_bounds()
+    quadcube.coord('lon').guess_bounds()
+
+    countrycube = quadcube.collapsed(['lat', 'lon'], iris.analysis.MEAN)
 
     dflst = []
 
-    for crop in range(weighted_mean.crop.shape[0]):
-        df = weighted_mean[dict(crop=crop)].to_pandas()
+    for crop in countrycube.coord('crop').points:
+        df = iris.pandas.as_data_frame(countrycube.extract(iris.Constraint(crop=crop)))
 
         linedf = df.quantile(q=[0.0, 0.25, 0.5, 0.75, 1.0], axis=1).T
 
