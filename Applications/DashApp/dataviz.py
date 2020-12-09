@@ -6,7 +6,7 @@ from plotly.subplots import make_subplots
 from Applications.DashApp.axisdicts import countrydict, cropdict, fielddict, quaddict
 
 def get_cubedata(ccode, quad, field):
-    
+
     import os
 
     if ccode == None:
@@ -22,8 +22,8 @@ def get_cubedata(ccode, quad, field):
         fname = 'data/malawi.nc'
     else:
         fname = 'data/safrica.nc'
-        
-    if not os.path.exists(fname): 
+
+    if not os.path.exists(fname):
         print('Could not load file')
 
     if ccode == 'MWI' or ccode == 'ZMB':
@@ -62,7 +62,7 @@ def get_cubedata(ccode, quad, field):
             prod_lev=0.1
 
     ds = xr.open_dataset(fname)
-            
+
     da = ds[field].loc[dict(rcp=rcp, irr_lev=irr_lev, prod_lev=prod_lev)]
     da = da.where((da <= 1e+20))
 
