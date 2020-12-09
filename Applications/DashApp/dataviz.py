@@ -21,7 +21,7 @@ def get_cubedata(ccode, quad, field):
     if (ccode == 'MWI' or ccode == 'TZA'):
         fname = 'data/malawi.nc'
     else:
-        fname = 'data/safrica.nc'
+        fname = 'data/malawi.nc'
 
     if not os.path.exists(fname):
         print('Could not load file')
