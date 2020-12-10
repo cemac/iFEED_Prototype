@@ -1,5 +1,5 @@
 """Application entry point."""
-from app import app
+from Applications.DashApp.dashindex import app
 
 
 def main():
