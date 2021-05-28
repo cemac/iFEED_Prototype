@@ -1,10 +1,11 @@
-"""Application entry point."""
+"""Application entry point for ifeed01."""
 from Applications.DashApp.dashindex import app
 
+import sys
 
-def main():
-    app.run_server(host='0.0.0.0', port='5000', debug=False)
+path = "/var/www/development/"
 
+if path not in sys.path:
+    sys.path.append(path)
 
-if __name__ == "__main__":
-    main()
+application = app.server

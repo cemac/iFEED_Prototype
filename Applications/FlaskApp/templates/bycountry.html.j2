@@ -6,44 +6,37 @@
 
   <p><center> <h2>Data Selection by Country </h2></center></p>
 </div><!-- .entry-content -->
-<div class="homerow">
-  <div class="homecol">
+<div><!-- class="homerow">-->
+  <div class="homecol col-md-6 col-sm-12">
     <p><center> Use the interactive map below to select your country of interest </center></p>
-    <div id="map" style="height: 550px; width:640px; grid-area: a"></div>
+    <!--<div id="map" style="height: 550px; width:640px; grid-area: a"></div>-->
+    <div id="map" style="height: 550px; width:100%; grid-area: a"></div>
   </div>
-  <div id="countrygrid" style="visibility: hidden">
-    <div class="homerow" style="justify-content: space-around;">
-      <div id="accomptext" class="grdcol" style="margin: 30px; width: 35%; text-align: justify"> Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text.
-      </div>
-      <div class="grdcontainercol" style="grid-area: c;">
-        <div class="grdcontainerrow">
-          <div class="laxislbl">Low</div>
-          <div class="ar-left"></div>
-          <div class="grdcol">
-            <div class="box"><a href="/data_exploration/AAA10"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+10", alt="Quadrant (1,0)" ></a> </div>
-            <div class="leftline">Climate &nbsp</div>
-            <div class="box"><a href="/data_exploration/AAA00"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+00", alt="Quadrant (0,0)" ></a> </div>
+  <!--<div id="countrygrid">
+    <div class="homerow" style="justify-content: space-around;">-->
+
+      <div id="quadrantcontainer" class="grdcontainercol col-md-6 col-sm-12" style="visibility: hidden; padding-top: 50px">
+        <div class="quadcontainer">
+          <div id="uplabel" class="uaxislbl">High</div>
+          <div id="quad00" class="box grow" style="top:12%; left:12%;">Quadrant 00</div>
+          <div id="yaxis" class="vertline">Placeholder</div>
+          <div id="quad01" class="box grow" style="top:12%; right:12%;">Quadrant 01</div>
+          <div id="xaxis" class="horline" style="height:10%; top: 45%; position: absolute;">
+            <div id="leftlabel" class="laxislbl">&nbsp &nbsp &nbsp Low</div>
+            <div class=leftline>Climate</div>
+            <div class=rightline>Impact</div>
+            <div id="rightlabel" class="raxislbl">High &nbsp &nbsp &nbsp</div>
           </div>
-          <div class="grdcol2">
-            <div class="uaxislbl">High</div>
-            <div class="ar-up"></div>
-            <div id= "axis" class="vertline">Placeholder</div>
-            <div class="ar-down"></div>
-            <div class="daxislbl">Low</div>
-          </div>
-          <div class="grdcol">
-            <div class="box"><a href="/data_exploration/AAA11"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+11", alt="Quadrant (1,1)" ></a> </div>
-            <div class="rightline">&nbsp Impact</div>
-            <div class="box"><a href="/data_exploration/AAA01"><img class="grow", src="https://dummyimage.com/160x100/fdf1d8/593c2f.png&text=Quadrant+01", alt="Quadrant (0,1)" ></a> </div>
-          </div>
-          <div class="ar-right"></div>
-          <div class="raxislbl">High</div>
+          <div id="quad10" class="box grow" style="bottom:12%; left:12%;">Quadrant 10</div>
+          <div id="quad11" class="box grow" style="bottom:12%; right:12%;">Quadrant 11</div>
+          <img src="/static/images/arrows2.png">
+          <div id="downlabel" class="daxislbl">Low</div>
         </div>
-        <div class="box"><a href="/data_exploration/AAAcomp"><img class="grow", src="https://dummyimage.com/400x75/fdf1d8/593c2f.png&text=Interquadrant+Comparisons", alt="Quadrant (1,0)" ></a> </div>
-        <div class="daxislbl"></div>
+        <a href="/data_exploration/AAAcomp"><div class="box grow" style="padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px">Interquadrant Comparisons</div></a>
       </div>
-    </div>
-  </div>
+      <div id="accomptext" class="grdcol col-md-12" style="margin: 30px; text-align: justify; visibility: hidden"></div>
+    <!--</div>
+  </div>-->
 </div>
 <script src="{{ url_for ('static', filename='geojson/countries.js')}}", type="text/javascript"></script>
 <script type="text/javascript">
@@ -83,24 +76,51 @@
   info.addTo(map);
 
   function showDiv(ccode) {
-    document.getElementById('countrygrid').style.visibility = "visible";
+    document.getElementById('accomptext').style.visibility = "visible";
+    document.getElementById('quadrantcontainer').style.visibility = "visible";
     const regex = /\/data_exploration\/.../gi;
     var links = document.getElementsByClassName('box')
     for (var j = 0; j < links.length; j++) {
       links[j].innerHTML = links[j].innerHTML.replace(regex, '\/data_exploration\/' + ccode);
     }
+    var links = document.getElementsByClassName('homebox')
+    for (var j = 0; j < links.length; j++) {
+      links[j].innerHTML = links[j].innerHTML.replace(regex, '\/data_exploration\/' + ccode);
+    }
     if (ccode == "MWI") {
-      document.getElementById("axis").innerHTML = "Irrigation";
-      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Malawi explore the effect of irrigation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p><br><br><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis aliquam faucibus purus in massa tempor nec feugiat nisl. Id volutpat lacus laoreet non curabitur. Non odio euismod lacinia at. Amet cursus sit amet dictum sit amet justo donec. Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere lorem. Placerat vestibulum lectus mauris ultrices eros in. Pulvinar elementum integer enim neque volutpat. Ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper. Sed egestas egestas fringilla phasellus faucibus. Id aliquet risus feugiat in ante. Vitae ultricies leo integer malesuada nunc vel risus. Porta lorem mollis aliquam ut porttitor.</p>";
+      document.getElementById("yaxis").innerHTML = "Policy Implementation";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Malawi explore the effect of policy implementation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p>";
+      document.getElementById("quad00").innerHTML = "The Path to Heaven";
+      document.getElementById("quad01").innerHTML = "Demanding but Coping";
+      document.getElementById("quad10").innerHTML = "Degrading Economy";
+      document.getElementById("quad11").innerHTML = "The Road to Hell";
+      document.getElementById("downlabel").innerHTML = "Poor";
+      document.getElementById("uplabel").innerHTML = "Good";
     } else if (ccode == "ZMB") {
-      document.getElementById("axis").innerHTML = "Irrigation";
-      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Zambia explore the effect of irrigation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p><br><br><p>Praesent semper feugiat nibh sed pulvinar proin. Ac placerat vestibulum lectus mauris ultrices eros. Ligula ullamcorper malesuada proin libero nunc consequat interdum varius sit. Leo integer malesuada nunc vel risus. Sit amet aliquam id diam maecenas ultricies mi eget mauris. Ac felis donec et odio. Nunc mi ipsum faucibus vitae aliquet nec. Tortor id aliquet lectus proin nibh. Tellus elementum sagittis vitae et leo duis ut. Mattis molestie a iaculis at erat pellentesque. In massa tempor nec feugiat nisl pretium fusce. Nulla malesuada pellentesque elit eget gravida cum. Cursus eget nunc scelerisque viverra mauris in. In metus vulputate eu scelerisque felis imperdiet. Pretium vulputate sapien nec sagittis. Venenatis urna cursus eget nunc. Sed enim ut sem viverra aliquet eget sit amet tellus. Vitae turpis massa sed elementum tempus egestas sed. Ut porttitor leo a diam sollicitudin tempor id eu.</p>";
+      document.getElementById("yaxis").innerHTML = "Market Connectivity";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Zambia explore the effect of market connectivity and function in high and low climate impact scenarios on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p>";
+      document.getElementById("quad00").innerHTML = "Opportunity and Exposure";
+      document.getElementById("quad01").innerHTML = "Risk and Reward";
+      document.getElementById("quad10").innerHTML = "Solitude and Self-Sufficiency";
+      document.getElementById("quad11").innerHTML = "Isolation and Imperative";
     } else if (ccode == "TZA") {
-      document.getElementById("axis").innerHTML = "Production";
-      document.getElementById("accomptext").innerHTML = "<p>Quadrants for the United Republic of Tanzania explore the effect of changes in production levels and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p><br><br><p>Imperdiet massa tincidunt nunc pulvinar sapien. Sed nisi lacus sed viverra tellus. Morbi tincidunt augue interdum velit euismod in pellentesque massa placerat. Consequat interdum varius sit amet mattis vulputate enim nulla. Mauris augue neque gravida in. Volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris. Egestas pretium aenean pharetra magna ac placerat vestibulum lectus mauris. Vel eros donec ac odio tempor orci dapibus. Et malesuada fames ac turpis egestas integer eget. Viverra vitae congue eu consequat ac felis donec et odio. Neque vitae tempus quam pellentesque nec nam aliquam. A arcu cursus vitae congue. Tellus integer feugiat scelerisque varius morbi. Diam in arcu cursus euismod quis viverra nibh cras. Risus feugiat in ante metus dictum. Justo laoreet sit amet cursus sit amet dictum sit. Cras adipiscing enim eu turpis egestas pretium aenean pharetra. Nibh venenatis cras sed felis.</p>";
+      document.getElementById("yaxis").innerHTML = "Tech. Development";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for the United Republic of Tanzania explore the effect of changes in technological development and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p>";
+      document.getElementById("quad00").innerHTML = "Technofix";
+      document.getElementById("quad01").innerHTML = "Intensive Vulnerability";
+      document.getElementById("quad10").innerHTML = "Human Capital";
+      document.getElementById("quad11").innerHTML = "Climate Chaos";
+      document.getElementById("downlabel").innerHTML = "Stagnation";
+      document.getElementById("uplabel").innerHTML = "Transformation";
     } else {
-      document.getElementById("axis").innerHTML = "Production";
-      document.getElementById("accomptext").innerHTML = "<p>Quadrants for the South Africa explore the effect of changes in production levels and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p><br><br><p>Egestas pretium aenean pharetra magna. Venenatis a condimentum vitae sapien pellentesque. Aliquam nulla facilisi cras fermentum odio eu feugiat pretium. Egestas tellus rutrum tellus pellentesque eu. Orci sagittis eu volutpat odio facilisis mauris sit amet. Eget nunc scelerisque viverra mauris in. Venenatis tellus in metus vulputate eu scelerisque. Lacus viverra vitae congue eu consequat ac. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. In iaculis nunc sed augue lacus viverra vitae. Quis varius quam quisque id diam vel quam elementum pulvinar. Morbi leo urna molestie at elementum eu. Id cursus metus aliquam eleifend mi in. Felis bibendum ut tristique et egestas quis ipsum. Nulla aliquet porttitor lacus luctus. Arcu bibendum at varius vel pharetra. Egestas sed sed risus pretium quam vulputate. Amet risus nullam eget felis eget nunc lobortis. Amet est placerat in egestas erat imperdiet sed euismod. Tellus id interdum velit laoreet id donec ultrices tincidunt.</p>";
+      document.getElementById("yaxis").innerHTML = "Land Reform";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for South Africa explore the effects of the degree of land reform in scenarios of high and low climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p>";
+      document.getElementById("quad00").innerHTML = "Structural Change";
+      document.getElementById("quad01").innerHTML = "All Change";
+      document.getElementById("quad10").innerHTML = "Familiar Futures";
+      document.getElementById("quad11").innerHTML = "Hot and Bothered";
+      document.getElementById("downlabel").innerHTML = "Little";
+      document.getElementById("uplabel").innerHTML = "Significant";
     }
   }
 

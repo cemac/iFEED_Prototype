@@ -1,13 +1,149 @@
-<div style="text-align: center; width: 100%;">
-<div class="headbox">
-  <div class="headrow">
-    <div class="divhead">
-      <a href="http://africap.info"><img src="/static/logos/africap-logo.svg" alt="Africap Banner" style="float:left;width:100%;"></a>
+<header id="masthead" class="site-header">
+  <div class="inside-header grid-container grid-parent" style="padding-left: 0px;padding-right: 0px;">
+    <div class="site-logo col-xs-12 col-md-6" style="padding-top: 0px;padding-bottom: 0px;">
+      <a href="https://africap.info/" title="GCRF-AFRICAP" rel="home">
+        <img  class="header-image is-logo-image" alt="GCRF-AFRICAP" src="/static/logos/africap-logo.svg" title="GCRF-AFRICAP" />
+      </a>
     </div>
-    <div>
-      <a href="/" title="Climate Smart Food System Policy Pathway Tool" rel="home"><span style="font-size: 35px; color: #593c2f;">Climate Smart Food System Policy Pathway Tool</span></a><span style="font-size: 15px; color: #593c2f;"><br><b>i</b>ntegrated <b>F</b>uture <b>E</b>stimator for <b>E</b>missions and <b>D</b>iets</span>
+    <div class="col-xs-12 col-md-6">
+      <a href="/" title="iFEED" rel="home">
+        <span style="font-size: 35px; color: #593c2f; font-weight:700;">iFEED</span>
+      </a>
+      <span style="font-size: 15px; color: #593c2f;"><br><b>i</b>ntegrated <b>F</b>uture <b>E</b>stimator for <b>E</b>missions and <b>D</b>iets</span>
     </div>
-    <div class="divhead"></div>
   </div>
+</header>
+
+<nav id="site-navigation" class="main-navigation sub-menu-right" itemtype="https://schema.org/SiteNavigationElement" itemscope>
+  <div class="inside-navigation grid-container grid-parent">
+    <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+    	<span class="mobile-menu">Menu</span>
+    </button>
+		<div id="primary-menu" class="main-nav">
+      <ul class="">
+        {% if request.url_rule.endpoint == "main_bp.index" %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-2 current_page_item menu-item-11">
+        {% else %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-11">
+        {% endif %}
+          <a href="/" aria-current="page">Home</a>
+        </li>
+        {% if request.url_rule.endpoint == "main_bp.about" %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1142">
+        {% else %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1142">
+        {% endif %}
+          <a href="/about">About</a>
+        </li>
+        {% if request.url_rule.endpoint == "main_bp.infopage1" %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1095">
+        {% else %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1095">
+        {% endif %}
+          <a href="/infopage1">Info Page 1</a>
+        </li>
+        {% if request.url_rule.endpoint == "main_bp.infopage2" %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1098">
+        {% else %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1098">
+        {% endif %}
+          <a href="/infopage2">Info Page 2</a>
+        </li>
+        {% if request.url_rule.endpoint == "main_bp.contact" %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1222">
+        {% else %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1222">
+        {% endif %}
+          <a href="/contact">Contact</a>
+        </li>
+      </ul>
+      <ul class="navbar-right">
+        {% if session.usertype == "Admins"%}
+        {% if request.url_rule.endpoint == "main_bp.ViewOrAddUsers" or  request.url_rule.endpoint == "main_bp.admininfo" %}
+        <li class="dropdown current-menu-item">
+        {% else %}
+        <li class="dropdown">
+        {% endif %}
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Menu<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/admin/users">Users</a></li>
+            <li><a href="/admin/information">Admin info</a></li>
+          </ul>
+        </li>
+        {% endif %}
+        {% if session.logged_in %}
+        {% if request.url_rule.endpoint == "main_bp.change_pwd" or  request.url_rule.endpoint == "main_bp.account" %}
+        <li class="dropdown current-menu-item">
+        {% else %}
+        <li class="dropdown">
+        {% endif %}
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-header">Logged in as <b>{{session.username}}</b></li>
+            <li><a href=/change-pwd>Change Password</a> </li>
+            <li><a href=/account/{{session.username}}>Account</a> </li>
+            <li><a href=/logout>Logout </a> </li>
+          </ul>
+        </li>
+        {% else %}
+        {% if request.url_rule.endpoint == "main_bp.login" %}
+        <li class="nav navbar-nav current-menu-item">
+        {% else %}
+        <li class="nav navbar-nav">
+        {% endif %}
+          <a href="/login"><span class="glyphicon glyphicon-log-in"> Login</a>
+        </li>
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>
+{% if request.url_rule.endpoint == "main_bp.index" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+		<h1>iFEED Home</h1>
+{% elif request.url_rule.endpoint == "main_bp.about" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>About</h1>
+{% elif request.url_rule.endpoint == "main_bp.infopage1" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Information Page 1</h1>
+{% elif request.url_rule.endpoint == "main_bp.infopage2" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Information Page 2</h1>
+{% elif request.url_rule.endpoint == "main_bp.contact" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Contact</h1>
+{% elif request.url_rule.endpoint == "main_bp.countries" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Country-Level Data</h1>
+{% elif request.url_rule.endpoint == "main_bp.ViewOrAddUsers" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Users</h1>
+{% elif request.url_rule.endpoint == "main_bp.admininfo" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Admin Information Page</h1>
+{% elif request.url_rule.endpoint == "main_bp.change_pwd" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Change Password</h1>
+{% elif request.url_rule.endpoint == "main_bp.account" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Account Information</h1>
+{% elif request.url_rule.endpoint == "main_bp.login" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Log In</h1>
+{% endif %}
+	</div>
 </div>
-</div>
+<br>

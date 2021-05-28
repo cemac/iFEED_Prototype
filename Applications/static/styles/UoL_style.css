@@ -1,0 +1,128 @@
+/*!
+Theme Name:          UoL GeneratePress child theme
+Description:         GeneratePress child theme for University of Leeds sites
+Author:              Web Team, University of Leeds
+Author URI:          http://it.leeds.ac.uk/
+Version:             1.0.3
+Template:            generatepress
+Theme URI:           https://bitbucket.org/university-of-leeds/uol-generatepress-child-theme
+License:             GPL-2.0
+License URI:         http://www.gnu.org/licenses/gpl-2.0.txt
+*/
+.submit-button {
+	float: right;
+}
+
+.tweets__profile{
+	text-align:center
+}
+@media (min-width: 992px){
+	.tweets__profile{
+		width:25%;
+		float:left
+	}
+}
+.tweets__profile__icon img{
+	border-radius:10px
+}
+.tweets__profile__name{
+	font-size:16px
+}
+@media (min-width: 992px){
+	.tweets__list{
+		width:75%;
+		float:left
+	}
+}
+.tweet{
+	margin:0 10px 30px;
+	background:#f6f6f6;
+	box-shadow:0 4px 23px -9px #efefef;
+	position:relative;
+	border-radius:10px;
+	font-size:16px
+}
+@media (min-width: 768px){
+	.tweet{
+		float:left;
+		width:calc(100% / 3 - 20px)
+	}
+}
+.tweet:before{
+	content:'';
+	position:absolute;
+	height:0;
+	width:0;
+	bottom:-20px;
+	left:40px;
+	border-style:solid;
+	border-width:20px 15px 0 5px;
+	border-color:#f6f6f6 transparent transparent transparent
+}
+.tweet__content{
+	margin:20px;
+	font-style:italic;
+	text-align:center;
+	color:#666;
+	position:relative;
+	height:130px
+}
+@media (min-width: 768px){
+	.tweet__content{
+		height:130px
+	}
+}
+.tweet__content p{
+	position:relative;
+	top:50%;
+	transform:translateY(-50%)
+}
+@media (max-width: 766px){
+	.tweet__content p{
+		padding-top:1em
+	}
+}
+.tweet__footer{
+	padding:20px 15px 10px;
+	font-size:14px
+}
+.tweet__footer a{
+	color:#aaa;
+	transition:color .5s ease-in-out
+}
+.tweet__footer .icon--twitter{
+	float:right
+}
+
+
+/* Accessibility fixes */
+@media (prefers-reduced-motion: reduce) {
+	#ctf .ctf-header .ctf-header-follow,
+	#ctf .ctf-header a:hover .ctf-header-follow,
+	#ctf .ctf-header-type-generic .ctf-header-generic-icon,
+	#ctf .ctf-quoted-tweet,
+	#ctf .ctf-quoted-tweet:hover,
+	#ctf .ctf-quoted-tweet:focus,
+	#ctf .ctf-tweet-actions a.ctf-reply,
+	#ctf .ctf-tweet-actions a.ctf-retweet,
+	#ctf .ctf-tweet-actions a.ctf-like,
+	#ctf .ctf-tweet-actions a:hover,
+	#ctf .ctf-tweet-actions a:focus,
+	#ctf .ctf-tweet-text-media-wrap,
+	#ctf .ctf-quoted-tweet-text-media-wrap,
+	#ctf .ctf-tweet-text-media-wrap:hover,
+	#ctf .ctf-tweet-text-media-wrap:focus,
+	#ctf #ctf-more,
+	#ctf #ctf-more:hover,
+	#ctf #ctf-more.ctf-loading span,
+	.mejs-time-buffering,.mejs-time-current,.mejs-time-hovered,.mejs-time-loaded {
+		-moz-transition: none !important;
+		-webkit-transition: none !important;
+		-o-transition: none !important;
+		transition: none !important;
+	}
+}
+
+div .mejs-container:focus {
+	outline: 1px solid white;
+}
