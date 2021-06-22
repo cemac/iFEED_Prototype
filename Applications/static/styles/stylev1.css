@@ -595,7 +595,7 @@ footer {
   width: 33%;
   height: 33%;
   font-size: 18px;
-  }
+}
 
 .homebox {
   background-color:#fdf1d8;
@@ -618,6 +618,22 @@ footer {
 .homeboxrow > [class*='col-'] {
   display: flex;
   flex-direction: column;
+}
+
+.panel-heading {
+  display: inline-block;
+}
+
+.panel-group .panel+.panel {
+  margin: 0;
+  border: 0;
+}
+
+.panel {
+  border: 0 !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
 }
 
 .vertline {

@@ -212,6 +212,22 @@ def countries():
 
     return render_template('bycountry.html.j2')
 
+@main_bp.route('/countries/ZAFInfo', methods=["GET"])
+def ZAFInfo():
+    return render_template('ZAFInfo.html.j2')
+
+@main_bp.route('/countries/MWIInfo', methods=["GET"])
+def MWIInfo():
+    return render_template('MWIInfo.html.j2')
+
+@main_bp.route('/countries/ZMBInfo', methods=["GET"])
+def ZMBInfo():
+    return render_template('ZMBInfo.html.j2')
+
+@main_bp.route('/countries/TZAInfo', methods=["GET"])
+def TZAInfo():
+    return render_template('TZAInfo.html.j2')
+
 # static information pages ---------------------------------------------------
 
 @main_bp.route('/copyright', methods=["GET"])

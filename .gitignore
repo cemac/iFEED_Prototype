@@ -8,4 +8,4 @@ __pycache__/
 *.docx
 .venv/*
 Docs/*
-data/*
+data

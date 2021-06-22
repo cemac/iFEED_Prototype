@@ -5,7 +5,6 @@
 <div style="text-align: justify">
 
   <p><center> <h2>Data Selection by Country </h2></center></p>
-  <div id="accomptext" class="grdcol col-md-12 col-sm-12 col-xs-12" style="margin: 30px; text-align: justify; visibility: hidden"></div>
 </div><!-- .entry-content -->
 <div><!-- class="homerow">-->
   <div class="homecol col-md-6 col-sm-12">
@@ -13,53 +12,26 @@
     <!--<div id="map" style="height: 550px; width:640px; grid-area: a"></div>-->
     <div id="map" style="height: 550px; width:100%; grid-area: a"></div>
   </div>
-  <div id="quadrantContainer" class="grdcontainercol panel-group col-md-6 col-sm-12" style="visibility: hidden; padding-top: 50px">
-    <div class="panel panel-default">
-      <div id="multiCollapseQuad00" class="panel-collapse collapse">
-        <div class="panel-body" id="Quad00popup">
-          Quadrant 00 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div id="multiCollapseQuad01" class="panel-collapse collapse">
-        <div class="panel-body" id="Quad01popup">
-          Quadrant 01 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div id="multiCollapseQuad10" class="panel-collapse collapse">
-        <div class="panel-body" id="Quad10popup">
-          Quadrant 10 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div id="multiCollapseQuad11" class="panel-collapse collapse">
-        <div class="panel-body" id="Quad11popup">
-          Quadrant 11 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-      </div>
-    </div>
+  <div id="quadrantcontainer" class="grdcontainercol col-md-6 col-sm-12" style="visibility: hidden; padding-top: 50px">
     <div class="quadcontainer">
       <div id="uplabel" class="uaxislbl">High</div>
-      <a class="box2" data-toggle="collapse" data-parent="#quadrantContainer" href="#multiCollapseQuad00" role="button" aria-expanded="false" aria-controls="multiCollapseQuad00"><div id="quad00" class="box grow" style="top:12%; left:12%;">Quadrant 00</div></a>
+      <a class="box2" href="/data_exploration/AAA00"><div id="quad00" class="box grow" style="top:12%; left:12%;">Quadrant 00</div></a>
       <div id="yaxis" class="vertline">Placeholder</div>
-      <a class="box2" data-toggle="collapse" data-parent="#quadrantContainer"  href="#multiCollapseQuad01" role="button" aria-expanded="false" aria-controls="multiCollapseQuad01"><div id="quad01" class="box grow" style="top:12%; right:12%;">Quadrant 01</div></a>
+      <a class="box2" href="/data_exploration/AAA01"><div id="quad01" class="box grow" style="top:12%; right:12%;">Quadrant 01</div></a>
       <div id="xaxis" class="horline" style="height:10%; top: 45%; position: absolute;">
         <div id="leftlabel" class="laxislbl">&nbsp &nbsp &nbsp Low</div>
         <div class=leftline>Climate</div>
         <div class=rightline>Impact</div>
         <div id="rightlabel" class="raxislbl">High &nbsp &nbsp &nbsp</div>
       </div>
-      <a class="box2" data-toggle="collapse"  data-parent="#quadrantContainer"  href="#multiCollapseQuad10" role="button" aria-expanded="false" aria-controls="multiCollapseQuad10"><div id="quad10" class="box grow" style="bottom:12%; left:12%;">Quadrant 10</div></a>
-      <a class="box2" data-toggle="collapse"  data-parent="#quadrantContainer"  href="#multiCollapseQuad11" role="button" aria-expanded="false" aria-controls="multiCollapseQuad11"><div id="quad11" class="box grow" style="bottom:12%; right:12%;">Quadrant 11</div></a>
+      <a class="box2" href="/data_exploration/AAA10"><div id="quad10" class="box grow" style="bottom:12%; left:12%;">Quadrant 10</div></a>
+      <a class="box2" href="/data_exploration/AAA11"><div id="quad11" class="box grow" style="bottom:12%; right:12%;">Quadrant 11</div></a>
       <img src="/static/images/arrows2.png">
       <div id="downlabel" class="daxislbl">Low</div>
     </div>
     <a class="box2" href="/data_exploration/AAAcomp"><div class="box grow" style="padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px">Interquadrant Comparisons</div></a>
   </div>
+  <div id="accomptext" class="grdcol col-md-12" style="margin: 30px; text-align: justify; visibility: hidden"></div>
 </div>
 <script src="{{ url_for ('static', filename='geojson/countries.js')}}", type="text/javascript"></script>
 <script type="text/javascript">
@@ -100,7 +72,7 @@
 
   function showDiv(ccode) {
     document.getElementById('accomptext').style.visibility = "visible";
-    document.getElementById('quadrantContainer').style.visibility = "visible";
+    document.getElementById('quadrantcontainer').style.visibility = "visible";
     const regex = /\/data_exploration\/.../gi;
     var links = document.getElementsByClassName('box2');
     for (var j = 0; j < links.length; j++) {
@@ -108,7 +80,7 @@
     }
     if (ccode == "MWI") {
       document.getElementById("yaxis").innerHTML = "Policy Implementation";
-      document.getElementById("accomptext").innerHTML = "Quadrants for Malawi explore the effect of policy implementation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Malawi explore the effect of policy implementation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p>";
       document.getElementById("quad00").innerHTML = "The Path to Heaven";
       document.getElementById("quad01").innerHTML = "Demanding but Coping";
       document.getElementById("quad10").innerHTML = "Degrading Economy";
@@ -117,14 +89,14 @@
       document.getElementById("uplabel").innerHTML = "Good";
     } else if (ccode == "ZMB") {
       document.getElementById("yaxis").innerHTML = "Market Connectivity";
-      document.getElementById("accomptext").innerHTML = "Quadrants for Zambia explore the effect of market connectivity and function in high and low climate impact scenarios on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Zambia explore the effect of market connectivity and function in high and low climate impact scenarios on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p>";
       document.getElementById("quad00").innerHTML = "Opportunity and Exposure";
       document.getElementById("quad01").innerHTML = "Risk and Reward";
       document.getElementById("quad10").innerHTML = "Solitude and Self-Sufficiency";
       document.getElementById("quad11").innerHTML = "Isolation and Imperative";
     } else if (ccode == "TZA") {
-      document.getElementById("yaxis").innerHTML = "Tech Development";
-      document.getElementById("accomptext").innerHTML = "Quadrants for the United Republic of Tanzania explore the effect of changes in technological development and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.";
+      document.getElementById("yaxis").innerHTML = "Tech. Development";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for the United Republic of Tanzania explore the effect of changes in technological development and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p>";
       document.getElementById("quad00").innerHTML = "Technofix";
       document.getElementById("quad01").innerHTML = "Intensive Vulnerability";
       document.getElementById("quad10").innerHTML = "Human Capital";
@@ -133,7 +105,7 @@
       document.getElementById("uplabel").innerHTML = "Transformation";
     } else {
       document.getElementById("yaxis").innerHTML = "Land Reform";
-      document.getElementById("accomptext").innerHTML = "Quadrants for South Africa explore the effects of the degree of land reform in scenarios of high and low climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for South Africa explore the effects of the degree of land reform in scenarios of high and low climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.</p>";
       document.getElementById("quad00").innerHTML = "Structural Change";
       document.getElementById("quad01").innerHTML = "All Change";
       document.getElementById("quad10").innerHTML = "Familiar Futures";
@@ -176,7 +148,7 @@
 		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
 			layer.bringToFront();
 		}
-    layer.bindPopup('<p>See country level summary document for <a href="/countries/'+layer.feature.properties.code+'Info">' + layer.feature.properties.name+ '</a></p>');
+
 		info.update(layer.feature.properties);
 
 	}
@@ -198,13 +170,13 @@
 			mouseout: resetHighlight,
 			click: combFunc
 		});
+    /*layer.bindPopup('Select one of the quadrants to examine data for '+feature.properties.name+', or compare data between quadrants.')*/
 	}
 
   function combFunc(e) {
     var layer = e.target;
     zoomToFeature(e);
     showDiv(layer.feature.properties.code);
-    layer.bindPopup('<p>See country level summary document for <a href="/countries/'+layer.feature.properties.code+'Info">' + layer.feature.properties.name+ '</a></p>');
   }
 
 	geojson = L.geoJson(countries, {

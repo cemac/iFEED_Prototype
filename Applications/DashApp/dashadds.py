@@ -15,6 +15,7 @@ external_stylesheets = [
     'https://use.fontawesome.com/releases/v5.8.1/css/all.css',
     'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800',
     'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+
     ]
 
 external_scripts = [
@@ -28,8 +29,8 @@ meta_tags = [
     # A description of the app, used by e.g.
     # search engines when displaying search results.
     {
-        'name': 'description',
-        'content': 'My description'
+        'name': 'iFEED',
+        'content': 'Integrated Assessment Framework providing a Climate-Smart Policy Pathway tool '
     },
     # A tag that tells Internet Explorer (IE)
     # to use the latest renderer version available

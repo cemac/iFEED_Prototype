@@ -143,6 +143,22 @@
 <div class="page-hero">
   <div class="inside-page-hero grid-container grid-parent">
     <h1>Log In</h1>
+{% elif request.url_rule.endpoint == "main_bp.ZAFInfo" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Country-Level Summary - South Africa</h1>
+{% elif request.url_rule.endpoint == "main_bp.MWIInfo" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Country-Level Summary - Malawi</h1>
+{% elif request.url_rule.endpoint == "main_bp.ZMBInfo" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Country-Level Summary - Zambia</h1>
+{% elif request.url_rule.endpoint == "main_bp.TZAInfo" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Country-Level Summary - Tanzania</h1>
 {% endif %}
 	</div>
 </div>
