@@ -26,59 +26,94 @@ def get_cubedata(ccode, quad, field):
     if not os.path.exists(fname):
         print('Could not load file')
 
-    if ccode == 'MWI' or ccode == 'ZMB':
+    if ccode == 'MWI':
         if quad == '01':
             rcp=2
-            irr_lev=0
-            prod_lev=0.5
+            irr_lev=0.1
         elif quad == '10':
             rcp=0
-            irr_lev=2
-            prod_lev=0.5
+            irr_lev=0
         elif quad == '11':
             rcp=2
-            irr_lev=2
-            prod_lev=0.5
+            irr_lev=0
+        else:
+            rcp=0
+            irr_lev=0.1
+    elif ccode == 'TZA':
+        if quad == '01':
+            rcp=2
+            irr_lev=0.1
+        elif quad == '10':
+            rcp=0
+            irr_lev=0
+        elif quad == '11':
+            rcp=2
+            irr_lev=0
+        else:
+            rcp=0
+            irr_lev=0.1
+    elif ccode == 'ZAF':
+        if quad == '01':
+            rcp=2
+            irr_lev=0.1
+        elif quad == '10':
+            rcp=0
+            irr_lev=0
+        elif quad == '11':
+            rcp=2
+            irr_lev=0.1
         else:
             rcp=0
             irr_lev=0
-            prod_lev=0.5
     else:
         if quad == '01':
             rcp=2
-            irr_lev=0.5
-            prod_lev=0.1
+            irr_lev=0.1
         elif quad == '10':
             rcp=0
-            irr_lev=0.5
-            prod_lev=1.0
+            irr_lev=0
         elif quad == '11':
             rcp=2
-            irr_lev=0.5
-            prod_lev=1.0
+            irr_lev=0
         else:
             rcp=0
-            irr_lev=0.5
-            prod_lev=0.1
+            irr_lev=0.1
 
     ds = xr.open_dataset(fname)
 
-    da = ds[field].loc[dict(rcp=rcp, irr_lev=irr_lev, prod_lev=prod_lev)]
+    da = ds[field].loc[dict(rcp=rcp, irr_lev=irr_lev)]
     da = da.where((da <= 1e+20))
 
     weights = np.cos(np.deg2rad(da.lat))
-    weighted_mean = da.weighted(weights).mean(("lon","lat"), skipna=True)
+    if field == "yield" or field == "biomass":
+        weighted = da.weighted(weights).sum(("lon","lat"), skipna=True)
+    else:
+        weighted = da.weighted(weights).mean(("lon","lat"), skipna=True)
 
     dflst = []
 
-    for crop in range(weighted_mean.crop.shape[0]):
-        df = weighted_mean[dict(crop=crop)].to_pandas()
+    for crop in range(weighted.crop.shape[0]):
+        if crop == 0 or crop == 1:
+            prod_lev = 0.1
+        elif crop == 2:
+            if ccode == 'ZMB':
+                prod_lev = 0.7
+            else:
+                prod_lev = 0.6
+        elif crop == 3:
+            if ccode == 'ZAF':
+                prod_lev = 0.3
+            else:
+                prod_lev = 0.2
+                
+        df = weighted.loc[dict(crop=crop, prod_lev=prod_lev)].to_pandas()
 
         linedf = df.quantile(q=[0.0, 0.25, 0.5, 0.75, 1.0], axis=1).T
 
-        boxdf = df.iloc[[0,-1],:].T
+        box1df = df.iloc[0:21,:].T
+        box2df = df.iloc[50:71,:].T
 
-        dflst.append([linedf, boxdf])
+        dflst.append([linedf, box1df, box2df])
 
     ds.close()
 
@@ -91,7 +126,8 @@ def cropgraph(ccode, quad, crop, croplst, field):
         quad='00'
 
     df = croplst[crop][0]
-    dfbox = croplst[crop][1]
+    dfbox1 = croplst[crop][1]
+    dfbox2 = croplst[crop][2]
 
     x = list(df.index)
     x_rev = x[::-1]
@@ -188,8 +224,8 @@ def cropgraph(ccode, quad, crop, croplst, field):
 
     fig.add_trace(
         go.Box(
-            y=dfbox.iloc[:,0],
-            name=list(dfbox.columns)[0],
+            y=dfbox1.to_numpy().flatten(),
+            name=list(dfbox1.columns)[10],
             boxpoints=False,
             line=dict(
                 color='firebrick'),
@@ -202,8 +238,8 @@ def cropgraph(ccode, quad, crop, croplst, field):
 
     fig.add_trace(
         go.Box(
-            y=dfbox.iloc[:,1],
-            name=list(dfbox.columns)[1],
+            y=dfbox2.to_numpy().flatten(),
+            name=list(dfbox2.columns)[10],
             boxpoints=False,
             line=dict(
                 color='firebrick'),

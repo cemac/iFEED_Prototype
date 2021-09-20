@@ -1,0 +1,32 @@
+{% extends 'layout.html.j2' %}
+{% block body %}
+<header>
+  <div id="heading1" style="text-align:center; width:100%; display:block; margin:auto;">
+  <h1>CCODE = {{ ccode }}</h1>
+</div>
+</header>
+<br>
+<div style="text-align: justify; margin: auto">
+  <iframe frameborder="0" scrolling="yes"
+    width="100%" height="600px"
+    src="https://drive.google.com/file/d/{{ pdfID }}/preview#view=FitH">
+  </iframe>
+</div><!-- .entry-content -->
+
+<script>
+  const code = new String({{ ccode|tojson }});
+  const country = new String({{ country|tojson }});
+  if (code == "MWI") {
+    document.getElementById("heading1").innerHTML = "<br>Note: Currently only the South Africa country level summary has been prepared. The completed iFEED tool will include a country level summary for "+country+" here.<br>";
+  } else if (code == "TZA") {
+    document.getElementById("heading1").innerHTML = "<br>Note: Currently only the South Africa country level summary has been prepared. The completed iFEED tool will include a country level summary for "+country+" here.<br>";
+  } else if (code == "ZAF") {
+    document.getElementById("heading1").innerHTML = "<h1>Country Level Summary : South Africa</h1>";
+  } else if (code == "ZMB") {
+    document.getElementById("heading1").innerHTML = "<br>Note: Currently only the South Africa country level summary has been prepared. The completed iFEED tool will include a country level summary for "+country+" here.<br>";
+  }
+</script>
+
+{% endblock %}
+
+</html>

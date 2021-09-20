@@ -1,0 +1,234 @@
+{% extends 'layout.html.j2' %}
+{% block body %}
+<div id="header1">
+</div><!-- Scenario description -->
+<div> <br><br>The diagram below shows the different aspects of the iFEED analysis for this scenario. Click on the different boxes for more information about this aspect of the analysis and to access the summary document for each aspect<br><br>
+</div>
+<div class="template-wrap">
+
+  <div class="ep-flowchart" id="ep-flowchart">
+    <div class="ep-svg-wrap">
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 675 425">
+        <defs>
+          <marker id="larrow" markerWidth="4" markerHeight="10" viewBox="-2 -4 4 4" refX="0" refY="0" markerUnits="strokeWidth" orient="auto">
+            <polyline points="2,-2 0,0 2,2" stroke="#443c3d" stroke-width="0.75px" fill="none"/>
+          </marker>
+        </defs>
+        <defs>
+          <marker id="rarrow" markerWidth="4" markerHeight="10" viewBox="-2 -4 4 4" refX="0" refY="0" markerUnits="strokeWidth" orient="auto">
+            <polyline points="-2,2 0,0 -2,-2" stroke="#443c3d" stroke-width="0.75px" fill="none"/>
+          </marker>
+        </defs>
+        <defs>
+          <marker id="uarrow" markerWidth="4" markerHeight="10" viewBox="-2 -4 4 4" refX="0" refY="0" markerUnits="strokeWidth" orient="auto">
+            <polyline points="2,-2 0,0 2,2" stroke="#443c3d" stroke-width="0.75px" fill="none"/>
+          </marker>
+        </defs>
+        <g id="Page-1" fill="none" fill-rule="evenodd">
+          <g id="Flowchart-Template">
+            <g id="ep-climsmrt" class="ep-svg-block"
+               transform="translate(5)"
+               @click="display = true; selected = 'ep-climsmrt'">
+              <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="145" height="120" />
+              <text id="Content" fill="#F5F5F0" x="10" y="47" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Climate
+              <tspan x="10" dy="17">Smartness</tspan>
+              <tspan font-size="14" x="20" dy="27">Emissions</tspan>
+              <tspan font-size="14" x="20" dy="22">Soil Health</tspan>
+              </text>
+            </g>
+            <g id="ep-foodprod" class="ep-svg-block"
+               transform="translate(225 40)"
+               @click="display = true; selected = 'ep-foodprod'">
+              <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="225" height="170" //>
+              <text id="Content" fill="#F5F5F0" x="15" y="47" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Food Production
+                <tspan font-size="14" x="25" dy="27">Trends and Changes</tspan>
+                <tspan font-size="14" x="25" dy="17">across crops</tspan>
+                <tspan font-size="14" x="25" dy="22">Crop Management:</tspan>
+                <tspan font-size="14" x="25" dy="17">Fertiliser, Applied</tspan>
+                <tspan font-size="14" x="25" dy="17">Irrigation, Adaptation</tspan>
+                <tspan font-size="14" x="25" dy="22">Pests</tspan>
+              </text>
+            </g>
+            <g id="ep-shocks" class="ep-svg-block"
+               transform="translate(525)"
+               @click="display = true; selected = 'ep-shocks'">
+              <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="145" height="120" />
+              <text id="Content" fill="#F5F5F0" x="10" y="47" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Shocks And
+                <tspan x="10" dy="17">Extremes</tspan>
+                <tspan font-size="14" x="15" dy="27">Production</tspan>
+                <tspan font-size="14" x="15" dy="22">Trade</tspan>
+              </text>
+            </g>
+            <g id="ep-land" class="ep-svg-block"
+               transform="translate(5 175)"
+               @click="display = true; selected = 'ep-land'">
+              <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="180" height="150" />
+              <text id="Content" fill="#F5F5F0" x="10" y="47" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Land Use
+                <tspan font-size="14" x="15" dy="25">Diversification</tspan>
+                <tspan font-size="14" x="15" dy="20">Pasture/Livestock</tspan>
+                <tspan font-size="14" x="15" dy="20">Expansion of </tspan>
+                <tspan font-size="14" x="15" dy="15">Ag. Land </tspan>
+                <tspan font-size="14" x="15" dy="20">Irrigated Areas </tspan>
+              </text>
+            </g>
+            <g id="ep-trade" class="ep-svg-block"
+               transform="translate(490 175)"
+               @click="display = true; selected = 'ep-trade'">
+              <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="180" height="150" />
+              <text id="Content" fill="#F5F5F0" x="30" y="85" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Trade And
+                <tspan x="30" dy="17">Nutrition</tspan>
+                <tspan x="30" dy="17">Trade-Offs</tspan>
+              </text>
+            </g>
+            <g id="ep-return" class="ep-svg-block"
+               transform="translate(150 350)"
+               @click="location.href = '/countries'">
+              <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="375" height="50" />
+              <text id="Content" fill="#F5F5F0" x="30" y="55" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Return to Scenario Selector
+              </text>
+            </g>
+            <line x1="155" x2="220" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#larrow)"/>
+            <line x1="455" x2="520" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
+            <line x1="600" x2="600" y1="148" y2="198" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#uarrow)"/>
+            <line x1="75" x2="75" y1="148" y2="198" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#uarrow)"/>
+            <line x1="190" x2="220" y1="220" y2="220" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
+            <line x1="455" x2="485" y1="220" y2="220" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
+          </g>
+        </g>
+      </svg>
+
+    </div>
+    <transition name="pop-details">
+    <div class="ep-detail-wrap" v-show="selected != ''"
+         @click="selected = ''">
+      <div class="ep-detail" v-show="selected == 'ep-climsmrt'">
+        <h3>CLIMATE SMARTNESS</h3>
+        <p>The Message. What we are trying to say.</p>
+        <button type="button" onclick="popup('popUpDiv');foo(this,0)">View Descriptor Document</button>
+        <p>This will open a new window</p>
+      </div>
+      <div class="ep-detail" v-show="selected == 'ep-foodprod'">
+        <h3>FOOD PRODUCTION</h3>
+        <p>How you will express the message.</p>
+        <button type="button" onclick="popup('popUpDiv');foo(this,1)">View Descriptor Document</button>
+        <p>This will open a new window</p>
+      </div>
+      <div class="ep-detail" v-show="selected == 'ep-shocks'">
+        <h3>SHOCKS AND EXTREMES</h3>
+        <p>The tools and materials you use to convey the message</p>
+        <button type="button" onclick="popup('popUpDiv');foo(this,2)">View Descriptor Document</button>
+        <p>This will open a new window</p>
+      </div>
+      <div class="ep-detail" v-show="selected == 'ep-land'">
+        <h3>LAND USE</h3>
+        <p>Line, Shape, Value, Texture, Color, Illusion of Depth, Illusion of Movement</p>
+        <button type="button" onclick="popup('popUpDiv');foo(this,1)">View Descriptor Document</button>
+        <p>This will open a new window</p>
+      </div>
+      <div class="ep-detail" v-show="selected == 'ep-trade'">
+        <h3>TRADE AND NUTRITION TRADE-OFFS (TNT)</h3>
+        <p></p>
+        <button type="button" onclick="popup('popUpDiv');foo(this,3)">View Descriptor Document</button>
+        <p>This will open a new window</p>
+      </div>
+
+    </div>
+  </transition>
+
+  </div>
+
+</div>
+
+<script>
+
+  var ep = new Vue({
+    el: '#ep-flowchart',
+    data: {
+      selected: ''
+    },
+    methods: {
+    }
+  })
+
+  var popUpWindow;
+  function popup(n) {
+    popUpWindow = window.open(n);
+  }
+  function foo(obj,pdfindex){
+
+    var pdflist = ({{ pdflist|tojson }})
+    let pdfid = pdflist[pdfindex]
+
+    pdflink = "https://drive.google.com/file/d/"+pdfid+"/preview";
+    popUpWindow.document.write('<iframe height="100%" allowTransparency="true" frameborder="0" scrolling="yes" style="width:100%;" src="'+pdflink+'" type= "text/javascript"></iframe>');
+  }
+
+  const ccode = new String({{ ccode|tojson }});
+  const quadcode = new String({{ quadcode|tojson }});
+  if (ccode == "MWI") {
+
+    if (quadcode == "00") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+    }
+    if (quadcode == "01") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+    }
+    if (quadcode == "10") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties."
+    }
+    if (quadcode == "11") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties."
+    }
+
+  } else if (ccode == "TZA") {
+
+    if (quadcode == "00") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and high technological development. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+    }
+    if (quadcode == "01") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and high technological development. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion."
+    }
+    if (quadcode == "10") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and low technological development. This future assumes an increase in agricultural areas and crop diversification."
+    }
+    if (quadcode == "11") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and low technological development. This future assumes an increase in agricultural areas and status quo crop varieties."
+    }
+
+  } else if (ccode == "ZAF") {
+
+    if (quadcode == "00") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+    }
+    if (quadcode == "01") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+    }
+    if (quadcode == "10") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties."
+    }
+    if (quadcode == "11") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties."
+    }
+
+  } else if (ccode == "ZMB") {
+
+    if (quadcode == "00") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and high market connectivity and function. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+    }
+    if (quadcode == "01") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and high market connectivity and function. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion."
+    }
+    if (quadcode == "10") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and low market connectivity and function. This future assumes little change to agricultural areas, but increased crop diversification."
+    }
+    if (quadcode == "11") {
+      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and low market connectivity and function. This future assumes crop diversification, a fall in agricultural area and irrigation expansion."
+    }
+
+  }
+
+</script>
+
+{% endblock %}
+</html>

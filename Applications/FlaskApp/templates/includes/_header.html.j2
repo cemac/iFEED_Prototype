@@ -33,22 +33,22 @@
         {% else %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1142">
         {% endif %}
-          <a href="/about">About</a>
+          <a href="/about">About iFEED</a>
         </li>
         {% if request.url_rule.endpoint == "main_bp.infopage1" %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1095">
         {% else %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1095">
         {% endif %}
-          <a href="/infopage1">Info Page 1</a>
+          <a href="/infopage1">Crop Modelling Methods</a>
         </li>
-        {% if request.url_rule.endpoint == "main_bp.infopage2" %}
+        <!--{% if request.url_rule.endpoint == "main_bp.infopage2" %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1098">
         {% else %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1098">
         {% endif %}
           <a href="/infopage2">Info Page 2</a>
-        </li>
+        </li>-->
         {% if request.url_rule.endpoint == "main_bp.contact" %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1222">
         {% else %}
@@ -106,11 +106,11 @@
 {% elif request.url_rule.endpoint == "main_bp.about" %}
 <div class="page-hero">
   <div class="inside-page-hero grid-container grid-parent">
-    <h1>About</h1>
+    <h1>About iFEED</h1>
 {% elif request.url_rule.endpoint == "main_bp.infopage1" %}
 <div class="page-hero">
   <div class="inside-page-hero grid-container grid-parent">
-    <h1>Information Page 1</h1>
+    <h1>Crop Modelling Methods</h1>
 {% elif request.url_rule.endpoint == "main_bp.infopage2" %}
 <div class="page-hero">
   <div class="inside-page-hero grid-container grid-parent">
@@ -143,22 +143,14 @@
 <div class="page-hero">
   <div class="inside-page-hero grid-container grid-parent">
     <h1>Log In</h1>
-{% elif request.url_rule.endpoint == "main_bp.ZAFInfo" %}
+{% elif request.url_rule.endpoint == "main_bp.CountryInfo" %}
 <div class="page-hero">
-  <div class="inside-page-hero grid-container grid-parent">
-    <h1>Country-Level Summary - South Africa</h1>
-{% elif request.url_rule.endpoint == "main_bp.MWIInfo" %}
+  <div id="heading", class="inside-page-hero grid-container grid-parent">
+    <h1>Country-Level Summary : {{ country }}</h1>
+{% elif request.url_rule.endpoint == "main_bp.CountryQuad" %}
 <div class="page-hero">
-  <div class="inside-page-hero grid-container grid-parent">
-    <h1>Country-Level Summary - Malawi</h1>
-{% elif request.url_rule.endpoint == "main_bp.ZMBInfo" %}
-<div class="page-hero">
-  <div class="inside-page-hero grid-container grid-parent">
-    <h1>Country-Level Summary - Zambia</h1>
-{% elif request.url_rule.endpoint == "main_bp.TZAInfo" %}
-<div class="page-hero">
-  <div class="inside-page-hero grid-container grid-parent">
-    <h1>Country-Level Summary - Tanzania</h1>
+  <div id="heading", class="inside-page-hero grid-container grid-parent">
+    <h1>{{ country }} Scenario {{ scenname }}</h1>
 {% endif %}
 	</div>
 </div>

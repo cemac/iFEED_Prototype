@@ -34,13 +34,10 @@ class CustomDash(dash.Dash):
           <a href="/" aria-current="page">Home</a>
         </li>
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1142">
-          <a href="/about">About</a>
+          <a href="/about">About iFEED</a>
         </li>
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1095">
-          <a href="/infopage1">Info Page 1</a>
-        </li>
-        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1098">
-          <a href="/infopage2">Info Page 2</a>
+          <a href="/infopage1">Crop Modelling Methods</a>
         </li>
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1222">
           <a href="/contact">Contact</a>
@@ -152,7 +149,7 @@ class CustomDash(dash.Dash):
             <head>
                 {metas}
                 <title>{title}</title>
-                <link rel="shortcut icon" href=/static/icon.png> <link rel="icon" href="/static/icon.svg" sizes="192x192" />
+                <link rel="shortcut icon" href=/static/icon.svg> <link rel="icon" href="/static/icon.svg" sizes="192x192" />
                 {css}
             </head>
             <body>

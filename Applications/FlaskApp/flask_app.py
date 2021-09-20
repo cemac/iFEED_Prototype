@@ -13,7 +13,8 @@ from .access import is_logged_in, is_logged_in_as_admin
 from .access import InsertUser, DeleteUser, AssignRole
 
 # Connect to database
-DATABASE = '/var/www/development/iFEED.db'
+#DATABASE = '/var/www/development/iFEED.db'
+DATABASE = os.path.join(os.getcwd(),'iFEED.db')
 assert os.path.exists(DATABASE), "Unable to locate database"
 app.secret_key = 'secret'
 conn = sqlite3.connect(DATABASE, check_same_thread=False)
@@ -198,35 +199,185 @@ def access(id):
 @main_bp.route('/countries', methods=["GET"])
 def countries():
 
-    #countries = {
-    #    'MWI' : 'Malawi',
-    #    'TZA' : 'Tanzania',
-    #    'ZAF' : 'South Africa',
-    #    'ZMB' : 'Zambia'
-    #}
-    #
-    #country=countries.get(ccode,"Unrecognised")
-
-    #if country=="Unrecognised":
-    #    abort(404)
-
     return render_template('bycountry.html.j2')
 
-@main_bp.route('/countries/ZAFInfo', methods=["GET"])
-def ZAFInfo():
-    return render_template('ZAFInfo.html.j2')
+#   Main Info Page - Country Level
 
-@main_bp.route('/countries/MWIInfo', methods=["GET"])
-def MWIInfo():
-    return render_template('MWIInfo.html.j2')
+@main_bp.route('/countries/<string:ccode>/Info', methods=["GET"])
+def CountryInfo(ccode):
 
-@main_bp.route('/countries/ZMBInfo', methods=["GET"])
-def ZMBInfo():
-    return render_template('ZMBInfo.html.j2')
+    countries = {
+        'MWI' : 'Malawi',
+        'TZA' : 'Tanzania',
+        'ZAF' : 'South Africa',
+        'ZMB' : 'Zambia'
+    }
 
-@main_bp.route('/countries/TZAInfo', methods=["GET"])
-def TZAInfo():
-    return render_template('TZAInfo.html.j2')
+    infopdf = {
+        'MWI' : '19AIlRWsEFNB0jM_DMlKUFbXLGfmTlRMc',
+        'TZA' : '19AIlRWsEFNB0jM_DMlKUFbXLGfmTlRMc',
+        'ZAF' : '19AIlRWsEFNB0jM_DMlKUFbXLGfmTlRMc',
+        'ZMB' : '19AIlRWsEFNB0jM_DMlKUFbXLGfmTlRMc',
+    }
+
+    country=countries.get(ccode,"Unrecognised")
+
+    pdfID=infopdf.get(ccode,"Unrecognised")
+
+    if country=="Unrecognised":
+        abort(404)
+
+    return render_template('CountryInfo.html.j2', ccode=ccode, country=country, pdfID=pdfID)
+
+
+@main_bp.route('/countries/<string:ccode>/<string:quad>', methods=["GET"])
+def CountryQuad(ccode,quad):
+
+    countries = {
+        'MWI' : 'Malawi',
+        'TZA' : 'Tanzania',
+        'ZAF' : 'South Africa',
+        'ZMB' : 'Zambia'
+    }
+
+    quadcode=quad[-2:]
+
+    if ccode == "MWI":
+        if quadcode == "00":
+            scenname = "1: The Path to Heaven"
+            pdflist = ["","1k4XV12ttslP-4hluJVNp4pc9FAA7SQD2","1Va_8rRIlT3eIMd91tMpjYqTPGazujuns","1pCt8_byA7p78pd_hhICmCogwL9xEF7ns"]
+        elif quadcode == "01":
+            scenname = "2: Demanding but Coping"
+            pdflist = ["","1SeIEplrWsyI9F37HhmLKlMUzbW3F7h6x","1Soty-OvBY0kspR30RPe7RWSEqmC_svKP","1pCt8_byA7p78pd_hhICmCogwL9xEF7ns"]
+        elif quadcode == "10":
+            scenname = "3: Degrading Economy"
+            pdflist = ["","1WETTFF-IYEFrmUi1BWHJ9iiw8CLga-fd","1Va_8rRIlT3eIMd91tMpjYqTPGazujuns","1pCt8_byA7p78pd_hhICmCogwL9xEF7ns"]
+        elif quadcode == "11":
+            scenname = "4: The Road to Hell"
+            pdflist = ["","1m2mKXrxhtYEXbpsdCoe1IKu08VwLE2rF","1Soty-OvBY0kspR30RPe7RWSEqmC_svKP","1pCt8_byA7p78pd_hhICmCogwL9xEF7ns"]
+    elif ccode == "TZA":
+        if quadcode == "00":
+            scenname = "1: Technofix"
+            pdflist = ["","1DB5YJTW3fDZ05eGue1Qebw150LTtIhYo","1_8N9uwceOu8ZBFzhNT9WLRJYJ2HVXP0n","1dj4ou8wpDtHgtqDruLXXnQqalLrCzEqp"]
+        elif quadcode == "01":
+            scenname = "2: Intensive Vulnerability"
+            pdflist = ["","1F24Vjgkd5uSzp58Kb1DEXHNOjVlvSXRi","1UDOhs1UFsr03c9CXi61cUDweBrXGDf0X","1dj4ou8wpDtHgtqDruLXXnQqalLrCzEqp"]
+        elif quadcode == "10":
+            scenname = "3: Human Capital"
+            pdflist = ["","1Wcl88D6Kv7RMoaRyzDiNtNYakyah9zwL","1_8N9uwceOu8ZBFzhNT9WLRJYJ2HVXP0n","1dj4ou8wpDtHgtqDruLXXnQqalLrCzEqp"]
+        elif quadcode == "11":
+            scenname = "4: Climate Chaos"
+            pdflist = ["","18eO-XhqdmWFa8koX2IvsC_XR_ZdDlHeD","1UDOhs1UFsr03c9CXi61cUDweBrXGDf0X","1dj4ou8wpDtHgtqDruLXXnQqalLrCzEqp"]
+    elif ccode == "ZAF":
+        if quadcode == "00":
+            scenname = "1: Structural Change"
+            pdflist = ["","1ZDfwtPi7LTlQuTRXaXsk9Xs2p4-C5etP","1C4k0mU-Fgi3u7RcmazlLXp_m2Vm6gEna","1FSfpFKrMcqqOlFlAQRdpOkJhjh5VCRq8"]
+        elif quadcode == "01":
+            scenname = "2: All Change"
+            pdflist = ["","1-33CzeN1wALOWdBb4gtOjZNIbNC2X-s-","1wAH-JkLj-GxrOyLqzIYokYgQAuo362KF","1FSfpFKrMcqqOlFlAQRdpOkJhjh5VCRq8"]
+        elif quadcode == "10":
+            scenname = "3: Familiar Futures"
+            pdflist = ["","15tOO7n7lVwfxQvBjlKqOEqST4j2b9MYW","1C4k0mU-Fgi3u7RcmazlLXp_m2Vm6gEna","1FSfpFKrMcqqOlFlAQRdpOkJhjh5VCRq8"]
+        elif quadcode == "11":
+            scenname = "4: Hot and Bothered"
+            pdflist = ["","1aoWYs9jRhxVjToZIYbaiIhTKsXeBn8It","1wAH-JkLj-GxrOyLqzIYokYgQAuo362KF","1FSfpFKrMcqqOlFlAQRdpOkJhjh5VCRq8"]
+    elif ccode == "ZMB":
+        if quadcode == "00":
+            scenname = "1: Opportunity and Exposure"
+            pdflist = ["","1R5zY6hng9Bzut332-l77S3wrYT_t6RuI","1HOOCoEexGKQAgsynZ4lYng1W8A-R1F3o","13qNNWoQUcslgo4pDN3HfgG5c86--SK1e"]
+        elif quadcode == "01":
+            scenname = "2: Risk and Reward"
+            pdflist = ["","1izqs0wxdsvrTdXepkIewqPqlnraDtl91","1XvuEOAX1NTnEc_vdgRlm9TeFYBxak9e5","13qNNWoQUcslgo4pDN3HfgG5c86--SK1e"]
+        elif quadcode == "10":
+            scenname = "3: Solitude and Self-Sufficiency"
+            pdflist = ["","11-adaeKobBP4kz2_QqGh3Ltxf25Ffsdh","1HOOCoEexGKQAgsynZ4lYng1W8A-R1F3o","13qNNWoQUcslgo4pDN3HfgG5c86--SK1e"]
+        elif quadcode == "11":
+            scenname = "4: Isolation and Imperative"
+            pdflist = ["","1ftPQdtpH0hDWRer8oyVhlg9_oehDf19p","1XvuEOAX1NTnEc_vdgRlm9TeFYBxak9e5","13qNNWoQUcslgo4pDN3HfgG5c86--SK1e"]
+
+    country=countries.get(ccode,"Unrecognised")
+
+    if country=="Unrecognised":
+        abort(404)
+    elif (quadcode != "00"
+         and quadcode != "01"
+         and quadcode != "10"
+         and quadcode != "11"):
+        abort(404)
+
+    return render_template('scenarios.html.j2', ccode=ccode, country=country, quadcode=quadcode, scenname=scenname, pdflist=pdflist)
+
+#  Quadrants - South Africa
+
+@main_bp.route('/countries/ZAF00', methods=["GET"])
+def ZAF00():
+    return render_template('ZAF00.html.j2')
+
+@main_bp.route('/countries/ZAF01', methods=["GET"])
+def ZAF01():
+    return render_template('ZAF01.html.j2')
+
+@main_bp.route('/countries/ZAF10', methods=["GET"])
+def ZAF10():
+    return render_template('ZAF10.html.j2')
+
+@main_bp.route('/countries/ZAF11', methods=["GET"])
+def ZAF11():
+    return render_template('ZAF11.html.j2')
+
+#  Quadrants - Malawi
+
+@main_bp.route('/countries/MWI00', methods=["GET"])
+def MWI00():
+    return render_template('MWI00.html.j2')
+
+@main_bp.route('/countries/MWI01', methods=["GET"])
+def MWI01():
+    return render_template('MWI01.html.j2')
+
+@main_bp.route('/countries/MWI10', methods=["GET"])
+def MWI10():
+    return render_template('MWI10.html.j2')
+
+@main_bp.route('/countries/MWI11', methods=["GET"])
+def MWI11():
+    return render_template('MWI11.html.j2')
+
+#  Quadrants - Zambia
+
+@main_bp.route('/countries/ZMB00', methods=["GET"])
+def ZMB00():
+    return render_template('ZMB00.html.j2')
+
+@main_bp.route('/countries/ZMB01', methods=["GET"])
+def ZMB01():
+    return render_template('ZMB01.html.j2')
+
+@main_bp.route('/countries/ZMB10', methods=["GET"])
+def ZMB10():
+    return render_template('ZMB10.html.j2')
+
+@main_bp.route('/countries/ZMB11', methods=["GET"])
+def ZMB11():
+    return render_template('ZMB11.html.j2')
+
+#  Quadrants - Tanzania
+
+@main_bp.route('/countries/TZA00', methods=["GET"])
+def TZA00():
+    return render_template('TZA00.html.j2')
+
+@main_bp.route('/countries/TZA01', methods=["GET"])
+def TZA01():
+    return render_template('TZA01.html.j2')
+
+@main_bp.route('/countries/TZA10', methods=["GET"])
+def TZA10():
+    return render_template('TZA10.html.j2')
+
+@main_bp.route('/countries/TZA11', methods=["GET"])
+def TZA11():
+    return render_template('TZA11.html.j2')
 
 # static information pages ---------------------------------------------------
 

@@ -8,7 +8,8 @@ countrydict = {
 cropdict = {
     0: 'Maize',
     1: 'Potato',
-    2: 'Soybean'
+    2: 'Soybean',
+    3: 'Groundnut'
 }
 
 fielddict = {
@@ -22,27 +23,27 @@ fielddict = {
 
 quaddict = {
     'ZMB':{
-        '00':'Low Climate Impact, Low Irrigation',
-        '01':'High Climate Impact, Low Irrigation',
-        '10':'Low Climate Impact, High Irrigation',
-        '11':'High Climate Impact, High Irrigation'
+        '00':'Low Climate Risk, High Market Connectivity',
+        '01':'High Climate Risk, High Market Connectivity',
+        '10':'Low Climate Risk, Low Market Connectivity',
+        '11':'High Climate Risk, Low Market Connectivity'
     },
     'MWI':{
-        '00':'Low Climate Impact, Low Irrigation',
-        '01':'High Climate Impact, Low Irrigation',
-        '10':'Low Climate Impact, High Irrigation',
-        '11':'High Climate Impact, High Irrigation'
+        '00':'Low Climate Risk, Good Policy Implementation',
+        '01':'High Climate Risk, Good Policy Implementation',
+        '10':'Low Climate Risk, Poor Policy Implementation',
+        '11':'High Climate Risk, Poor Policy Implementation'
     },
     'TZA':{
-        '00':'Low Climate Impact, Low Production',
-        '01':'High Climate Impact, Low Production',
-        '10':'Low Climate Impact, High Production',
-        '11':'High Climate Impact, High Production'
+        '00':'Low Climate Risk, High Technical Development',
+        '01':'High Climate Risk, High Technical Development',
+        '10':'Low Climate Risk, Low Technical Development',
+        '11':'High Climate Risk, Low Technical Development'
     },
     'ZAF':{
-        '00':'Low Climate Impact, Low Production',
-        '01':'High Climate Impact, Low Production',
-        '10':'Low Climate Impact, High Production',
-        '11':'High Climate Impact, High Production'
+        '00':'Low Climate Risk, Significant Land Reform',
+        '01':'High Climate Risk, Significant Land Reform',
+        '10':'Low Climate Risk, Little Land Reform',
+        '11':'High Climate Risk, Little Land Reform'
     }
 }
