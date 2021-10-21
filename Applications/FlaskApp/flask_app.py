@@ -245,55 +245,55 @@ def CountryQuad(ccode,quad):
     if ccode == "MWI":
         if quadcode == "00":
             scenname = "1: The Path to Heaven"
-            pdflist = ["","1k4XV12ttslP-4hluJVNp4pc9FAA7SQD2","1Va_8rRIlT3eIMd91tMpjYqTPGazujuns","1pCt8_byA7p78pd_hhICmCogwL9xEF7ns"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1k4XV12ttslP-4hluJVNp4pc9FAA7SQD2","1Va_8rRIlT3eIMd91tMpjYqTPGazujuns","1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
         elif quadcode == "01":
             scenname = "2: Demanding but Coping"
-            pdflist = ["","1SeIEplrWsyI9F37HhmLKlMUzbW3F7h6x","1Soty-OvBY0kspR30RPe7RWSEqmC_svKP","1pCt8_byA7p78pd_hhICmCogwL9xEF7ns"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1SeIEplrWsyI9F37HhmLKlMUzbW3F7h6x","1Soty-OvBY0kspR30RPe7RWSEqmC_svKP","1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
         elif quadcode == "10":
             scenname = "3: Degrading Economy"
-            pdflist = ["","1WETTFF-IYEFrmUi1BWHJ9iiw8CLga-fd","1Va_8rRIlT3eIMd91tMpjYqTPGazujuns","1pCt8_byA7p78pd_hhICmCogwL9xEF7ns"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1WETTFF-IYEFrmUi1BWHJ9iiw8CLga-fd","1Va_8rRIlT3eIMd91tMpjYqTPGazujuns","1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
         elif quadcode == "11":
             scenname = "4: The Road to Hell"
-            pdflist = ["","1m2mKXrxhtYEXbpsdCoe1IKu08VwLE2rF","1Soty-OvBY0kspR30RPe7RWSEqmC_svKP","1pCt8_byA7p78pd_hhICmCogwL9xEF7ns"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1m2mKXrxhtYEXbpsdCoe1IKu08VwLE2rF","1Soty-OvBY0kspR30RPe7RWSEqmC_svKP","1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
     elif ccode == "TZA":
         if quadcode == "00":
             scenname = "1: Technofix"
-            pdflist = ["","1DB5YJTW3fDZ05eGue1Qebw150LTtIhYo","1_8N9uwceOu8ZBFzhNT9WLRJYJ2HVXP0n","1dj4ou8wpDtHgtqDruLXXnQqalLrCzEqp"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1DB5YJTW3fDZ05eGue1Qebw150LTtIhYo","1_8N9uwceOu8ZBFzhNT9WLRJYJ2HVXP0n","1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
         elif quadcode == "01":
             scenname = "2: Intensive Vulnerability"
-            pdflist = ["","1F24Vjgkd5uSzp58Kb1DEXHNOjVlvSXRi","1UDOhs1UFsr03c9CXi61cUDweBrXGDf0X","1dj4ou8wpDtHgtqDruLXXnQqalLrCzEqp"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1F24Vjgkd5uSzp58Kb1DEXHNOjVlvSXRi","1UDOhs1UFsr03c9CXi61cUDweBrXGDf0X","1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
         elif quadcode == "10":
             scenname = "3: Human Capital"
-            pdflist = ["","1Wcl88D6Kv7RMoaRyzDiNtNYakyah9zwL","1_8N9uwceOu8ZBFzhNT9WLRJYJ2HVXP0n","1dj4ou8wpDtHgtqDruLXXnQqalLrCzEqp"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1Wcl88D6Kv7RMoaRyzDiNtNYakyah9zwL","1_8N9uwceOu8ZBFzhNT9WLRJYJ2HVXP0n","1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
         elif quadcode == "11":
             scenname = "4: Climate Chaos"
-            pdflist = ["","18eO-XhqdmWFa8koX2IvsC_XR_ZdDlHeD","1UDOhs1UFsr03c9CXi61cUDweBrXGDf0X","1dj4ou8wpDtHgtqDruLXXnQqalLrCzEqp"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","18eO-XhqdmWFa8koX2IvsC_XR_ZdDlHeD","1UDOhs1UFsr03c9CXi61cUDweBrXGDf0X","1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
     elif ccode == "ZAF":
         if quadcode == "00":
             scenname = "1: Structural Change"
-            pdflist = ["","1ZDfwtPi7LTlQuTRXaXsk9Xs2p4-C5etP","1C4k0mU-Fgi3u7RcmazlLXp_m2Vm6gEna","1FSfpFKrMcqqOlFlAQRdpOkJhjh5VCRq8"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1ZDfwtPi7LTlQuTRXaXsk9Xs2p4-C5etP","1C4k0mU-Fgi3u7RcmazlLXp_m2Vm6gEna","1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
         elif quadcode == "01":
             scenname = "2: All Change"
-            pdflist = ["","1-33CzeN1wALOWdBb4gtOjZNIbNC2X-s-","1wAH-JkLj-GxrOyLqzIYokYgQAuo362KF","1FSfpFKrMcqqOlFlAQRdpOkJhjh5VCRq8"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1-33CzeN1wALOWdBb4gtOjZNIbNC2X-s-","1wAH-JkLj-GxrOyLqzIYokYgQAuo362KF","1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
         elif quadcode == "10":
             scenname = "3: Familiar Futures"
-            pdflist = ["","15tOO7n7lVwfxQvBjlKqOEqST4j2b9MYW","1C4k0mU-Fgi3u7RcmazlLXp_m2Vm6gEna","1FSfpFKrMcqqOlFlAQRdpOkJhjh5VCRq8"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","15tOO7n7lVwfxQvBjlKqOEqST4j2b9MYW","1C4k0mU-Fgi3u7RcmazlLXp_m2Vm6gEna","1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
         elif quadcode == "11":
             scenname = "4: Hot and Bothered"
-            pdflist = ["","1aoWYs9jRhxVjToZIYbaiIhTKsXeBn8It","1wAH-JkLj-GxrOyLqzIYokYgQAuo362KF","1FSfpFKrMcqqOlFlAQRdpOkJhjh5VCRq8"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1aoWYs9jRhxVjToZIYbaiIhTKsXeBn8It","1wAH-JkLj-GxrOyLqzIYokYgQAuo362KF","1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
     elif ccode == "ZMB":
         if quadcode == "00":
             scenname = "1: Opportunity and Exposure"
-            pdflist = ["","1R5zY6hng9Bzut332-l77S3wrYT_t6RuI","1HOOCoEexGKQAgsynZ4lYng1W8A-R1F3o","13qNNWoQUcslgo4pDN3HfgG5c86--SK1e"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1R5zY6hng9Bzut332-l77S3wrYT_t6RuI","1HOOCoEexGKQAgsynZ4lYng1W8A-R1F3o","1ZrEmivOARE0OD9hNDF0VTQOv72K6LMmL"]
         elif quadcode == "01":
             scenname = "2: Risk and Reward"
-            pdflist = ["","1izqs0wxdsvrTdXepkIewqPqlnraDtl91","1XvuEOAX1NTnEc_vdgRlm9TeFYBxak9e5","13qNNWoQUcslgo4pDN3HfgG5c86--SK1e"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1izqs0wxdsvrTdXepkIewqPqlnraDtl91","1XvuEOAX1NTnEc_vdgRlm9TeFYBxak9e5","1ZrEmivOARE0OD9hNDF0VTQOv72K6LMmL"]
         elif quadcode == "10":
             scenname = "3: Solitude and Self-Sufficiency"
-            pdflist = ["","11-adaeKobBP4kz2_QqGh3Ltxf25Ffsdh","1HOOCoEexGKQAgsynZ4lYng1W8A-R1F3o","13qNNWoQUcslgo4pDN3HfgG5c86--SK1e"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","11-adaeKobBP4kz2_QqGh3Ltxf25Ffsdh","1HOOCoEexGKQAgsynZ4lYng1W8A-R1F3o","1ZrEmivOARE0OD9hNDF0VTQOv72K6LMmL"]
         elif quadcode == "11":
             scenname = "4: Isolation and Imperative"
-            pdflist = ["","1ftPQdtpH0hDWRer8oyVhlg9_oehDf19p","1XvuEOAX1NTnEc_vdgRlm9TeFYBxak9e5","13qNNWoQUcslgo4pDN3HfgG5c86--SK1e"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","1ftPQdtpH0hDWRer8oyVhlg9_oehDf19p","1XvuEOAX1NTnEc_vdgRlm9TeFYBxak9e5","1ZrEmivOARE0OD9hNDF0VTQOv72K6LMmL"]
 
     country=countries.get(ccode,"Unrecognised")
 
