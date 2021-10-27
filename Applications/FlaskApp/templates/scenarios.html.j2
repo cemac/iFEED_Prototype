@@ -117,19 +117,19 @@
       <div class="ep-detail" v-show="selected == 'ep-shocks'">
         <h3>SHOCKS AND EXTREMES</h3>
         <p>One sentence description of shocks and extremes</p>
-        <button type="button" onclick="popup('popUpDiv');(this,2)">View Descriptor Document</button>
+        <button type="button" onclick="popup('popUpDiv');pdfcall(this,2)">View Descriptor Document</button>
         <p>This will open a new window</p>
       </div>
       <div class="ep-detail" v-show="selected == 'ep-land'">
         <h3>LAND USE</h3>
         <p>One sentence description of land use</p>
-        <button type="button" onclick="popup('popUpDiv');(this,1)">View Descriptor Document</button>
+        <button type="button" onclick="popup('popUpDiv');pdfcall(this,1)">View Descriptor Document</button>
         <p>This will open a new window</p>
       </div>
       <div class="ep-detail" v-show="selected == 'ep-trade'">
         <h3>TRADE AND NUTRITION TRADE-OFFS (TNT)</h3>
         <p>One sentence description of TNT</p>
-        <button type="button" onclick="popup('popUpDiv');(this,3)">View Descriptor Document</button>
+        <button type="button" onclick="popup('popUpDiv');pdfcall(this,3)">View Descriptor Document</button>
         <p>This will open a new window</p>
       </div>
 
@@ -155,7 +155,7 @@
   function popup(n) {
     popUpWindow = window.open(n);
   }
-  function (obj,pdfindex){
+  function pdfcall(obj,pdfindex){
 
     var pdflist = ({{ pdflist|tojson }})
     let pdfid = pdflist[pdfindex]

@@ -50,7 +50,7 @@
       <img src="/static/images/arrows2.png">
       <div id="downlabel" class="daxislbl">Low</div>
     </div>
-    <a class="box2" href="/data_exploration/AAAcomp"><div class="box grow" style="padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px">Interquadrant Comparisons</div></a>
+    <!--<a class="box2" href="/data_exploration/AAAcomp"><div class="box grow" style="padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px">Interquadrant Comparisons</div></a>-->
   </div>
 </div>
 <script src="{{ url_for ('static', filename='geojson/countries.js')}}", type="text/javascript"></script>
@@ -104,7 +104,7 @@
     if (ccode == "MWI") {
 
       document.getElementById("yaxis").innerHTML = "Policy Implementation";
-      document.getElementById("accomptext").innerHTML = "Quadrants for Malawi explore the effect of policy implementation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Malawi explore the effect of policy implementation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/MWI/Info'>here</a> to see a country-level summary.</p>";
       document.getElementById("quad00").innerHTML = "The Path to Heaven";
       document.getElementById("quad01").innerHTML = "Demanding but Coping";
       document.getElementById("quad10").innerHTML = "Degrading Economy";
@@ -119,7 +119,7 @@
     } else if (ccode == "ZMB") {
 
       document.getElementById("yaxis").innerHTML = "Market Connectivity";
-      document.getElementById("accomptext").innerHTML = "Quadrants for Zambia explore the effect of market connectivity and function in high and low climate impact scenarios on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Zambia explore the effect of market connectivity and function in high and low climate impact scenarios on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/ZMB/Info'>here</a> to see a country-level summary.</p>";
       document.getElementById("quad00").innerHTML = "Opportunity and Exposure";
       document.getElementById("quad01").innerHTML = "Risk and Reward";
       document.getElementById("quad10").innerHTML = "Solitude and Self-Sufficiency";
@@ -132,7 +132,7 @@
     } else if (ccode == "TZA") {
 
       document.getElementById("yaxis").innerHTML = "Tech Development";
-      document.getElementById("accomptext").innerHTML = "Quadrants for the United Republic of Tanzania explore the effect of changes in technological development and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for the United Republic of Tanzania explore the effect of changes in technological development and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/TZA/Info'>here</a> to see a country-level summary.</p>";
       document.getElementById("quad00").innerHTML = "Technofix";
       document.getElementById("quad01").innerHTML = "Intensive Vulnerability";
       document.getElementById("quad10").innerHTML = "Human Capital";
@@ -147,7 +147,7 @@
     } else {
 
       document.getElementById("yaxis").innerHTML = "Land Reform";
-      document.getElementById("accomptext").innerHTML = "Quadrants for South Africa explore the effects of the degree of land reform in scenarios of high and low climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail, or compare quadrants using the 'Interquadrant Comparisons' button.";
+      document.getElementById("accomptext").innerHTML = "<p>Quadrants for South Africa explore the effects of the degree of land reform in scenarios of high and low climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/ZAF/Info'>here</a> to see a country-level summary.</p>";
       document.getElementById("quad00").innerHTML = "Structural Change";
       document.getElementById("quad01").innerHTML = "All Change";
       document.getElementById("quad10").innerHTML = "Familiar Futures";
@@ -194,7 +194,7 @@
 		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
 			layer.bringToFront();
 		}
-    layer.bindPopup('<p>See country level summary document for <a href="/countries/'+layer.feature.properties.code+'/Info">' + layer.feature.properties.name+ '</a></p>');
+    //layer.bindPopup('<p>See country level summary document for <a href="/countries/'+layer.feature.properties.code+'/Info">' + layer.feature.properties.name+ '</a></p>');
 		info.update(layer.feature.properties);
 
 	}
@@ -222,7 +222,7 @@
     var layer = e.target;
     zoomToFeature(e);
     showDiv(layer.feature.properties.code);
-    layer.bindPopup('<p>See country level summary document for <a href="/countries/'+layer.feature.properties.code+'/Info">' + layer.feature.properties.name+ '</a></p>');
+    //layer.bindPopup('<p>See country level summary document for <a href="/countries/'+layer.feature.properties.code+'/Info">' + layer.feature.properties.name+ '</a></p>');
   }
 
 	geojson = L.geoJson(countries, {

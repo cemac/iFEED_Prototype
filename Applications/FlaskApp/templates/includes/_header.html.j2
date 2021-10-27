@@ -7,7 +7,8 @@
     </div>
     <div class="col-xs-12 col-md-6">
       <a href="/" title="iFEED" rel="home">
-        <span style="font-size: 35px; color: #593c2f; font-weight:700;">iFEED</span>
+        <img  class="header-image-2 is-logo-image" alt="iFEED" src="/static/logos/iFEED-logo.png" title="iFEED" />
+        <!--<span style="font-size: 35px; color: #593c2f; font-weight:700;">iFEED</span>-->
       </a>
       <span style="font-size: 15px; color: #593c2f;"><br><b>i</b>ntegrated <b>F</b>uture <b>E</b>stimator for <b>E</b>missions and <b>D</b>iets</span>
     </div>
@@ -40,22 +41,22 @@
         {% else %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1095">
         {% endif %}
-          <a href="/infopage1">Crop Modelling Methods</a>
+          <a href="/modelling">Crop Modelling Methods</a>
         </li>
-        <!--{% if request.url_rule.endpoint == "main_bp.infopage2" %}
+        {% if request.url_rule.endpoint == "main_bp.countries" %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1098">
         {% else %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1098">
         {% endif %}
-          <a href="/infopage2">Info Page 2</a>
-        </li>-->
-        {% if request.url_rule.endpoint == "main_bp.contact" %}
+          <a href="/countries">Country-Level Results</a>
+        </li>
+        <!--{% if request.url_rule.endpoint == "main_bp.contact" %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1222">
         {% else %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1222">
         {% endif %}
           <a href="/contact">Contact</a>
-        </li>
+        </li>-->
       </ul>
       <ul class="navbar-right">
         {% if session.usertype == "Admins"%}
@@ -123,6 +124,10 @@
 <div class="page-hero">
   <div class="inside-page-hero grid-container grid-parent">
     <h1>Country-Level Data</h1>
+{% elif request.url_rule.endpoint == "main_bp.infographic" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>iFEED Infographic</h1>
 {% elif request.url_rule.endpoint == "main_bp.ViewOrAddUsers" %}
 <div class="page-hero">
   <div class="inside-page-hero grid-container grid-parent">
