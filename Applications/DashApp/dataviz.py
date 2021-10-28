@@ -19,9 +19,9 @@ def get_cubedata(ccode, quad, field):
         quad='00'
 
     if (ccode == 'MWI' or ccode == 'TZA'):
-        fname = '/var/www/development/data/malawi.nc'
+        fname = '/var/www/production/data/malawi.nc'
     else:
-        fname = '/var/www/development/data/malawi.nc'
+        fname = '/var/www/production/data/malawi.nc'
 
     if not os.path.exists(fname):
         print('Could not load file')
