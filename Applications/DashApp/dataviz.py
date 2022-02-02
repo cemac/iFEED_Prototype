@@ -19,9 +19,9 @@ def get_cubedata(ccode, quad, field):
         quad='00'
 
     if (ccode == 'MWI' or ccode == 'TZA'):
-        fname = 'data/malawi.nc'
+        fname = '/var/www/development/data/malawi.nc'
     else:
-        fname = 'data/malawi.nc'
+        fname = '/var/www/development/data/malawi.nc'
 
     if not os.path.exists(fname):
         print('Could not load file')
@@ -105,7 +105,7 @@ def get_cubedata(ccode, quad, field):
                 prod_lev = 0.3
             else:
                 prod_lev = 0.2
-                
+
         df = weighted.loc[dict(crop=crop, prod_lev=prod_lev)].to_pandas()
 
         linedf = df.quantile(q=[0.0, 0.25, 0.5, 0.75, 1.0], axis=1).T
