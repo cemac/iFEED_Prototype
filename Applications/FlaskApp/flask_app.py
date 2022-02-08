@@ -364,3 +364,7 @@ def infopage2():
 @main_bp.route('/infopage3', methods=["GET"])
 def infopage3():
     return render_template('infopage3.html.j2')
+
+@main_bp.route('/calibrated', methods=["GET"])
+def calibrated():
+    return render_template('calibrated.html.j2')
