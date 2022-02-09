@@ -1,9 +1,12 @@
 {% extends 'layout.html.j2' %}
 {% block body %}
-<div id="header1">
-</div><!-- Scenario description -->
-<div> <br><br>The diagram below shows the different aspects of the iFEED analysis for this scenario. Click on the different boxes for more information about this aspect of the analysis and to access the summary document for each aspect<br><br>
-</div>
+<p id="header1">
+</p><!-- Scenario description -->
+
+<p><a id="summary-link" target="_blank">View a summary document for this scenario</a></p>
+
+<p>The diagram below shows the different aspects of the iFEED analysis for this scenario. Click on the different boxes for more information about this aspect of the analysis and to access the summary document for each aspect.</p>
+
 <div class="template-wrap">
 
   <div class="ep-flowchart" id="ep-flowchart">
@@ -139,6 +142,8 @@
   </div>
 
 </div>
+<br/>
+<p><a href="/calibrated">Click here to access modelling summary calibrated statements and associated implication statements for all countries and scenarios</a></p>
 
 <script>
 
@@ -163,6 +168,9 @@
     pdflink = "https://drive.google.com/file/d/"+pdfid+"/preview";
     popUpWindow.document.write('<iframe height="100%" allowTransparency="true" frameborder="0" scrolling="yes" style="width:100%;" src="'+pdflink+'" type= "text/javascript"></iframe>');
   }
+
+  const summaryid = ({{ summaryid|tojson }})
+  document.getElementById("summary-link").href = "https://drive.google.com/file/d/"+summaryid+"/preview";
 
   const ccode = new String({{ ccode|tojson }});
   const quadcode = new String({{ quadcode|tojson }});
