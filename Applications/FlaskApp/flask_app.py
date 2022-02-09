@@ -249,71 +249,71 @@ def CountryQuad(ccode,quad):
     if ccode == "MWI":
         if quadcode == "00":
             scenname = "1: The Path to Heaven"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1UPymtLbgL8_Wlgt1N_BGvNt_WInJ3LWh", "1Va_8rRIlT3eIMd91tMpjYqTPGazujuns", "1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1UPymtLbgL8_Wlgt1N_BGvNt_WInJ3LWh", "1Va_8rRIlT3eIMd91tMpjYqTPGazujuns", "1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
+            summaryid = "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"
         elif quadcode == "01":
             scenname = "2: Demanding but Coping"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1B-e7pJ3fdLujGXsPDYKdpTGkLjTDcawS", "1Soty-OvBY0kspR30RPe7RWSEqmC_svKP", "1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1B-e7pJ3fdLujGXsPDYKdpTGkLjTDcawS", "1Soty-OvBY0kspR30RPe7RWSEqmC_svKP", "1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
+            summaryid = "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"
         elif quadcode == "10":
             scenname = "3: Degrading Economy"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1CRfGsveIBjZBXvT-kUEG9_qTBeo3YGfP", "1Va_8rRIlT3eIMd91tMpjYqTPGazujuns", "1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1CRfGsveIBjZBXvT-kUEG9_qTBeo3YGfP", "1Va_8rRIlT3eIMd91tMpjYqTPGazujuns", "1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
+            summaryid = "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"
         elif quadcode == "11":
             scenname = "4: The Road to Hell"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "10VhRyVRBMvmSk8LLe1v4caU1EfNQFcY2", "1Soty-OvBY0kspR30RPe7RWSEqmC_svKP", "1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "10VhRyVRBMvmSk8LLe1v4caU1EfNQFcY2", "1Soty-OvBY0kspR30RPe7RWSEqmC_svKP", "1m9iqQvB73JtnEkziAxXj-8vbZ5R2wNqa"]
+            summaryid = "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"
     elif ccode == "TZA":
         if quadcode == "00":
             scenname = "1: Technofix"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","19r57bcIgLx2x5PZutyupW2WRKj4TsHFD",  "1_8N9uwceOu8ZBFzhNT9WLRJYJ2HVXP0n", "1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll","19r57bcIgLx2x5PZutyupW2WRKj4TsHFD",  "1_8N9uwceOu8ZBFzhNT9WLRJYJ2HVXP0n", "1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
+            summaryid = "1S36QM2_2tJaIcsOsEWxyYCc_Hb4uV4fF"
         elif quadcode == "01":
             scenname = "2: Intensive Vulnerability"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1qpjcRo9bRDSpDShOmUNNE2leIK9WFMdZ", "1UDOhs1UFsr03c9CXi61cUDweBrXGDf0X", "1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1qpjcRo9bRDSpDShOmUNNE2leIK9WFMdZ", "1UDOhs1UFsr03c9CXi61cUDweBrXGDf0X", "1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
+            summaryid = "1McZlPklbDoUVFIY7p2eNGtXc_dopiqjN"
         elif quadcode == "10":
             scenname = "3: Human Capital"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1T7tBLkt9YavVLzL_fJwvefGeEAiMts66", "1_8N9uwceOu8ZBFzhNT9WLRJYJ2HVXP0n", "1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1T7tBLkt9YavVLzL_fJwvefGeEAiMts66", "1_8N9uwceOu8ZBFzhNT9WLRJYJ2HVXP0n", "1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
+            summaryid = "15kY1CnYLuEMF-cKCHptszP_HO7vY3vA5"
         elif quadcode == "11":
             scenname = "4: Climate Chaos"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1lXPXods-LSWjeE_x3ZuHAORS_oJWk84Y", "1UDOhs1UFsr03c9CXi61cUDweBrXGDf0X", "1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1lXPXods-LSWjeE_x3ZuHAORS_oJWk84Y", "1UDOhs1UFsr03c9CXi61cUDweBrXGDf0X", "1prGu8MMWH0oOk9WZMico1GRuss-yMGv1"]
+            summaryid = "1h4K-L5UOuBMmVuOcgo3LY-wKDsIgpgEU"
     elif ccode == "ZAF":
         if quadcode == "00":
             scenname = "1: Structural Change"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1ZKtQ9GHxb85l1sp-EpXGf-L8iILVJkTb", "1C4k0mU-Fgi3u7RcmazlLXp_m2Vm6gEna", "1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1ZKtQ9GHxb85l1sp-EpXGf-L8iILVJkTb", "1C4k0mU-Fgi3u7RcmazlLXp_m2Vm6gEna", "1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
+            summaryid = "17dufHZcFFm5FN8UQldBZ9mSWwhBq_AHg"
         elif quadcode == "01":
             scenname = "2: All Change"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1hkAzSBk9gXnuKpv8j-CoNa2w9cEoZjeN", "1wAH-JkLj-GxrOyLqzIYokYgQAuo362KF", "1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1hkAzSBk9gXnuKpv8j-CoNa2w9cEoZjeN", "1wAH-JkLj-GxrOyLqzIYokYgQAuo362KF", "1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
+            summaryid = "17dufHZcFFm5FN8UQldBZ9mSWwhBq_AHg"
         elif quadcode == "10":
             scenname = "3: Familiar Futures"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1JGyPhIDpMwiTsL_QcOxR2QWXMwns8Y0X", "1C4k0mU-Fgi3u7RcmazlLXp_m2Vm6gEna", "1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1JGyPhIDpMwiTsL_QcOxR2QWXMwns8Y0X", "1C4k0mU-Fgi3u7RcmazlLXp_m2Vm6gEna", "1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
+            summaryid = "1swtquoAb2Hhi4sm-RWHUrW0etr5t0mp1"
         elif quadcode == "11":
             scenname = "4: Hot and Bothered"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "17as0IGChbgKbU2-eX7AtL6E1fgeQz4BF", "1wAH-JkLj-GxrOyLqzIYokYgQAuo362KF", "1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "17as0IGChbgKbU2-eX7AtL6E1fgeQz4BF", "1wAH-JkLj-GxrOyLqzIYokYgQAuo362KF", "1WltwOO5aPYDlEiqVsnumJ7k17wNzKQNG"]
+            summaryid = "1EwtTJZQG8aRvBOJD3DK-D6fZMzTKiao2"
     elif ccode == "ZMB":
         if quadcode == "00":
             scenname = "1: Opportunity and Exposure"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1orp_eQGggLxpgkW3KC4xezfcP3aX6CUs", "1HOOCoEexGKQAgsynZ4lYng1W8A-R1F3o", "1IeAyKXIFTEz48z7bCAksfxHQSanqy7B4"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1orp_eQGggLxpgkW3KC4xezfcP3aX6CUs", "1HOOCoEexGKQAgsynZ4lYng1W8A-R1F3o", "1IeAyKXIFTEz48z7bCAksfxHQSanqy7B4"]
+            summaryid = "1yD6epshcUwSLdW40XHFnNb8nw-6lJlxW"
         elif quadcode == "01":
             scenname = "2: Risk and Reward"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1uZCTHFdtQwHcEu0skkalwr8210Cerh8i", "1XvuEOAX1NTnEc_vdgRlm9TeFYBxak9e5", "1IeAyKXIFTEz48z7bCAksfxHQSanqy7B4"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1uZCTHFdtQwHcEu0skkalwr8210Cerh8i", "1XvuEOAX1NTnEc_vdgRlm9TeFYBxak9e5", "1IeAyKXIFTEz48z7bCAksfxHQSanqy7B4"]
+            summaryid = "1b1THyhKkD3wrLJCRxrvTmv-vyx2b5OBR"
         elif quadcode == "10":
             scenname = "3: Solitude and Self-Sufficiency"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1Q3BCdujmKJ3exNzjV-NOPtG4YmiPvfMn", "1HOOCoEexGKQAgsynZ4lYng1W8A-R1F3o", "1IeAyKXIFTEz48z7bCAksfxHQSanqy7B4"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1Q3BCdujmKJ3exNzjV-NOPtG4YmiPvfMn", "1HOOCoEexGKQAgsynZ4lYng1W8A-R1F3o", "1IeAyKXIFTEz48z7bCAksfxHQSanqy7B4"]
+            summaryid = "1uJXMJPrxQgBfg3AfDz7KRAasZSPN22Wt"
         elif quadcode == "11":
             scenname = "4: Isolation and Imperative"
-            pdflist = ["10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI", "10veWWaUkV5Vt4Mp3MIGx7OVFLzoRlkJI"]
-            #pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "14xSv3S5KveaZzUgVrijNU1Dd1bk_Id0Y", "1XvuEOAX1NTnEc_vdgRlm9TeFYBxak9e5", "1IeAyKXIFTEz48z7bCAksfxHQSanqy7B4"]
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "14xSv3S5KveaZzUgVrijNU1Dd1bk_Id0Y", "1XvuEOAX1NTnEc_vdgRlm9TeFYBxak9e5", "1IeAyKXIFTEz48z7bCAksfxHQSanqy7B4"]
+            summaryid = "1WGt_nEC54b5F8tRLKs8xJwjW54_eSkID"
 
     country=countries.get(ccode,"Unrecognised")
 
@@ -325,7 +325,7 @@ def CountryQuad(ccode,quad):
          and quadcode != "11"):
         abort(404)
 
-    return render_template('scenarios.html.j2', ccode=ccode, country=country, quadcode=quadcode, scenname=scenname, pdflist=pdflist)
+    return render_template('scenarios.html.j2', ccode=ccode, country=country, quadcode=quadcode, scenname=scenname, pdflist=pdflist, summaryid=summaryid)
 
 # static information pages ---------------------------------------------------
 
@@ -364,3 +364,7 @@ def infopage2():
 @main_bp.route('/infopage3', methods=["GET"])
 def infopage3():
     return render_template('infopage3.html.j2')
+
+@main_bp.route('/calibrated', methods=["GET"])
+def calibrated():
+    return render_template('calibrated.html.j2')
