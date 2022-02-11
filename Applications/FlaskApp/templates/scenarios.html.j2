@@ -1,9 +1,12 @@
 {% extends 'layout.html.j2' %}
 {% block body %}
-<div id="header1">
-</div><!-- Scenario description -->
-<div> <br><br>The diagram below shows the different aspects of the iFEED analysis for this scenario. Click on the different boxes for more information about this aspect of the analysis and to access the summary document for each aspect<br><br>
-</div>
+<p id="header1">
+</p><!-- Scenario description -->
+
+<p><a id="summary-link" target="_blank">View a summary document for this scenario</a></p>
+
+<p>The diagram below shows the different aspects of the iFEED analysis for this scenario. Click on the different boxes for more information about this aspect of the analysis and to access the summary document for each aspect.</p>
+
 <div class="template-wrap">
 
   <div class="ep-flowchart" id="ep-flowchart">
@@ -45,16 +48,16 @@
                 <tspan font-size="14" x="25" dy="27">Trends and Changes</tspan>
                 <tspan font-size="14" x="25" dy="17">across crops</tspan>
                 <tspan font-size="14" x="25" dy="22">Crop Management:</tspan>
-                <tspan font-size="14" x="25" dy="17">Fertiliser, Applied</tspan>
-                <tspan font-size="14" x="25" dy="17">Irrigation, Adaptation</tspan>
-                <tspan font-size="14" x="25" dy="22">Pests</tspan>
+                <tspan font-size="14" x="25" dy="17">Applied Irrigation</tspan>
+                <tspan font-size="14" x="25" dy="17">Adaptation, Pests</tspan>
               </text>
             </g>
             <g id="ep-shocks" class="ep-svg-block"
                transform="translate(525)"
                @click="display = true; selected = 'ep-shocks'">
               <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="145" height="120" />
-              <text id="Content" fill="#F5F5F0" x="10" y="47" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Shocks And
+              <text id="Content" fill="#F5F5F0" x="10" y="47" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Climate
+                <tspan x="10" dy="17">Shocks And</tspan>
                 <tspan x="10" dy="17">Extremes</tspan>
                 <tspan font-size="14" x="15" dy="27">Production</tspan>
                 <tspan font-size="14" x="15" dy="22">Trade</tspan>
@@ -78,7 +81,7 @@
               <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="180" height="150" />
               <text id="Content" fill="#F5F5F0" x="30" y="85" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Trade And
                 <tspan x="30" dy="17">Nutrition</tspan>
-                <tspan x="30" dy="17">Trade-Offs</tspan>
+                <tspan x="30" dy="17">Security</tspan>
               </text>
             </g>
             <g id="ep-return" class="ep-svg-block"
@@ -115,7 +118,7 @@
         <p>This will open a new window</p>
       </div>
       <div class="ep-detail" v-show="selected == 'ep-shocks'">
-        <h3>SHOCKS AND EXTREMES</h3>
+        <h3>CLIMATE SHOCKS AND EXTREMES</h3>
         <!--<p>One sentence description of shocks and extremes</p>-->
         <button type="button" onclick="popup('popUpDiv');pdfcall(this,2)">View Descriptor Document</button>
         <p>This will open a new window</p>
@@ -127,7 +130,7 @@
         <p>This will open a new window</p>
       </div>
       <div class="ep-detail" v-show="selected == 'ep-trade'">
-        <h3>TRADE AND NUTRITION TRADE-OFFS (TNT)</h3>
+        <h3>TRADE AND NUTRITION SECURITY</h3>
         <!--<p>One sentence description of TNT</p>-->
         <button type="button" onclick="popup('popUpDiv');pdfcall(this,3)">View Descriptor Document</button>
         <p>This will open a new window</p>
@@ -139,6 +142,8 @@
   </div>
 
 </div>
+<br/>
+<p><a href="/calibrated">Click here to access modelling summary calibrated statements and associated implication statements for all countries and scenarios</a></p>
 
 <script>
 
@@ -163,6 +168,9 @@
     pdflink = "https://drive.google.com/file/d/"+pdfid+"/preview";
     popUpWindow.document.write('<iframe height="100%" allowTransparency="true" frameborder="0" scrolling="yes" style="width:100%;" src="'+pdflink+'" type= "text/javascript"></iframe>');
   }
+
+  const summaryid = ({{ summaryid|tojson }})
+  document.getElementById("summary-link").href = "https://drive.google.com/file/d/"+summaryid+"/preview";
 
   const ccode = new String({{ ccode|tojson }});
   const quadcode = new String({{ quadcode|tojson }});
