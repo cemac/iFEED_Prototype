@@ -5,6 +5,8 @@ import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from Applications.DashApp.axisdicts import countrydict, cropdict, fielddict, quaddict
 
+DATA_PATH = "/var/www/development/data/"
+
 def get_cubedata(ccode, quad, field):
 
     import os
@@ -19,9 +21,11 @@ def get_cubedata(ccode, quad, field):
         quad='00'
 
     if (ccode == 'MWI' or ccode == 'TZA'):
-        fname = '/var/www/development/data/malawi.nc'
+        fname = DATA_PATH + 'malawi.nc'
+    elif (ccode == 'ZAF'):
+        fname = DATA_PATH + 'safrica.nc'
     else:
-        fname = '/var/www/development/data/malawi.nc'
+        fname = DATA_PATH + 'malawi.nc'
 
     if not os.path.exists(fname):
         print('Could not load file')
