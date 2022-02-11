@@ -116,6 +116,10 @@
 <div class="page-hero">
   <div class="inside-page-hero grid-container grid-parent">
     <h1>Information Page 2</h1>
+{% elif request.url_rule.endpoint == "main_bp.calibrated" %}
+<div class="page-hero">
+  <div class="inside-page-hero grid-container grid-parent">
+    <h1>Calibrated and Implication Statements</h1>
 {% elif request.url_rule.endpoint == "main_bp.contact" %}
 <div class="page-hero">
   <div class="inside-page-hero grid-container grid-parent">
