@@ -7,14 +7,15 @@ class CustomDash(dash.Dash):
         headerbar = '''
 <header id="masthead" class="site-header">
   <div class="inside-header grid-container grid-parent">
-    <div class="site-logo col-xs-12 col-md-6">
+    <div class="site-logo col-xs-12 col-md-6" style="padding:0;">
       <a href="https://africap.info/" title="GCRF-AFRICAP" rel="home">
         <img  class="header-image is-logo-image" alt="GCRF-AFRICAP" src="/static/logos/africap-logo.svg" title="GCRF-AFRICAP" />
       </a>
     </div>
     <div class="col-xs-12 col-md-6">
       <a href="/" title="iFEED" rel="home">
-        <span style="font-size: 35px; color: #593c2f; font-weight:700;">iFEED</span>
+        <img  class="header-image-2 is-logo-image" alt="iFEED" src="/static/logos/iFEED-logo.png" title="iFEED" />
+        <!--<span style="font-size: 35px; color: #593c2f; font-weight:700;">iFEED</span>-->
       </a>
       <span style="font-size: 15px; color: #593c2f;"><br><b>i</b>ntegrated <b>F</b>uture <b>E</b>stimator for <b>E</b>missions and <b>D</b>iets</span>
     </div>
@@ -37,11 +38,14 @@ class CustomDash(dash.Dash):
           <a href="/about">About iFEED</a>
         </li>
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1095">
-          <a href="/infopage1">Crop Modelling Methods</a>
+          <a href="/modelling">iFEED Methods</a>
         </li>
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1222">
-          <a href="/contact">Contact</a>
+          <a href="/countries">Country-Level Results</a>
         </li>
+        <!-- <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1222"> -->
+          <!-- <a href="/contact">Contact</a> -->
+        <!-- </li> -->
       </ul>
 
       <ul class="navbar-right">
@@ -93,7 +97,7 @@ class CustomDash(dash.Dash):
   </div>
   <div class = "col-sm-8 col-xs-12" style="text-align: left;">
     Website designed by <a href="https://www.cemac.leeds.ac.uk/" target="_blank">CEMAC</a>
-    &copy; 2019 <a href="https://www.leeds.ac.uk/" target="_blank">University of Leeds</a>, Leeds, LS2 9JT
+    &copy; 2021 <a href="https://www.leeds.ac.uk/" target="_blank">University of Leeds</a>, Leeds, LS2 9JT
   </div>
   <center>
     <a href="https://africap.info/">
