@@ -29,6 +29,13 @@
         {% endif %}
           <a href="/" aria-current="page">Home</a>
         </li>
+        {% if request.url_rule.endpoint == "main_bp.countries" %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1098">
+        {% else %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1098">
+        {% endif %}
+          <a href="/countries">iFEED Tool</a>
+        </li>
         {% if request.url_rule.endpoint == "main_bp.about" %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1142">
         {% else %}
@@ -43,20 +50,13 @@
         {% endif %}
           <a href="/modelling">iFEED Methods</a>
         </li>
-        {% if request.url_rule.endpoint == "main_bp.countries" %}
-        <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1098">
-        {% else %}
-        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1098">
-        {% endif %}
-          <a href="/countries">Country-Level Results</a>
-        </li>
-        <!--{% if request.url_rule.endpoint == "main_bp.contact" %}
+        {% if request.url_rule.endpoint == "main_bp.contact" %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1222">
         {% else %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1222">
         {% endif %}
           <a href="/contact">Contact</a>
-        </li>-->
+        </li>
       </ul>
       <ul class="navbar-right">
         {% if session.usertype == "Admins"%}
@@ -89,10 +89,10 @@
         {% else %}
         {% if request.url_rule.endpoint == "main_bp.login" %}
         <li class="nav navbar-nav current-menu-item">
+          <a href="/login"><span class="glyphicon glyphicon-log-in"> Login</a>
         {% else %}
         <li class="nav navbar-nav">
         {% endif %}
-          <a href="/login"><span class="glyphicon glyphicon-log-in"> Login</a>
         </li>
         {% endif %}
       </ul>
