@@ -4,231 +4,182 @@
 
 <div style="text-align: justify">
 
-  <p><center> <h2>Data Selection by Country </h2></center></p>
-  <div id="accomptext" class="grdcol col-md-12 col-sm-12 col-xs-12" style="margin: 30px; text-align: justify; visibility: hidden"></div>
-</div><!-- .entry-content -->
-<div><!-- class="homerow">-->
-  <div class="homecol col-md-6 col-sm-12">
-    <p><center> Use the interactive map below to select your country of interest </center></p>
-    <!--<div id="map" style="height: 550px; width:640px; grid-area: a"></div>-->
-    <div id="map" style="height: 550px; width:100%; grid-area: a"></div>
+  <div class="grdcol col-md-12 col-sm-12 col-xs-12" style="text-align: justify;">
+    <p><center> Please select your country of interest </center></p>
+    <div class="btn-group row" style="width:100%">
+      <label class="btn-container col-sm-3 col-xs-6" id="MWIradbutton" style="width: 15%" onclick="showDiv('MWI')">
+        <input type="radio" name="radio">
+        <span class="checkmark"><div style="margin:auto">Malawi</div></span>
+      </label>
+      <label class="btn-container col-sm-3 col-xs-6" id="ZAFradbutton" style="width: 15%" onclick="showDiv('ZAF')">
+        <input type="radio" name="radio">
+        <span class="checkmark"><div style="margin:auto">South Africa</div></span>
+      </label>
+      <label class="btn-container col-sm-3 col-xs-6" id="TZAradbutton" style="width: 15%" onclick="showDiv('TZA')">
+        <input type="radio" name="radio">
+        <span class="checkmark"><div style="margin:auto">Tanzania</div></span>
+      </label>
+      <label class="btn-container col-sm-3 col-xs-6" id="ZMBradbutton" style="width: 15%" onclick="showDiv('ZMB')">
+        <input type="radio" name="radio">
+        <span class="checkmark"><div style="margin:auto">Zambia</div></span>
+      </label>
+    </div>
   </div>
-  <div id="quadrantContainer" class="grdcontainercol panel-group col-md-6 col-sm-12" style="visibility: hidden; padding-top: 50px">
-    <div class="panel panel-default">
-      <div id="multiCollapseQuad00" class="panel-collapse collapse">
-        <div class="panel-body" id="Quad00popup"></div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div id="multiCollapseQuad01" class="panel-collapse collapse">
-        <div class="panel-body" id="Quad01popup"></div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div id="multiCollapseQuad10" class="panel-collapse collapse">
-        <div class="panel-body" id="Quad10popup"></div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div id="multiCollapseQuad11" class="panel-collapse collapse">
-        <div class="panel-body" id="Quad11popup"></div>
-      </div>
-    </div>
+  <div id="accomptext" class="grdcol col-md-12 col-sm-12 col-xs-12" style="text-align: justify; visibility: hidden"></div>
+</div>
+
+<div class="homerow row" style= "width: 100%">
+  <div id="quadrantContainer" class="grdcontainercol col-md-6 col-sm-12" style="visibility: hidden;">
     <div class="quadcontainer">
-      <div id="uplabel" class="uaxislbl">High</div>
-      <a class="box2" data-toggle="collapse" data-parent="#quadrantContainer" href="#multiCollapseQuad00" role="button" aria-expanded="false" aria-controls="multiCollapseQuad00"><div id="quad00" class="box grow" style="top:12%; left:12%;">Quadrant 00</div></a>
-      <div id="yaxis" class="vertline">Placeholder</div>
-      <a class="box2" data-toggle="collapse" data-parent="#quadrantContainer"  href="#multiCollapseQuad01" role="button" aria-expanded="false" aria-controls="multiCollapseQuad01"><div id="quad01" class="box grow" style="top:12%; right:12%;">Quadrant 01</div></a>
+      <div id="uplabel" class="uaxislbl">High<br>Climate Risk</div>
+      <label class="box-container grow" style="top:12%; left:12%;">
+        <input type="radio" name="quadradio" id="quadradio00">
+        <div id="quad00" class="box" onclick="showScenarioText('Quad00popup')" data-toggle="collapse" data-target="#multiCollapseQuad00" aria-expanded="false" aria-controls="multiCollapseQuad00" for="quadradio00">Quadrant 00</div>
+      </label>
+      <!--<div id="yaxis" class="vertline">Placeholder</div>-->
+      <label class="box-container grow" style="top:12%; right:12%;">
+        <input type="radio" name="quadradio" id="quadradio01">
+        <div id="quad01" class="box" onclick="showScenarioText('Quad01popup')" data-toggle="collapse" data-target="#multiCollapseQuad01" aria-expanded="false" aria-controls="multiCollapseQuad01" for="quadradio01">Quadrant 01</div>
+      </label>
       <div id="xaxis" class="horline" style="height:10%; top: 45%; position: absolute;">
         <div id="leftlabel" class="laxislbl">&nbsp &nbsp &nbsp Low</div>
-        <div class=leftline>Climate</div>
-        <div class=rightline>Risk</div>
+        <div id="leftline" class=leftline>Climate</div>
+        <!--<div class=rightline>Risk</div>-->
         <div id="rightlabel" class="raxislbl">High &nbsp &nbsp &nbsp</div>
       </div>
-      <a class="box2" data-toggle="collapse"  data-parent="#quadrantContainer"  href="#multiCollapseQuad10" role="button" aria-expanded="false" aria-controls="multiCollapseQuad10"><div id="quad10" class="box grow" style="bottom:12%; left:12%;">Quadrant 10</div></a>
-      <a class="box2" data-toggle="collapse"  data-parent="#quadrantContainer"  href="#multiCollapseQuad11" role="button" aria-expanded="false" aria-controls="multiCollapseQuad11"><div id="quad11" class="box grow" style="bottom:12%; right:12%;">Quadrant 11</div></a>
+      <label class="box-container grow" style="bottom:12%; left:12%;">
+        <input type="radio" name="quadradio" id="quadradio10">
+        <div id="quad10" class="box" onclick="showScenarioText('Quad10popup')" data-toggle="collapse" data-target="#multiCollapseQuad10" aria-expanded="false" aria-controls="multiCollapseQuad10" for="quadradio10">Quadrant 10</div>
+      </label>
+      <label class="box-container grow" style="bottom:12%; right:12%;">
+        <input type="radio" name="quadradio" id="quadradio11">
+        <div id="quad11" class="box" onclick="showScenarioText('Quad11popup')" data-toggle="collapse" data-target="#multiCollapseQuad11" aria-expanded="false" aria-controls="multiCollapseQuad11" for="quadradio11">Quadrant 11</div>
+      </label>
       <img src="/static/images/arrows2.png">
-      <div id="downlabel" class="daxislbl">Low</div>
+      <div id="downlabel" class="daxislbl">Low<br>Climate Risk</div>
     </div>
     <!--<a class="box2" href="/data_exploration/AAAcomp"><div class="box grow" style="padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px">Interquadrant Comparisons</div></a>-->
+  </div>
+  <div id="scenarioAccordian" class="homecol col-md-6 col-sm-12 accordian shadow" style="visibility: hidden">
+    <div class="card">
+      <div id="Default" data-parent="#scenarioAccordian" class="collapse show">
+        <div class="card-body" id="AccordianDefault">Select one of the scenario names in the grid for a description of the scenario</div>
+      </div>
+    </div>
+    <div class="card">
+      <div id="multiCollapseQuad00" aria-labelledby="quad00" data-parent="#scenarioAccordian" class="collapse">
+        <div class="card-body" id="Quad00popup"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div id="multiCollapseQuad01" aria-labelledby="quad01" data-parent="#scenarioAccordian" class="collapse">
+        <div class="card-body" id="Quad01popup"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div id="multiCollapseQuad10" aria-labelledby="quad10" data-parent="#scenarioAccordian" class="collapse">
+        <div class="card-body" id="Quad10popup"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div id="multiCollapseQuad11" aria-labelledby="quad11" data-parent="#scenarioAccordian" class="collapse">
+        <div class="card-body" id="Quad11popup"></div>
+      </div>
+    </div>
   </div>
 </div>
 <script src="{{ url_for ('static', filename='geojson/countries.js')}}", type="text/javascript"></script>
 <script type="text/javascript">
-// The first parameter are the coordinates of the center of the map
-// The second parameter is the zoom level
-  var map = L.map('map', {
-    minZoom: 0,
-    zoomSnap: 0.25,
-  }).setView([-18.5, 30.0], 4.25);
 
-  // {z}, {x} and {y} are placeholders for map tiles
-  // {x} and {y} are the x/y of where you are on the map
-  // {z} is the zoom level
+function showDiv(ccode) {
+  document.getElementById('accomptext').style.visibility = "visible";
+  document.getElementById('quadrantContainer').style.visibility = "visible";
+  document.getElementById('scenarioAccordian').style.visibility = "visible";
 
-	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2VtYWMtY2NzIiwiYSI6ImNrNTVraHB1YjBzamUza29maHpuaXhxMDUifQ.TeGCFnu6MhaZXNw80EWWdw', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		id: 'mapbox/light-v9'
-	}).addTo(map);
+  /*var radio = document.querySelector('input[type=radio][name=quadradio]:checked');
+  radio.checked = false;
 
-  // control that shows country name on hover
-  var info = L.control();
+  /*document.getElementById('quadradio00').checked = "false";
+  document.getElementById('quadradio01').checked = "false";
+  document.getElementById('quadradio10').checked = "false";
+  document.getElementById('quadradio11').checked = "false";*/
 
-  info.onAdd = function (map) {
-  	this._div = L.DomUtil.create('div', 'info');
-  	this.update();
-  	return this._div;
+  const regex = /\/countries\/.../gi;
+  const regex2 = /\/data_exploration\/.../gi;
+  var links = document.getElementsByClassName('box2');
+  for (var j = 0; j < links.length; j++) {
+    links[j].setAttribute('href', links[j].getAttribute('href').replace(regex, '\/countries\/' + ccode));
+    links[j].setAttribute('href', links[j].getAttribute('href').replace(regex2, '\/data_exploration\/' + ccode));
   };
 
-  info.update = function (props) {
-  	this._div.innerHTML = '<h4>AFRICAP Country:</h4>' +  (props ?
-  		'<b>' + props.name : 'Hover over a country');
-  };
+  if (ccode == "MWI") {
 
-  info.addTo(map);
+    document.getElementById("leftline").innerHTML = "Policy Implementation";
+    document.getElementById("leftlabel").innerHTML = "&nbsp &nbsp &nbsp Poor";
+    document.getElementById("rightlabel").innerHTML = "Good &nbsp &nbsp &nbsp ";
+    document.getElementById("accomptext").innerHTML = "<p>Scenarios for Malawi explore the effect of policy implementation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/MWI/Info'>here</a> to see a country-level summary.</p>";
+    document.getElementById("quad11").innerHTML = "The Path to Heaven";
+    document.getElementById("quad01").innerHTML = "Demanding but Coping";
+    document.getElementById("quad10").innerHTML = "Degrading Economy";
+    document.getElementById("quad00").innerHTML = "The Road to Hell";
+    document.getElementById("Quad11popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/MWI/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>";
+    document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/MWI/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>";
+    document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties. <br><br><a class='box2' href='/countries/MWI/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties. <br><br><a class='box2' href='/countries/MWI/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
 
-  function showDiv(ccode) {
-    document.getElementById('accomptext').style.visibility = "visible";
-    document.getElementById('quadrantContainer').style.visibility = "visible";
-    const regex = /\/countries\/.../gi;
-    const regex2 = /\/data_exploration\/.../gi;
-    var links = document.getElementsByClassName('box2');
-    for (var j = 0; j < links.length; j++) {
-      links[j].setAttribute('href', links[j].getAttribute('href').replace(regex, '\/countries\/' + ccode));
-      links[j].setAttribute('href', links[j].getAttribute('href').replace(regex2, '\/data_exploration\/' + ccode));
-    };
+  } else if (ccode == "ZMB") {
 
-    if (ccode == "MWI") {
+    document.getElementById("leftline").innerHTML = "Market Connectivity";
+    document.getElementById("leftlabel").innerHTML = "Low";
+    document.getElementById("rightlabel").innerHTML = "High";
+    document.getElementById("accomptext").innerHTML = "<p>Scenarios for Zambia explore the effect of market connectivity and function in high and low climate impact scenarios on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/ZMB/Info'>here</a> to see a country-level summary.</p>";
+    document.getElementById("quad11").innerHTML = "Opportunity and Exposure";
+    document.getElementById("quad01").innerHTML = "Risk and Reward";
+    document.getElementById("quad10").innerHTML = "Solitude and Self-Sufficiency";
+    document.getElementById("quad00").innerHTML = "Isolation and Imperative";
+    document.getElementById("Quad11popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and high market connectivity and function. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZMB/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and high market connectivity and function. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZMB/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and low market connectivity and function. This future assumes little change to agricultural areas, but increased crop diversification. <br><br><a class='box2' href='/countries/ZMB/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and low market connectivity and function. This future assumes crop diversification, a fall in agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZMB/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
 
-      document.getElementById("yaxis").innerHTML = "Policy Implementation";
-      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Malawi explore the effect of policy implementation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/MWI/Info'>here</a> to see a country-level summary.</p>";
-      document.getElementById("quad00").innerHTML = "The Path to Heaven";
-      document.getElementById("quad01").innerHTML = "Demanding but Coping";
-      document.getElementById("quad10").innerHTML = "Degrading Economy";
-      document.getElementById("quad11").innerHTML = "The Road to Hell";
-      document.getElementById("downlabel").innerHTML = "Poor";
-      document.getElementById("uplabel").innerHTML = "Good";
-      document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br>Click <a href='/countries/MWI/Quad00'>here</a> to find out more about this scenario.";
-      document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br>Click <a href='/countries/MWI/Quad01'>here</a> to find out more about this scenario.";
-      document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties. <br><br>Click <a href='/countries/MWI/Quad10'>here</a> to find out more about this scenario."
-      document.getElementById("Quad11popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties. <br><br>Click <a href='/countries/MWI/Quad11'>here</a> to find out more about this scenario."
+  } else if (ccode == "TZA") {
 
-    } else if (ccode == "ZMB") {
+    document.getElementById("leftline").innerHTML = "Tech Development";
+    document.getElementById("leftlabel").innerHTML = "Stagnation";
+    document.getElementById("rightlabel").innerHTML = "Transformation";
+    document.getElementById("accomptext").innerHTML = "<p>Scenarios for the United Republic of Tanzania explore the effect of changes in technological development and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/TZA/Info'>here</a> to see a country-level summary.</p>";
+    document.getElementById("quad11").innerHTML = "Technofix";
+    document.getElementById("quad01").innerHTML = "Intensive Vulnerability";
+    document.getElementById("quad10").innerHTML = "Human Capital";
+    document.getElementById("quad00").innerHTML = "Climate Chaos";
+    document.getElementById("Quad11popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and high technological development. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/TZA/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and high technological development. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/TZA/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and low technological development. This future assumes an increase in agricultural areas and crop diversification. <br><br><a class='box2' href='/countries/TZA/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and low technological development. This future assumes an increase in agricultural areas and status quo crop varieties. <br><br><a class='box2' href='/countries/TZA/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
 
-      document.getElementById("yaxis").innerHTML = "Market Connectivity";
-      document.getElementById("accomptext").innerHTML = "<p>Quadrants for Zambia explore the effect of market connectivity and function in high and low climate impact scenarios on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/ZMB/Info'>here</a> to see a country-level summary.</p>";
-      document.getElementById("quad00").innerHTML = "Opportunity and Exposure";
-      document.getElementById("quad01").innerHTML = "Risk and Reward";
-      document.getElementById("quad10").innerHTML = "Solitude and Self-Sufficiency";
-      document.getElementById("quad11").innerHTML = "Isolation and Imperative";
-      document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and high market connectivity and function. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br>Click <a href='/countries/ZMB/Quad00'>here</a> to find out more about this scenario."
-      document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and high market connectivity and function. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion. <br><br>Click <a href='/countries/ZMB/Quad01'>here</a> to find out more about this scenario."
-      document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and low market connectivity and function. This future assumes little change to agricultural areas, but increased crop diversification. <br><br>Click <a href='/countries/ZMB/Quad10'>here</a> to find out more about this scenario."
-      document.getElementById("Quad11popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and low market connectivity and function. This future assumes crop diversification, a fall in agricultural area and irrigation expansion. <br><br>Click <a href='/countries/ZMB/Quad11'>here</a> to find out more about this scenario."
+  } else {
 
-    } else if (ccode == "TZA") {
-
-      document.getElementById("yaxis").innerHTML = "Tech Development";
-      document.getElementById("accomptext").innerHTML = "<p>Quadrants for the United Republic of Tanzania explore the effect of changes in technological development and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/TZA/Info'>here</a> to see a country-level summary.</p>";
-      document.getElementById("quad00").innerHTML = "Technofix";
-      document.getElementById("quad01").innerHTML = "Intensive Vulnerability";
-      document.getElementById("quad10").innerHTML = "Human Capital";
-      document.getElementById("quad11").innerHTML = "Climate Chaos";
-      document.getElementById("downlabel").innerHTML = "Stagnation";
-      document.getElementById("uplabel").innerHTML = "Transformation";
-      document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and high technological development. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br>Click <a href='/countries/TZA/Quad00'>here</a> to find out more about this scenario."
-      document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and high technological development. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion. <br><br>Click <a href='/countries/TZA/Quad01'>here</a> to find out more about this scenario."
-      document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and low technological development. This future assumes an increase in agricultural areas and crop diversification. <br><br>Click <a href='/countries/TZA/Quad10'>here</a> to find out more about this scenario."
-      document.getElementById("Quad11popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and low technological development. This future assumes an increase in agricultural areas and status quo crop varieties. <br><br>Click <a href='/countries/TZA/Quad11'>here</a> to find out more about this scenario."
-
-    } else {
-
-      document.getElementById("yaxis").innerHTML = "Land Reform";
-      document.getElementById("accomptext").innerHTML = "<p>Quadrants for South Africa explore the effects of the degree of land reform in scenarios of high and low climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/ZAF/Info'>here</a> to see a country-level summary.</p>";
-      document.getElementById("quad00").innerHTML = "Structural Change";
-      document.getElementById("quad01").innerHTML = "All Change";
-      document.getElementById("quad10").innerHTML = "Familiar Futures";
-      document.getElementById("quad11").innerHTML = "Hot and Bothered";
-      document.getElementById("downlabel").innerHTML = "Little";
-      document.getElementById("uplabel").innerHTML = "Significant";
-      document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br>Click <a href='/countries/ZAF/Quad00'>here</a> to find out more about this scenario."
-      document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br>Click <a href='/countries/ZAF/Quad01'>here</a> to find out more about this scenario."
-      document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties. <br><br>Click <a href='/countries/ZAF/Quad10'>here</a> to find out more about this scenario."
-      document.getElementById("Quad11popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties. <br><br>Click <a href='/countries/ZAF/Quad11'>here</a> to find out more about this scenario."
-    }
+    document.getElementById("leftline").innerHTML = "Land Reform";
+    document.getElementById("leftlabel").innerHTML = "Little";
+    document.getElementById("rightlabel").innerHTML = "Significant";
+    document.getElementById("accomptext").innerHTML = "<p>Scenarios for South Africa explore the effects of the degree of land reform in scenarios of high and low climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/ZAF/Info'>here</a> to see a country-level summary.</p>";
+    document.getElementById("quad11").innerHTML = "Structural Change";
+    document.getElementById("quad01").innerHTML = "All Change";
+    document.getElementById("quad10").innerHTML = "Familiar Futures";
+    document.getElementById("quad00").innerHTML = "Hot and Bothered";
+    document.getElementById("quad11popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZAF/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZAF/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties. <br><br><a class='box2' href='/countries/ZAF/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties. <br><br><a class='box2' href='/countries/ZAF/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
   }
+}
 
-  // get color depending on population density value
-  function getColor(c) {
-  	return c == "ZAF" ? '#800026' :
-  			c == "ZMB"  ? '#BD0026' :
-  			c == "TZA"  ? '#E31A1C' :
-  			c == "MWI"  ? '#FC4E2A' :
-  						'#FFEDA0';
-  }
+function showScenarioText (quadnum) {
+  /*document.getElementsByClassName('panel-body').style.visible = "hidden";
 
-  function style(feature) {
-  	return {
-  		weight: 2,
-  		opacity: 1,
-  		color: 'white',
-  		dashArray: '3',
-  		fillOpacity: 0.7,
-  		fillColor: getColor(feature.properties.code)
-  	};
-  }
+  document.getElementById(quadnum).style.visible = "visible";*/
+}
 
-  function highlightFeature(e) {
-  	var layer = e.target;
-
-		layer.setStyle({
-			weight: 5,
-			color: '#666',
-			dashArray: '',
-			fillOpacity: 0.7
-		});
-
-		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-			layer.bringToFront();
-		}
-    //layer.bindPopup('<p>See country level summary document for <a href="/countries/'+layer.feature.properties.code+'/Info">' + layer.feature.properties.name+ '</a></p>');
-		info.update(layer.feature.properties);
-
-	}
-
-	var geojson;
-
-	function resetHighlight(e) {
-		geojson.resetStyle(e.target);
-		info.update();
-	}
-
-	function zoomToFeature(e) {
-		map.fitBounds(e.target.getBounds());
-	}
-
-	function onEachFeature(feature, layer) {
-		layer.on({
-			mouseover: highlightFeature,
-			mouseout: resetHighlight,
-			click: combFunc
-		});
-	}
-
-  function combFunc(e) {
-    var layer = e.target;
-    zoomToFeature(e);
-    showDiv(layer.feature.properties.code);
-    //layer.bindPopup('<p>See country level summary document for <a href="/countries/'+layer.feature.properties.code+'/Info">' + layer.feature.properties.name+ '</a></p>');
-  }
-
-	geojson = L.geoJson(countries, {
-		style: style,
-		onEachFeature: onEachFeature
-	}).addTo(map);
 
 </script>
 {% endblock %}

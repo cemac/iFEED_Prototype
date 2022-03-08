@@ -498,7 +498,7 @@ footer {
 }
 
 .grow {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .grow:hover {
@@ -510,7 +510,7 @@ footer {
 }
 
 .headrow{
-  display : flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -528,19 +528,18 @@ footer {
 }
 
 .grdcontainercol{
-  display : flex;
+  display: flex;
   flex-direction: column;
-  /*padding:5px;*/
   margin: 0;
-  flex : 1 1 auto;
+  flex: 1 1 auto;
   align-items: center;
 }
 
 .grdcontainerrow{
-  display : flex;
+  display: flex;
   flex-direction: row;
   margin: 0;
-  flex : 1 1 auto;
+  flex: 1 1 auto;
   align-items: center;
 }
 
@@ -549,23 +548,23 @@ footer {
 }
 
 .homerow{
-  display : flex;
+  display: inline-flex;
   flex-direction: row;
   margin: auto;
-  flex : 1 1 auto;
+  flex: 1 1 auto;
   align-content: center;
   justify-content: space-between;
 }
 
 .homecol{
-  display : flex;
-  flex-direction: column;
+  /*display: flex;
+  flex-direction: column;*/
   margin: auto;
-  justify-content: center;
+  /*justify-content: center;*/
 }
 
 .grdcol{
-  display : flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -573,7 +572,7 @@ footer {
 }
 
 .grdcol2{
-  display : flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -581,37 +580,78 @@ footer {
   width: 15px;
 }
 
+.box-container {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 33%;
+  height: 33%;
+  border-radius: 10px;
+  background-color: #fdf1d8;
+  color: #593c2f;
+}
+
 .box {
   display: flex;
   justify-content: center;
   align-items: center;
   float: left;
-  position: absolute;
   background-color: #fdf1d8;
   color: #593c2f;
   border-radius: 10px;
   text-align: center;
   border: 2px solid #593c2f;
-  width: 33%;
-  height: 33%;
   font-size: 18px;
+  width: 100%;
+  height: 100%;
+}
+
+.box-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.box-container:hover {
+  opacity: 0.7;
+  color: #ffffff;
+  background-color: #574c46;
+}
+
+/* On mouse-over, add a grey background color */
+.box-container:hover input ~ .box {
+  opacity: 0.7;
+  color: #ffffff;
+  background-color: #574c46;
+}
+
+/* When the radio button is checked, change background and text colour */
+.box-container input:checked ~ .box {
+  color: #ffffff;
+  background-color: #574c46;
 }
 
 .homebox {
-  background-color:#fdf1d8;
-  color:#593c2f;
+  background-color: #fdf1d8;
+  color: #593c2f;
   padding: 3.25em;
-  margin:10px;
-  border-radius : 10px;
-  text-align:center;
-  border : 2px solid #593c2f;
+  margin: 10px;
+  border-radius: 10px;
+  text-align: center;
+  border: 2px solid #593c2f;
 }
 
 .homeboxrow {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display:         flex;
+  display: flex;
   flex-wrap: wrap;
 }
 
@@ -624,16 +664,76 @@ footer {
   display: inline-block;
 }
 
-.panel-group .panel+.panel {
-  margin: 0;
-  border: 0;
-}
-
-.panel {
+.card {
   border: 0 !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
   background-color: transparent !important;
+}
+
+.panel-group .panel + .panel {
+  margin: 0;
+  border: 0;
+}
+
+.btn-group {
+  display: inline-flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+.btn-container {
+  display: flex;
+  position: relative;
+  margin-bottom: 12px;
+  justify-content: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.btn-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  display: flex;
+  background-color: #fdf1d8;
+  border: 2px solid #593c2f;
+  color: #593c2f;
+  padding: 10px 24px;
+  cursor: pointer;
+  float: left;
+  margin: 5%;
+  text-align: center;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+/* On mouse-over, add a grey background color */
+.btn-container:hover input ~ .checkmark {
+  opacity: 0.7;
+  color: #ffffff;
+  background-color: #574c46;
+}
+
+/* When the radio button is checked, change background and text colour */
+.btn-container input:checked ~ .checkmark {
+  color: #ffffff;
+  background-color: #574c46;
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group: after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 .vertline {
@@ -646,23 +746,23 @@ footer {
   left: 45%;
   writing-mode: vertical-rl;
   text-orientation: upright;
-  color : #593c2f;
+  color: #593c2f;
 }
 
 .uaxislbl {
   position: absolute;
-  top : 5%;
+  top: 0%;
   width: 100%;
   text-align: center;
-  color : #593c2f;
+  color: #593c2f;
 }
 
 .daxislbl {
   position: absolute;
-  bottom : 5%;
+  bottom: 0%;
   width: 100%;
   text-align: center;
-  color : #593c2f;
+  color: #593c2f;
 }
 
 .horline {
@@ -671,35 +771,33 @@ footer {
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
-  color : #593c2f;
+  color: #593c2f;
 }
 
 .laxislbl {
   text-align: left;
-  /*align-self: flex-start;*/
-  flex: 0 1 auto;
+  flex: 1 0 0;
   align-items: center;
-  color : #593c2f;
+  color: #593c2f;
 }
 
 .leftline {
   text-align: center;
-  flex: 1 1 auto;
+  flex: 3 0 auto;
   align-items: center;
-  color : #593c2f;
+  color: #593c2f;
 }
 
 .rightline {
   text-align: center;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   align-items: center;
-  color : #593c2f;
+  color: #593c2f;
 }
 
 .raxislbl {
   text-align: right;
-  /*align-self: flex-end;*/
-  flex: 0 1 auto;
+  flex: 1 0 0;
   align-items: center;
-  color : #593c2f;
+  color: #593c2f;
 }
