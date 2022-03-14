@@ -35,7 +35,7 @@ class CustomDash(dash.Dash):
           <a href="/" aria-current="page">Home</a>
         </li>
         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1098">
-          <a href="/countries">iFEED Tool</a>
+          <a href="/countries">iFEED Results</a>
         </li>
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1142">
           <a href="/about">About iFEED</a>

@@ -5,23 +5,24 @@
 <div style="text-align: justify">
 
   <div class="grdcol col-md-12 col-sm-12 col-xs-12" style="text-align: justify;">
-    <p><center> Please select your country of interest </center></p>
+    <p><center>iFEED predicts how climate change and government policy will impact crop yields, land and water use, and nutritious diets in sub-Saharan Africa in 2050. The tool explores possible future scenarios for Malawi, South Africa, Tanzania and Zambia based on different levels of climate risk and policy making. Over 200 scientists, researchers and decision makers from five countries have worked together to develop iFEED.</center></p>
+    <p><center><h3 style="font-weight: bold;"> Please select your country of interest </h3></center></p>
     <div class="btn-group row" style="width:100%">
-      <label class="btn-container col-sm-3 col-xs-6" id="MWIradbutton" style="width: 15%" onclick="showDiv('MWI')">
+      <label class="btn-container col-sm-3 col-xs-6" style="width: 15%"><!-- onclick="showDiv('MWI')">-->
         <input type="radio" name="radio">
-        <span class="checkmark"><div style="margin:auto">Malawi</div></span>
+        <span class="checkmark" id="MWIradbutton"><div tabindex="0" style="margin:auto">Malawi</div></span>
       </label>
-      <label class="btn-container col-sm-3 col-xs-6" id="ZAFradbutton" style="width: 15%" onclick="showDiv('ZAF')">
+      <label class="btn-container col-sm-3 col-xs-6" style="width: 15%"><!-- onclick="showDiv('ZAF')">-->
         <input type="radio" name="radio">
-        <span class="checkmark"><div style="margin:auto">South Africa</div></span>
+        <span class="checkmark" id="ZAFradbutton"><div tabindex="0"style="margin:auto">South Africa</div></span>
       </label>
-      <label class="btn-container col-sm-3 col-xs-6" id="TZAradbutton" style="width: 15%" onclick="showDiv('TZA')">
+      <label class="btn-container col-sm-3 col-xs-6" style="width: 15%"><!-- onclick="showDiv('TZA')">-->
         <input type="radio" name="radio">
-        <span class="checkmark"><div style="margin:auto">Tanzania</div></span>
+        <span class="checkmark" id="TZAradbutton"><div tabindex="0" style="margin:auto">Tanzania</div></span>
       </label>
-      <label class="btn-container col-sm-3 col-xs-6" id="ZMBradbutton" style="width: 15%" onclick="showDiv('ZMB')">
+      <label class="btn-container col-sm-3 col-xs-6" style="width: 15%"><!-- onclick="showDiv('ZMB')">-->
         <input type="radio" name="radio">
-        <span class="checkmark"><div style="margin:auto">Zambia</div></span>
+        <span class="checkmark" id="ZMBradbutton"><div tabindex="0" style="margin:auto">Zambia</div></span>
       </label>
     </div>
   </div>
@@ -34,12 +35,12 @@
       <div id="uplabel" class="uaxislbl">High<br>Climate Risk</div>
       <label class="box-container grow" style="top:12%; left:12%;">
         <input type="radio" name="quadradio" id="quadradio00">
-        <div id="quad00" class="box" onclick="showScenarioText('Quad00popup')" data-toggle="collapse" data-target="#multiCollapseQuad00" aria-expanded="false" aria-controls="multiCollapseQuad00" for="quadradio00">Quadrant 00</div>
+        <div id="quad00" class="box" onclick="document.getElementById('multiCollapseQuad00').scrollIntoView()" data-toggle="collapse" data-target="#multiCollapseQuad00" aria-expanded="false" aria-controls="multiCollapseQuad00" for="quadradio00">Quadrant 00</div>
       </label>
       <!--<div id="yaxis" class="vertline">Placeholder</div>-->
       <label class="box-container grow" style="top:12%; right:12%;">
         <input type="radio" name="quadradio" id="quadradio01">
-        <div id="quad01" class="box" onclick="showScenarioText('Quad01popup')" data-toggle="collapse" data-target="#multiCollapseQuad01" aria-expanded="false" aria-controls="multiCollapseQuad01" for="quadradio01">Quadrant 01</div>
+        <div id="quad01" class="box" onclick="document.getElementById('multiCollapseQuad01').scrollIntoView()" data-toggle="collapse" data-target="#multiCollapseQuad01" aria-expanded="false" aria-controls="multiCollapseQuad01" for="quadradio01">Quadrant 01</div>
       </label>
       <div id="xaxis" class="horline" style="height:10%; top: 45%; position: absolute;">
         <div id="leftlabel" class="laxislbl">&nbsp &nbsp &nbsp Low</div>
@@ -49,11 +50,11 @@
       </div>
       <label class="box-container grow" style="bottom:12%; left:12%;">
         <input type="radio" name="quadradio" id="quadradio10">
-        <div id="quad10" class="box" onclick="showScenarioText('Quad10popup')" data-toggle="collapse" data-target="#multiCollapseQuad10" aria-expanded="false" aria-controls="multiCollapseQuad10" for="quadradio10">Quadrant 10</div>
+        <div id="quad10" class="box" onclick="document.getElementById('multiCollapseQuad10').scrollIntoView()" data-toggle="collapse" data-target="#multiCollapseQuad10" aria-expanded="false" aria-controls="multiCollapseQuad10" for="quadradio10">Quadrant 10</div>
       </label>
       <label class="box-container grow" style="bottom:12%; right:12%;">
         <input type="radio" name="quadradio" id="quadradio11">
-        <div id="quad11" class="box" onclick="showScenarioText('Quad11popup')" data-toggle="collapse" data-target="#multiCollapseQuad11" aria-expanded="false" aria-controls="multiCollapseQuad11" for="quadradio11">Quadrant 11</div>
+        <div id="quad11" class="box" onclick="document.getElementById('multiCollapseQuad11').scrollIntoView()" data-toggle="collapse" data-target="#multiCollapseQuad11" aria-expanded="false" aria-controls="multiCollapseQuad11" for="quadradio11">Quadrant 11</div>
       </label>
       <img src="/static/images/arrows2.png">
       <div id="downlabel" class="daxislbl">Low<br>Climate Risk</div>
@@ -88,97 +89,108 @@
     </div>
   </div>
 </div>
-<script src="{{ url_for ('static', filename='geojson/countries.js')}}", type="text/javascript"></script>
-<script type="text/javascript">
 
-function showDiv(ccode) {
-  document.getElementById('accomptext').style.visibility = "visible";
-  document.getElementById('quadrantContainer').style.visibility = "visible";
-  document.getElementById('scenarioAccordian').style.visibility = "visible";
+<script type="text/javascript" language="javascript">
 
-  /*var radio = document.querySelector('input[type=radio][name=quadradio]:checked');
-  radio.checked = false;
+  const MWIbutton = document.getElementById('MWIradbutton');
+  const TZAbutton = document.getElementById('TZAradbutton');
+  const ZAFbutton = document.getElementById('ZAFradbutton');
+  const ZMBbutton = document.getElementById('ZMBradbutton');
 
-  /*document.getElementById('quadradio00').checked = "false";
-  document.getElementById('quadradio01').checked = "false";
-  document.getElementById('quadradio10').checked = "false";
-  document.getElementById('quadradio11').checked = "false";*/
+  MWIbutton.addEventListener ("click", function() {showDiv('MWI');}, false);
+  TZAbutton.addEventListener ("click", function() {showDiv('TZA');}, false);
+  ZAFbutton.addEventListener ("click", function() {showDiv('ZAF');}, false);
+  ZMBbutton.addEventListener ("click", function() {showDiv('ZMB');}, false);
 
-  const regex = /\/countries\/.../gi;
-  const regex2 = /\/data_exploration\/.../gi;
-  var links = document.getElementsByClassName('box2');
-  for (var j = 0; j < links.length; j++) {
-    links[j].setAttribute('href', links[j].getAttribute('href').replace(regex, '\/countries\/' + ccode));
-    links[j].setAttribute('href', links[j].getAttribute('href').replace(regex2, '\/data_exploration\/' + ccode));
-  };
+  function showDiv(ccode) {
 
-  if (ccode == "MWI") {
+    document.getElementById('accomptext').style.visibility = "visible";
+    document.getElementById('quadrantContainer').style.visibility = "visible";
+    document.getElementById('scenarioAccordian').style.visibility = "visible";
 
-    document.getElementById("leftline").innerHTML = "Policy Implementation";
-    document.getElementById("leftlabel").innerHTML = "&nbsp &nbsp &nbsp Poor";
-    document.getElementById("rightlabel").innerHTML = "Good &nbsp &nbsp &nbsp ";
-    document.getElementById("accomptext").innerHTML = "<p>Scenarios for Malawi explore the effect of policy implementation and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/MWI/Info'>here</a> to see a country-level summary.</p>";
-    document.getElementById("quad11").innerHTML = "The Path to Heaven";
-    document.getElementById("quad01").innerHTML = "Demanding but Coping";
-    document.getElementById("quad10").innerHTML = "Degrading Economy";
-    document.getElementById("quad00").innerHTML = "The Road to Hell";
-    document.getElementById("Quad11popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/MWI/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>";
-    document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/MWI/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>";
-    document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties. <br><br><a class='box2' href='/countries/MWI/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
-    document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties. <br><br><a class='box2' href='/countries/MWI/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    /*var radio = document.querySelector('input[type=radio][name=quadradio]:checked');
+    radio.checked = false;
 
-  } else if (ccode == "ZMB") {
+    /*document.getElementById('quadradio00').checked = "false";
+    document.getElementById('quadradio01').checked = "false";
+    document.getElementById('quadradio10').checked = "false";
+    document.getElementById('quadradio11').checked = "false";*/
 
-    document.getElementById("leftline").innerHTML = "Market Connectivity";
-    document.getElementById("leftlabel").innerHTML = "Low";
-    document.getElementById("rightlabel").innerHTML = "High";
-    document.getElementById("accomptext").innerHTML = "<p>Scenarios for Zambia explore the effect of market connectivity and function in high and low climate impact scenarios on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/ZMB/Info'>here</a> to see a country-level summary.</p>";
-    document.getElementById("quad11").innerHTML = "Opportunity and Exposure";
-    document.getElementById("quad01").innerHTML = "Risk and Reward";
-    document.getElementById("quad10").innerHTML = "Solitude and Self-Sufficiency";
-    document.getElementById("quad00").innerHTML = "Isolation and Imperative";
-    document.getElementById("Quad11popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and high market connectivity and function. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZMB/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
-    document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and high market connectivity and function. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZMB/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
-    document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and low market connectivity and function. This future assumes little change to agricultural areas, but increased crop diversification. <br><br><a class='box2' href='/countries/ZMB/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
-    document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and low market connectivity and function. This future assumes crop diversification, a fall in agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZMB/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+    const regex = /\/countries\/.../gi;
+    const regex2 = /\/data_exploration\/.../gi;
+    var links = document.getElementsByClassName('box2');
+    for (var j = 0; j < links.length; j++) {
+      links[j].setAttribute('href', links[j].getAttribute('href').replace(regex, '\/countries\/' + ccode));
+      links[j].setAttribute('href', links[j].getAttribute('href').replace(regex2, '\/data_exploration\/' + ccode));
+    };
 
-  } else if (ccode == "TZA") {
+    if (ccode == "MWI") {
 
-    document.getElementById("leftline").innerHTML = "Tech Development";
-    document.getElementById("leftlabel").innerHTML = "Stagnation";
-    document.getElementById("rightlabel").innerHTML = "Transformation";
-    document.getElementById("accomptext").innerHTML = "<p>Scenarios for the United Republic of Tanzania explore the effect of changes in technological development and climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/TZA/Info'>here</a> to see a country-level summary.</p>";
-    document.getElementById("quad11").innerHTML = "Technofix";
-    document.getElementById("quad01").innerHTML = "Intensive Vulnerability";
-    document.getElementById("quad10").innerHTML = "Human Capital";
-    document.getElementById("quad00").innerHTML = "Climate Chaos";
-    document.getElementById("Quad11popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and high technological development. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/TZA/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
-    document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and high technological development. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/TZA/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
-    document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and low technological development. This future assumes an increase in agricultural areas and crop diversification. <br><br><a class='box2' href='/countries/TZA/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
-    document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and low technological development. This future assumes an increase in agricultural areas and status quo crop varieties. <br><br><a class='box2' href='/countries/TZA/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+      document.getElementById("leftline").innerHTML = "Policy Implementation";
+      document.getElementById("leftlabel").innerHTML = "Poor";
+      document.getElementById("rightlabel").innerHTML = "Good";
+      document.getElementById("accomptext").innerHTML = "<br>In collaboration with experts from Malawi, we looked at different levels of climate risk and policy development to explore how they will affect food system resilience in 2050.<br><br>We found that:<br><br><ul><li>Overall crop production in Malawi could increase by over 700% and livestock production by over 150%, by aligning national policies on technology, agriculture, infrastructure and food security.</li><li>Warming is projected to be higher and extreme conditions more frequent under both high and low climate risk.</li><li>Greenhouse gas emissions decrease substantially when there is effective policy development.</li></ul><br><p><a href='/countries/MWI/Info'><h3>Read the key findings for Malawi</h3></a></p><p><h2 style='font-weight: bold;'>Malawi's future scenarios</h2></p><br>Select a future scenario below to discover how Malawi's food systems will be affected. The scenarios are based on high or low climate risk and effective or ineffective agricultural policy. Policy implementation here refers to the extent that effective agricultural policies are in place by 2050, such as effective irrigation and improvements to crop yields.<br><br>";
+      document.getElementById("quad11").innerHTML = "The Path to Heaven";
+      document.getElementById("quad01").innerHTML = "Demanding but Coping";
+      document.getElementById("quad10").innerHTML = "Degrading Economy";
+      document.getElementById("quad00").innerHTML = "The Road to Hell";
+      document.getElementById("Quad11popup").innerHTML = "The Path to Heaven is a scenario that explores a future with low climate risk (RCP2.6) and effective agricultural policy implementation.<br><br>This future assumes a continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/MWI/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>";
+      document.getElementById("Quad01popup").innerHTML = "Demanding but Coping is a scenario that explores a future with high climate risk (RCP8.5) and effective agricultural policy implementation.<br><br>This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/MWI/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>";
+      document.getElementById("Quad10popup").innerHTML = "Degrading Economy is a scenario that explores a future with low climate risk (RCP2.6) and ineffective agricultural policy implementation.<br><br>This future assumes no change to agricultural areas areas and status quo crop varieties. <br><br><a class='box2' href='/countries/MWI/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+      document.getElementById("Quad00popup").innerHTML = "The Road to Hell is a scenario that explores a future with high climate risk (RCP8.5) and ineffective agricultural policy implementation.<br><br>This future assumes a reduction in agricultural areas and status quo crop varieties. <br><br><a class='box2' href='/countries/MWI/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
 
-  } else {
+    } else if (ccode == "ZMB") {
 
-    document.getElementById("leftline").innerHTML = "Land Reform";
-    document.getElementById("leftlabel").innerHTML = "Little";
-    document.getElementById("rightlabel").innerHTML = "Significant";
-    document.getElementById("accomptext").innerHTML = "<p>Scenarios for South Africa explore the effects of the degree of land reform in scenarios of high and low climate impact on various agricultural metrics. Click on one of the quadrants to examine the data in more detail or click <a href='/countries/ZAF/Info'>here</a> to see a country-level summary.</p>";
-    document.getElementById("quad11").innerHTML = "Structural Change";
-    document.getElementById("quad01").innerHTML = "All Change";
-    document.getElementById("quad10").innerHTML = "Familiar Futures";
-    document.getElementById("quad00").innerHTML = "Hot and Bothered";
-    document.getElementById("quad11popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZAF/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
-    document.getElementById("Quad01popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZAF/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
-    document.getElementById("Quad10popup").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties. <br><br><a class='box2' href='/countries/ZAF/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
-    document.getElementById("Quad00popup").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties. <br><br><a class='box2' href='/countries/ZAF/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px'>Scenario Summary Document</div></a>"
+      document.getElementById("leftline").innerHTML = "Market Connectivity";
+      document.getElementById("leftlabel").innerHTML = "Low";
+      document.getElementById("rightlabel").innerHTML = "High";
+      document.getElementById("accomptext").innerHTML = "<br>In collaboration with experts in Zambia, we looked at different levels of climate risk and connection of local and global markets to explore how they will affect food system resilience in 2050.<br><br>We found that:<br><br><ul><li>Overall crop production could increase by 564% in Zambia, with livestock production more than doubling, by better connecting local and global trade markets. </li><li>Temperature extremes will occur more frequently under both the low and high-risk climate scenarios.</li><li>Without significant increases to food imports, there is only enough food for everyone in the high climate risk and high market connectivity scenario, although nutrition security is not achieved for all nutrients. </li><li>Greenhouse gas emissions decrease with effective market connection and increase slightly in the ineffective market futures.</li></ul><br><p><a href='/countries/ZMB/Info'><h3>Read the key findings for Zambia</h3></a></p><p><h2 style='font-weight: bold;'>Zambia’s future scenarios</h2></p><br>Select a future scenario below to discover how Zambia’s food systems will be affected. The scenarios are based on high or low climate risk and high or low market connectivity. Market connectivity refers to the extent that markets function to provide adequate food. High market connectivity is also associated with high technological development.<br><br>";
+      document.getElementById("quad11").innerHTML = "Opportunity and Exposure";
+      document.getElementById("quad01").innerHTML = "Risk and Reward";
+      document.getElementById("quad10").innerHTML = "Solitude and Self-Sufficiency";
+      document.getElementById("quad00").innerHTML = "Isolation and Imperative";
+      document.getElementById("Quad11popup").innerHTML = "Opportunity and Exposure is a scenario that explores a future with low climate risk (RCP2.6) and high market connectivity and function. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The government has implemented effective policy for technology development.<br><br>This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZMB/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+      document.getElementById("Quad01popup").innerHTML = "Risk and Reward is a scenario that explores a future with high climate risk (RCP8.5) and high market connectivity and function. By 2050, there is an increase in average temperatures and a pronounced increase in the frequency and intensity of temperature and rainfall extremes. The government has implemented effective policy for technology development.<br><br>This future assumes continuation of historical yield trends, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZMB/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+      document.getElementById("Quad10popup").innerHTML = "Solitude and Self-sufficiency is a scenario that explores a future with low climate risk (RCP2.6) and low market connectivity and function. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The government hasn’t implemented effective policy for technology development.<br><br>This future assumes little change to agricultural areas, but increased crop diversification. <br><br><a class='box2' href='/countries/ZMB/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+      document.getElementById("Quad00popup").innerHTML = "Isolation and Imperative is a scenario that explores a future with high climate risk (RCP8.5) and low market connectivity and function. By 2050, there is an increase in average temperatures and a pronounced increase in the frequency and intensity of temperature and rainfall extremes. The government hasn’t implemented effective policy for technology development.>br><br>This future assumes crop diversification, a fall in agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/ZMB/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+
+    } else if (ccode == "TZA") {
+
+      document.getElementById("leftline").innerHTML = "Tech Development";
+      document.getElementById("leftlabel").innerHTML = "Stagnation";
+      document.getElementById("rightlabel").innerHTML = "Transformation";
+      document.getElementById("accomptext").innerHTML = "<br>In collaboration with Tanzanian experts, we looked at different levels of climate risk and technology development to explore how they will affect food system resilience in 2050.<br><br>We found that:<br><br><ul><li>Overall crop production in Tanzania could increase 17 fold [1676%] –  with livestock production more than doubling, by adopting strong agriculture technology and innovation policies. </li><li>Greenhouse gas emissions decrease in all scenarios.</li><li>Irrigation and investment in new crop varieties to boost yields are key to maintaining and increasing crop yields.</li></ul><br><p><a href='/countries/TZA/Info'><h3>Read the key findings for Tanzania</h3></a></p><p><h2 style='font-weight: bold;'>Tanzania’s future scenarios</h2></p><br>Select a future scenario below to discover how Tanzania’s food systems will be affected. The scenarios are based on high or low climate risk and high or low technological development. Technological development here refers to agricultural technology improving over time, for example irrigation, crop varieties, and yields.<br><br>";
+      document.getElementById("quad11").innerHTML = "Technofix";
+      document.getElementById("quad01").innerHTML = "Intensive Vulnerability";
+      document.getElementById("quad10").innerHTML = "Human Capital";
+      document.getElementById("quad00").innerHTML = "Climate Chaos";
+      document.getElementById("Quad11popup").innerHTML = "Technofix is a scenario that explores a future with low climate risk (RCP2.6) and high technological development. By 2050, the frequency and severity of climate extremes are similar to what Tanzania experiences currently. Strong advances in agricultural technology address some of the impacts of these climate effects.<br><br>This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/TZA/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+      document.getElementById("Quad01popup").innerHTML = "Intensive Vulnerability is a scenario that explores a future with high climate risk (RCP8.5) and high technological development. By 2050, the frequency and severity of climate extremes are very pronounced and hinder Tanzania’s development ambitions. Despite the climate extremes, technological advances and land expansion lead to strong increases in crop and livestock production.<br><br>This future assumes continuation of historical yield trends, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/TZA/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+      document.getElementById("Quad10popup").innerHTML = "Human Capital is a scenario that explores a future with low climate risk and low technological development. By 2050, the frequency and severity of climate extremes are similar to what Tanzania experiences currently. Tanzania has made slow progress in developing and deploying food systems technologies.<br><br>This future assumes an increase in agricultural areas and crop diversification. <br><br><a class='box2' href='/countries/TZA/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+      document.getElementById("Quad00popup").innerHTML = "Climate Chaos is a scenario that explores a future with high climate risk and low technological development. By 2050, the frequency and severity of climate extremes are very pronounced and hinder Tanzania’s development ambitions. Tanzania has made slow progress in developing and deploying food systems technologies.<br><br>This future assumes an increase in agricultural areas and status quo crop varieties. <br><br><a class='box2' href='/countries/TZA/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+
+    } else {
+
+      document.getElementById("leftline").innerHTML = "Land Reform";
+      document.getElementById("leftlabel").innerHTML = "Little";
+      document.getElementById("rightlabel").innerHTML = "Significant";
+      document.getElementById("accomptext").innerHTML = "<br>In collaboration with South African experts, we looked at different levels of climate risk and land reform policies to explore how they will affect food system resilience in 2050.<br><br>We found that:<br><br><ul><li>With the right climate-smart policies in place, South Africa’s arable areas decrease but its crop varieties improve.</li><li>Temperature extremes will occur more frequently under both the low and high-risk climate scenarios.</li><li>Action in the face of high climate risk could improve nutrition security. </li><li>Greenhouse gas emissions will increase by about 50% under all scenarios.</li></ul><br><p><a href='/countries/ZAF/Info'><h3>Read the key findings for South Africa</h3></a></p><p><h2 style='font-weight: bold;'>South Africa’s future scenarios</h2></p><br>Select a future scenario below to discover how South Africa’s food systems will be affected. The scenarios are based on high or low climate risk and significant or little land reform. Land reform refers to a redistribution of agricultural land, away from large-scale farming and towards medium-sized farms.<br><br>";
+      document.getElementById("quad11").innerHTML = "Structural Change";
+      document.getElementById("quad01").innerHTML = "All Change";
+      document.getElementById("quad10").innerHTML = "Familiar Futures";
+      document.getElementById("quad00").innerHTML = "Hot and Bothered";
+      document.getElementById("Quad11popup").innerHTML = "Structural Change is a scenario that explores a future with low climate risk (RCP2.6) and significant land reform. By 2050, there is an increase in average temperatures and a slight increase in the frequency and intensity of temperature and rainfall extremes. The South African government has implemented substantial land reform.<br><br>This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion.<br><br><a class='box2' href='/countries/ZAF/Quad00'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+      document.getElementById("Quad01popup").innerHTML = "All Change is a scenario that explores a future with high climate risk (RCP8.5) and significant land reform. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The South African government has implemented substantial land reform.<br><br>This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion.<br><br><a class='box2' href='/countries/ZAF/Quad01'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+      document.getElementById("Quad10popup").innerHTML = "Familiar Futures is a scenario that explores a future with low climate risk (RCP2.6) and insignificant land reform. By 2050, there is an increase in average temperatures and a slight increase in the frequency and intensity of temperature and rainfall extremes. The South African government has not implemented substantial land reform.<br><br>This future assumes no change to agricultural areas areas and status quo crop varieties.<br><br><a class='box2' href='/countries/ZAF/Quad10'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+      document.getElementById("Quad00popup").innerHTML = "Hot and bothered is a scenario  that explores a future with high climate risk (RCP8.5) and insignificant land reform. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The South African government has not implemented substantial land reform.<br><br>This future assumes a reduction in agricultural areas and status quo crop varieties.<br><br><a class='box2' href='/countries/ZAF/Quad11'><div class='box grow' style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario/div></a>"
+    }
   }
-}
 
-function showScenarioText (quadnum) {
-  /*document.getElementsByClassName('panel-body').style.visible = "hidden";
+  function showScenarioText (quadnum) {
+    /*document.getElementsByClassName('panel-body').style.visible = "hidden";
 
-  document.getElementById(quadnum).style.visible = "visible";*/
-}
+    document.getElementById(quadnum).style.visible = "visible";*/
+  }
 
 
 </script>
