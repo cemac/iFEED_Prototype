@@ -590,8 +590,8 @@ footer {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: 33%;
-  height: 33%;
+  width: 40%;
+  height: 40%;
   border-radius: 10px;
   background-color: #fdf1d8;
   color: #593c2f;
@@ -704,6 +704,7 @@ footer {
 /* Create a custom radio button */
 .checkmark {
   display: flex;
+  flex: 1;
   background-color: #fdf1d8;
   border: 2px solid #593c2f;
   color: #593c2f;
@@ -750,19 +751,23 @@ footer {
 }
 
 .uaxislbl {
-  position: absolute;
+  position: relative;
   top: 0%;
   width: 100%;
+  padding-top: 5%;
   text-align: center;
   color: #593c2f;
+  font-weight: bold;
 }
 
 .daxislbl {
-  position: absolute;
+  position: relative;
   bottom: 0%;
   width: 100%;
+  padding-bottom: 5%;
   text-align: center;
   color: #593c2f;
+  font-weight: bold;
 }
 
 .horline {
@@ -775,17 +780,17 @@ footer {
 }
 
 .laxislbl {
-  text-align: left;
+  text-align: center;
   flex: 1 0 0;
   align-items: center;
   color: #593c2f;
-  padding-left: 5%;
+  padding-left: 0%;
   font-weight: bold;
 }
 
 .leftline {
   text-align: center;
-  flex: 3 0 auto;
+  flex: 1 0 auto;
   align-items: center;
   color: #593c2f;
   font-weight: bold;
@@ -799,10 +804,32 @@ footer {
 }
 
 .raxislbl {
-  text-align: right;
+  text-align: center;
   flex: 1 0 0;
   align-items: center;
   color: #593c2f;
   padding-right: 5%;
   font-weight: bold;
 }
+
+@media only screen and (max-width: 500px) {
+  #leftlabel {
+    display: none !important;
+  }
+  #rightlabel {
+    display: none !important;
+  }
+  #climateScale {
+    display: flex !important;
+  }
+}
+/*@media only screen and (max-width: 500px) {
+  #rightlabel {
+    display: none;
+  }
+}
+@media only screen and (min-width: 500px) {
+  #climateScale {
+    display: inline-flex;
+  }
+}*/
