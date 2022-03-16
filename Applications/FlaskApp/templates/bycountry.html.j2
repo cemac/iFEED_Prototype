@@ -28,9 +28,9 @@
   </div>
 </div>
 
-<div id="perCountryBlock" class="homerow row" style= "width: 100%; padding-left: 15px; padding-right: 15px;">
-  <div id="accomptext" class="grdcol col-12" style="text-align: justify; visibility: hidden; padding-left: 0px; padding-right: 0px;"></div>
-  <div id="quadrantContainer" class="col-md-8 col-12" style="display:none; align-items: center; justify-content: center;">
+<div id="perCountryBlock" class="homerow row" style= "width: 100%; padding-left: 15px; padding-right: 15px; display:none">
+  <div id="accomptext" class="grdcol col-12" style="text-align: justify; padding-left: 0px; padding-right: 0px;"></div>
+  <div id="quadrantContainer" class="col-md-8 col-12" style="display:flex; align-items: center; justify-content: center;">
     <div id="leftlabel" class="laxislbl col-3">Low Climate Risk</div>
     <div class="grdcontainercol">
       <div id="uplabel" class="uaxislbl"></div>
@@ -63,7 +63,7 @@
     </div>
     <div id="rightlabel" class="raxislbl col-3">High Climate Risk</div>
   </div>
-  <div id="scenarioAccordian" class="homecol col-md-4 col-12 accordian shadow" style="display: none">
+  <div id="scenarioAccordian" class="homecol col-md-4 col-12 accordian shadow" style="display: block">
     <div class="card">
       <div id="Default" data-parent="#scenarioAccordian" class="collapse show">
         <div class="card-body" id="AccordianDefault">Select one of the scenario names in the grid for a description of the scenario</div>
@@ -90,6 +90,9 @@
       </div>
     </div>
   </div>
+  <div id="furtherReading" class="homecol col-12">
+    <p><h2 style='font-weight: bold; text-align: center;'>Further Reading</h2></p>
+    <p id="furtherReadingSpec"></p>
 </div>
 
 <script type="text/javascript" language="javascript">
@@ -164,9 +167,10 @@
 
   function showDiv(ccode) {
 
-    document.getElementById('accomptext').style.visibility = "visible";
+    document.getElementById('perCountryBlock').style.display = "flex";
+    /*document.getElementById('accomptext').style.visibility = "visible";
     document.getElementById('quadrantContainer').style.display = "flex";
-    document.getElementById('scenarioAccordian').style.display = "block";
+    document.getElementById('scenarioAccordian').style.display = "block";*/
 
     const regex = /\/countries\/.../gi;
     const regex2 = /\/data_exploration\/.../gi;

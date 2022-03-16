@@ -7,12 +7,12 @@ class CustomDash(dash.Dash):
         headerbar = '''
 <header id="masthead" class="site-header">
   <div class="inside-header grid-container grid-parent" style="padding-left: 0px;padding-right: 0px;">
-    <div class="site-logo col-xs-12 col-md-6" style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;">
+    <div class="site-logo col-12 col-md-6" style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;">
       <a href="https://africap.info/" title="GCRF-AFRICAP" rel="home">
         <img  class="header-image is-logo-image" alt="GCRF-AFRICAP" src="/static/logos/africap-logo.svg" title="GCRF-AFRICAP" />
       </a>
     </div>
-    <div class="col-xs-12 col-md-6">
+    <div class="col-12 col-md-6">
       <a href="/" title="iFEED" rel="home">
         <img  class="header-image-2 is-logo-image" alt="iFEED" src="/static/logos/iFEED-logo.png" title="iFEED" />
         <!--<span style="font-size: 35px; color: #593c2f; font-weight:700;">iFEED</span>-->
