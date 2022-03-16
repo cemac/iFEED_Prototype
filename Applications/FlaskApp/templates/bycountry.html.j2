@@ -159,7 +159,6 @@
   }
 
   function uncheck(radbutton) {
-    console.log('radio button has status '+ radbutton.checked)
     setTimeout(checked => radbutton.checked = !checked, 0, radbutton.checked);
     var defaultcard = document.getElementById("Default");
     defaultcard.className += " show";
@@ -168,9 +167,6 @@
   function showDiv(ccode) {
 
     document.getElementById('perCountryBlock').style.display = "flex";
-    /*document.getElementById('accomptext').style.visibility = "visible";
-    document.getElementById('quadrantContainer').style.display = "flex";
-    document.getElementById('scenarioAccordian').style.display = "block";*/
 
     const regex = /\/countries\/.../gi;
     const regex2 = /\/data_exploration\/.../gi;
@@ -193,6 +189,7 @@
       document.getElementById("Quad01popup").innerHTML = "Demanding but Coping is a scenario that explores a future with high climate risk (RCP8.5) and effective agricultural policy implementation.<br><br>This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion. <br><br><a class='box2' href='/countries/MWI/Quad01'><div class='box grow' id=readMoreLink style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario</div></a>";
       document.getElementById("Quad10popup").innerHTML = "Degrading Economy is a scenario that explores a future with low climate risk (RCP2.6) and ineffective agricultural policy implementation.<br><br>This future assumes no change to agricultural areas areas and status quo crop varieties. <br><br><a class='box2' href='/countries/MWI/Quad10'><div class='box grow' id=readMoreLink style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario</div></a>"
       document.getElementById("Quad11popup").innerHTML = "The Road to Hell is a scenario that explores a future with high climate risk (RCP8.5) and ineffective agricultural policy implementation.<br><br>This future assumes a reduction in agricultural areas and status quo crop varieties. <br><br><a class='box2' href='/countries/MWI/Quad11'><div class='box grow' id=readMoreLink id=readMoreLink style='padding: 1.25em 2.25em; width: 100%; position:relative; height:20%; margin-top: 20px; margin-bottom: 20px'>Read More About This Scenario</div></a>"
+
 
     } else if (ccode == "ZMB") {
 

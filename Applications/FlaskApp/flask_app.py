@@ -233,6 +233,32 @@ def CountryInfo(ccode):
 
     return render_template('CountryInfo.html.j2', ccode=ccode, country=country, pdfID=pdfID)
 
+@main_bp.route('/countries/<string:ccode>/Keyfindings', methods=["GET"])
+def KeyFindings(ccode):
+
+    countries = {
+        'MWI' : 'Malawi',
+        'TZA' : 'Tanzania',
+        'ZAF' : 'South Africa',
+        'ZMB' : 'Zambia'
+    }
+
+    infopdf = {
+        'MWI' : 'GCRF-AFRICAP-Country-level-summary-Malawi_pdf.pdf',
+        'TZA' : 'GCRF-AFRICAP-Country-level-summary-Tanzania_revised_v3_pdf.pdf',
+        'ZAF' : 'GCRF-AFRICAP-Country-level-summary-South-Africa_v2_pdf.pdf',
+        'ZMB' : 'GCRF-AFRICAP-Country-level-summary-Zambia_v3_pdf.pdf',
+    }
+
+    country=countries.get(ccode,"Unrecognised")
+
+    pdfID=infopdf.get(ccode,"Unrecognised")
+
+    if country=="Unrecognised":
+        abort(404)
+
+    return render_template('KeyFindings.html.j2', ccode=ccode, country=country, pdfID=pdfID)
+
 
 @main_bp.route('/countries/<string:ccode>/<string:quad>', methods=["GET"])
 def CountryQuad(ccode,quad):
