@@ -55,6 +55,7 @@
     .ep-detail-wrap .ep-detail{
     width: 100% !important;
   }
+}
 
 .ep-detail-wrap .ep-detail::after {
   content: "\2716";
