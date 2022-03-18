@@ -60,7 +60,6 @@
                 <tspan x="10" dy="17">Shocks And</tspan>
                 <tspan x="10" dy="17">Extremes</tspan>
                 <tspan font-size="14" x="15" dy="27">Production</tspan>
-                <tspan font-size="14" x="15" dy="22">Trade</tspan>
               </text>
             </g>
             <g id="ep-land" class="ep-svg-block"
@@ -91,9 +90,9 @@
               <text id="Content" fill="#F5F5F0" x="30" y="55" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Return to Scenario Selector
               </text>
             </g>
-            <line x1="155" x2="220" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#larrow)"/>
+            <line x1="155" x2="220" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
             <line x1="455" x2="520" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
-            <line x1="600" x2="600" y1="148" y2="198" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#uarrow)"/>
+            <!--<line x1="600" x2="600" y1="148" y2="198" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#uarrow)"/>-->
             <line x1="75" x2="75" y1="148" y2="198" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#uarrow)"/>
             <line x1="190" x2="220" y1="220" y2="220" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
             <line x1="455" x2="485" y1="220" y2="220" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
@@ -145,7 +144,7 @@
 <br/>
 <p><a href="/calibrated">Click here to access modelling summary calibrated statements and associated implication statements for all countries and scenarios</a></p>
 
-<p><a href="/data_exploration/ALLcomp">Click here to view crop model outputs</a></p>
+<p><a id="dataexplink" target="_blank">Click here to view crop model outputs</a></p>
 
 <script>
 
@@ -176,6 +175,9 @@
 
   const ccode = new String({{ ccode|tojson }});
   const quadcode = new String({{ quadcode|tojson }});
+
+  document.getElementsById("dataexplink").href = "/data_exploration/"+ccode+quadcode;
+
   if (ccode == "MWI") {
 
     if (quadcode == "00") {
