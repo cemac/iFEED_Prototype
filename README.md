@@ -27,11 +27,11 @@ requirements.txt is provided for full package version information and installing
 Install via git and anaconda
 
 ```bash
-git clone https://github.com/cemac/iFEED_prototype.git
+git clone https://github.com/cemac-ccs/iFEED_prototype.git
 cd iFEED_Prototype
 conda env create -f environment.yml
 conda activate iFEED
-python testing.py
+python wsgi.py
 ```
 Site can be viewed in a browser at
 ```
