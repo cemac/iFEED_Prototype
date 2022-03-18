@@ -51,6 +51,12 @@
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
 }
 
+@media only screen and (max-width: 500px) {
+    .ep-detail-wrap .ep-detail{
+    width: 100% !important;
+  }
+}
+
 .ep-detail-wrap .ep-detail::after {
   content: "\2716";
   color: #548235;
