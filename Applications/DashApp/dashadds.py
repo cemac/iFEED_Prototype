@@ -1,26 +1,25 @@
 external_stylesheets = [
-    '/static/styles/africap_mobile.css',
-    '/static/blocks.style.build.css',
-    '/static/events_manager.css',
-    '/static/styles/font-icons.min.css',
+    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
     '/static/styles/fontawesome.min.css',
-    '/static/styles/africap.css',
-    '/static/styles/unsemantic-grid.min.css',
-    '/static/styles/UoL_style.css',
+    'https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic|Roboto+Condensed:300,300italic,regular,italic,700,700italic',
     '/static/styles/wp_style.min.css',
+    '/static/styles/blocks.style.build.css',
+    '/static/styles/events_manager.css',
+    '/static/styles/unsemantic-grid.min.css',
+    '/static/styles/africap.css',
     '/static/styles/inline.css',
-    '/static/styles/dash.css',
-    '/static/styles/CEMACv1.css',
+    '/static/styles/africap_mobile.css',
+    '/static/styles/font-icons.min.css',
+    '/static/styles/UoL_style.css',
     '/static/styles/stylev1.css',
-    'https://use.fontawesome.com/releases/v5.8.1/css/all.css',
-    'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800',
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
-
+    '/static/styles/scenario.css',
+    '/static/styles/dash.css',
+    '/static/styles/CEMACv1.css'
     ]
 
 external_scripts = [
-    '/static/js/menu.min.js',
-    '/static/js/main.min.js',
+    #'/static/js/menu.min.js',
+    #'/static/js/main.min.js',
     'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
     'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
     ]

@@ -1,18 +1,22 @@
 {% extends 'layout.html.j2' %}
 {% block body %}
-<p id="header1">
-</p><!-- Scenario description -->
 
-<p><a id="summary-link" target="_blank">View a summary document for this scenario</a></p>
+<p id="header1" style="margin-bottom: 0px"></p><!-- Scenario description -->
+<div class=grdcol>
+<a class='btn-container' style='width: 60%; margin: 20px auto' id='summary-link' target="_blank">
+  <div class='genbutton' style='padding: 1.25em 2.25em; position:relative; height:20%; margin: 20px auto; align-items: center; justify-content: center; text-align: center; font-weight: bold'>
+    Read the Scenario Summary Document
+  </div>
+</a>
 
-<p>The diagram below shows the different aspects of the iFEED analysis for this scenario. Click on the different boxes for more information about this aspect of the analysis and to access the summary document for each aspect.</p>
+<span>The diagram below shows the different aspects of the iFEED analysis for this scenario, and how each component feeds into the others (see our <a href='/modelling'>iFEED Methodology</a> page for more information about how each of these aspects work together to form the final analysis).<br><br>Click on the different boxes for more information about this aspect of the analysis and to access the summary document for each aspect.</span>
 
 <div class="template-wrap">
 
   <div class="ep-flowchart" id="ep-flowchart">
     <div class="ep-svg-wrap">
 
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 675 425">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 425">
         <defs>
           <marker id="larrow" markerWidth="4" markerHeight="10" viewBox="-2 -4 4 4" refX="0" refY="0" markerUnits="strokeWidth" orient="auto">
             <polyline points="2,-2 0,0 2,2" stroke="#443c3d" stroke-width="0.75px" fill="none"/>
@@ -28,10 +32,15 @@
             <polyline points="2,-2 0,0 2,2" stroke="#443c3d" stroke-width="0.75px" fill="none"/>
           </marker>
         </defs>
+        <defs>
+          <marker id="darrow" markerWidth="4" markerHeight="10" viewBox="-2 -4 4 4" refX="0" refY="0" markerUnits="strokeWidth" orient="auto">
+            <polyline points="-2,2, 0,0 -2,-2" stroke="#443c3d" stroke-width="0.75px" fill="none"/>
+          </marker>
+        </defs>
         <g id="Page-1" fill="none" fill-rule="evenodd">
           <g id="Flowchart-Template">
             <g id="ep-climsmrt" class="ep-svg-block"
-               transform="translate(5)"
+               transform="translate(15)"
                @click="display = true; selected = 'ep-climsmrt'">
               <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="145" height="120" />
               <text id="Content" fill="#F5F5F0" x="10" y="47" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Climate
@@ -41,7 +50,7 @@
               </text>
             </g>
             <g id="ep-foodprod" class="ep-svg-block"
-               transform="translate(225 40)"
+               transform="translate(235 40)"
                @click="display = true; selected = 'ep-foodprod'">
               <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="225" height="170" //>
               <text id="Content" fill="#F5F5F0" x="15" y="47" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Food Production
@@ -53,18 +62,17 @@
               </text>
             </g>
             <g id="ep-shocks" class="ep-svg-block"
-               transform="translate(525)"
+               transform="translate(535)"
                @click="display = true; selected = 'ep-shocks'">
               <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="145" height="120" />
               <text id="Content" fill="#F5F5F0" x="10" y="47" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Climate
                 <tspan x="10" dy="17">Shocks And</tspan>
                 <tspan x="10" dy="17">Extremes</tspan>
                 <tspan font-size="14" x="15" dy="27">Production</tspan>
-                <tspan font-size="14" x="15" dy="22">Trade</tspan>
               </text>
             </g>
             <g id="ep-land" class="ep-svg-block"
-               transform="translate(5 175)"
+               transform="translate(15 175)"
                @click="display = true; selected = 'ep-land'">
               <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="180" height="150" />
               <text id="Content" fill="#F5F5F0" x="10" y="47" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Land Use
@@ -76,7 +84,7 @@
               </text>
             </g>
             <g id="ep-trade" class="ep-svg-block"
-               transform="translate(490 175)"
+               transform="translate(500 175)"
                @click="display = true; selected = 'ep-trade'">
               <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="180" height="150" />
               <text id="Content" fill="#F5F5F0" x="30" y="85" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Trade And
@@ -84,19 +92,31 @@
                 <tspan x="30" dy="17">Security</tspan>
               </text>
             </g>
-            <g id="ep-return" class="ep-svg-block"
-               transform="translate(150 350)"
-               @click="location.href = '/countries'">
-              <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="375" height="50" />
-              <text id="Content" fill="#F5F5F0" x="30" y="55" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Return to Scenario Selector
+            <line x1="165" x2="230" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
+            <line x1="465" x2="530" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
+            <!--<line x1="600" x2="600" y1="148" y2="198" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#uarrow)"/>-->
+            <line x1="85" x2="85" y1="148" y2="198" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#uarrow)"/>
+            <line x1="200" x2="230" y1="220" y2="220" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
+            <line x1="465" x2="495" y1="220" y2="220" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
+            <!--<g id="ep-return" class="ep-svg-block"
+               transform="translate(160 350)"
+               @click="location.href = '/calibrated'">
+              <rect id="Rectangle" fill="#548235" x="2" y="25" rx="10" ry="10" width="375" height="150" />
+              <text id="Content" fill="#F5F5F0" x="25" y="75" font-family="Roboto-Regular, Roboto" font-size="18" letter-spacing="1" stroke="none" style="text-transform:uppercase">Modelling Summary Calibrated
+                 <tspan x="25" dy="20">statements and associated </tspan>
+                 <tspan x="25" dy="20">implication statements for</tspan>
+                 <tspan x="25" dy="20">all countries and scenarios</tspan>
               </text>
             </g>
-            <line x1="155" x2="220" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#larrow)"/>
-            <line x1="455" x2="520" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
-            <line x1="600" x2="600" y1="148" y2="198" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#uarrow)"/>
-            <line x1="75" x2="75" y1="148" y2="198" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#uarrow)"/>
-            <line x1="190" x2="220" y1="220" y2="220" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
-            <line x1="455" x2="485" y1="220" y2="220" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
+            <line x1="5" x2="5" y1="90" y2="435" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1"/>
+            <line x1="695" x2="695" y1="90" y2="435" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1"/>
+            <line x1="5" x2="15" y1="90" y2="90" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1"/>
+            <line x1="685" x2="695" y1="90" y2="90" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1"/>
+            <line x1="5" x2="15" y1="280" y2="280" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1"/>
+            <line x1="685" x2="695" y1="280" y2="280" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1"/>
+            <line x1="5" x2="160" y1="435" y2="435" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
+            <line x1="540" x2="695" y1="435" y2="435" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#larrow)"/>
+            <line x1="350" x2="350" y1="235" y2="370" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#darrow)"/>-->
           </g>
         </g>
       </svg>
@@ -109,31 +129,31 @@
         <h3>CLIMATE SMARTNESS</h3>
         <!--<p>One sentence description of climate smartness.</p>-->
         <button type="button" onclick="popup('popUpDiv');pdfcall(this,0)">View Descriptor Document</button>
-        <p>This will open a new window</p>
+        <p><br>This will open a new window</p>
       </div>
       <div class="ep-detail" v-show="selected == 'ep-foodprod'">
         <h3>FOOD PRODUCTION</h3>
         <!--<p>One sentence description of food production.</p>-->
         <button type="button" onclick="popup('popUpDiv');pdfcall(this,1)">View Descriptor Document</button>
-        <p>This will open a new window</p>
+        <p><br>This will open a new window</p>
       </div>
       <div class="ep-detail" v-show="selected == 'ep-shocks'">
         <h3>CLIMATE SHOCKS AND EXTREMES</h3>
-        <!--<p>One sentence description of shocks and extremes</p>-->
+        <!--<p>One sentence description of climate extremes</p>-->
         <button type="button" onclick="popup('popUpDiv');pdfcall(this,2)">View Descriptor Document</button>
-        <p>This will open a new window</p>
+        <p><br>This will open a new window</p>
       </div>
       <div class="ep-detail" v-show="selected == 'ep-land'">
         <h3>LAND USE</h3>
         <!--<p>One sentence description of land use</p>-->
         <button type="button" onclick="popup('popUpDiv');pdfcall(this,1)">View Descriptor Document</button>
-        <p>This will open a new window</p>
+        <p><br>This will open a new window</p>
       </div>
       <div class="ep-detail" v-show="selected == 'ep-trade'">
         <h3>TRADE AND NUTRITION SECURITY</h3>
         <!--<p>One sentence description of TNT</p>-->
         <button type="button" onclick="popup('popUpDiv');pdfcall(this,3)">View Descriptor Document</button>
-        <p>This will open a new window</p>
+        <p><br>This will open a new window</p>
       </div>
 
     </div>
@@ -142,8 +162,26 @@
   </div>
 
 </div>
-<br/>
-<p><a href="/calibrated">Click here to access modelling summary calibrated statements and associated implication statements for all countries and scenarios</a></p>
+<br>
+<p> Use the buttons below to explore the results further or return to the scenario selector</p>
+<div class="btn-group row" style="width:75%;">
+  <a class="btn-container col-6" id="dataexplink" target="_blank" >
+    <div class="genbutton" style="font-weight: bold">
+      Explore Modelling Data for This Scenario
+    </div>
+  </a>
+  <a class="btn-container col-6" id="calibrated" href='/calibrated'>
+    <div class="genbutton" style="font-weight: bold">
+      View modelling summary calibrated statements and associated implication statements for all countries and scenarios
+    </div>
+  </a>
+</div>
+<a class="btn-container col-8" id="return" href='/countries' style="margin:25px auto;">
+  <div class="genbutton" style="margin:auto; font-weight: bold">
+    Return to Scenario Selector
+  </div>
+</a>
+</div>
 
 <script>
 
@@ -165,73 +203,76 @@
     var pdflist = ({{ pdflist|tojson }})
     let pdfid = pdflist[pdfindex]
 
-    pdflink = "https://drive.google.com/file/d/"+pdfid+"/preview";
+    pdflink = "/static/data/docs/Descriptors/"+pdfid;
     popUpWindow.document.write('<iframe height="100%" allowTransparency="true" frameborder="0" scrolling="yes" style="width:100%;" src="'+pdflink+'" type= "text/javascript"></iframe>');
   }
 
   const summaryid = ({{ summaryid|tojson }})
-  document.getElementById("summary-link").href = "https://drive.google.com/file/d/"+summaryid+"/preview";
+  document.getElementById("summary-link").href = "/static/data/docs/Scenario_Summaries/"+summaryid;
 
-  const ccode = new String({{ ccode|tojson }});
-  const quadcode = new String({{ quadcode|tojson }});
+  const ccode = ({{ ccode|tojson }});
+  const quadcode = ({{ quadcode|tojson }});
+
+  document.getElementById("dataexplink").href = "/data_exploration/"+ccode+quadcode;
+
   if (ccode == "MWI") {
 
     if (quadcode == "00") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+      document.getElementById("header1").innerHTML = "The Path to Heaven is a scenario that explores a future with low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes a continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
     if (quadcode == "01") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+      document.getElementById("header1").innerHTML = "Demanding but Coping is a scenario that explores a future with high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
     if (quadcode == "10") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties."
+      document.getElementById("header1").innerHTML = "Degrading Economy is a scenario that explores a future with low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties. "
     }
     if (quadcode == "11") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties."
+      document.getElementById("header1").innerHTML = "The Road to Hell is a scenario that explores a future with high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties."
     }
 
   } else if (ccode == "TZA") {
 
     if (quadcode == "00") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and high technological development. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+      document.getElementById("header1").innerHTML = "Technofix is a scenario that explores a future with low climate risk (RCP2.6) and high technological development. By 2050, the frequency and severity of climate extremes are similar to what Tanzania experiences currently. Strong advances in agricultural technology address some of the impacts of these climate effects. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
     if (quadcode == "01") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and high technological development. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion."
+      document.getElementById("header1").innerHTML = "Intensive Vulnerability is a scenario that explores a future with high climate risk (RCP8.5) and high technological development. By 2050, the frequency and severity of climate extremes are very pronounced and hinder Tanzania’s development ambitions. Despite the climate extremes, technological advances and land expansion lead to strong increases in crop and livestock production. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion."
     }
     if (quadcode == "10") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and low technological development. This future assumes an increase in agricultural areas and crop diversification."
+      document.getElementById("header1").innerHTML = "Human Capital is a scenario that explores a future with low climate risk and low technological development. By 2050, the frequency and severity of climate extremes are similar to what Tanzania experiences currently. Tanzania has made slow progress in developing and deploying food systems technologies. This future assumes an increase in agricultural areas and crop diversification. "
     }
     if (quadcode == "11") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and low technological development. This future assumes an increase in agricultural areas and status quo crop varieties."
+      document.getElementById("header1").innerHTML = "Climate Chaos is a scenario that explores a future with high climate risk and low technological development. By 2050, the frequency and severity of climate extremes are very pronounced and hinder Tanzania’s development ambitions. Tanzania has made slow progress in developing and deploying food systems technologies. This future assumes an increase in agricultural areas and status quo crop varieties. "
     }
 
   } else if (ccode == "ZAF") {
 
     if (quadcode == "00") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+      document.getElementById("header1").innerHTML = "Structural Change is a scenario that explores a future with low climate risk (RCP2.6) and significant land reform. By 2050, there is an increase in average temperatures and a slight increase in the frequency and intensity of temperature and rainfall extremes. The South African government has implemented substantial land reform. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
     if (quadcode == "01") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+      document.getElementById("header1").innerHTML = "All Change is a scenario that explores a future with high climate risk (RCP8.5) and significant land reform. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The South African government has implemented substantial land reform. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
     if (quadcode == "10") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties."
+      document.getElementById("header1").innerHTML = "Familiar Futures is a scenario that explores a future with low climate risk (RCP2.6) and insignificant land reform. By 2050, there is an increase in average temperatures and a slight increase in the frequency and intensity of temperature and rainfall extremes. The South African government has not implemented substantial land reform. This future assumes no change to agricultural areas areas and status quo crop varieties."
     }
     if (quadcode == "11") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties."
+      document.getElementById("header1").innerHTML = "Hot and bothered is a scenario  that explores a future with high climate risk (RCP8.5) and insignificant land reform. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The South African government has not implemented substantial land reform. This future assumes a reduction in agricultural areas and status quo crop varieties."
     }
 
   } else if (ccode == "ZMB") {
 
     if (quadcode == "00") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and high market connectivity and function. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
+      document.getElementById("header1").innerHTML = "Opportunity and Exposure is a scenario that explores a future with low climate risk (RCP2.6) and high market connectivity and function. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The government has implemented effective policy for technology development. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
     if (quadcode == "01") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and high market connectivity and function. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion."
+      document.getElementById("header1").innerHTML = "Risk and Reward is a scenario that explores a future with high climate risk (RCP8.5) and high market connectivity and function. By 2050, there is an increase in average temperatures and a pronounced increase in the frequency and intensity of temperature and rainfall extremes. The government has implemented effective policy for technology development. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion."
     }
     if (quadcode == "10") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by low climate risk (RCP2.6) and low market connectivity and function. This future assumes little change to agricultural areas, but increased crop diversification."
+      document.getElementById("header1").innerHTML = "Solitude and Self-sufficiency is a scenario that explores a future with low climate risk (RCP2.6) and low market connectivity and function. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The government hasn’t implemented effective policy for technology development. This future assumes little change to agricultural areas, but increased crop diversification."
     }
     if (quadcode == "11") {
-      document.getElementById("header1").innerHTML = "This scenario is characterised by high climate risk (RCP8.5) and low market connectivity and function. This future assumes crop diversification, a fall in agricultural area and irrigation expansion."
+      document.getElementById("header1").innerHTML = "Isolation and Imperative is a scenario that explores a future with high climate risk (RCP8.5) and low market connectivity and function. By 2050, there is an increase in average temperatures and a pronounced increase in the frequency and intensity of temperature and rainfall extremes. The government hasn’t implemented effective policy for technology development. This future assumes crop diversification, a fall in agricultural area and irrigation expansion."
     }
 
   }
