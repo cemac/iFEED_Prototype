@@ -1,5 +1,5 @@
 <header id="masthead" class="site-header">
-  <div class="inside-header grid-container grid-parent" style="padding-left: 0px;padding-right: 0px;">
+  <div class="inside-header grid-container grid-parent row" style="padding-left: 0px;padding-right: 0px;">
     <div class="site-logo col-xs-12 col-md-6" style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;">
       <a href="https://africap.info/" title="GCRF-AFRICAP" rel="home">
         <img  class="header-image is-logo-image" alt="GCRF-AFRICAP" src="/static/logos/africap-logo.svg" title="GCRF-AFRICAP" />
@@ -17,7 +17,9 @@
 
 <nav id="site-navigation" class="main-navigation sub-menu-right" itemtype="https://schema.org/SiteNavigationElement" itemscope>
   <div class="inside-navigation grid-container grid-parent">
-    <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+    <button class="menu-toggle" aria-controls="primascenname = "4: Opportunity and Exposure"
+            pdflist = ["1Sd6andb_z1-mQOGlxtXE3Cbt656UOQll", "1orp_eQGggLxpgkW3KC4xezfcP3aX6CUs", "1HOOCoEexGKQAgsynZ4lYng1W8A-R1F3o", "1IeAyKXIFTEz48z7bCAksfxHQSanqy7B4"]
+            summaryid = "1yD6epshcUwSLdW40XHFnNb8nw-6lJlxW"ry-menu" aria-expanded="false">
     	<span class="mobile-menu">Menu</span>
     </button>
 		<div id="primary-menu" class="main-nav">
@@ -28,6 +30,13 @@
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-11">
         {% endif %}
           <a href="/" aria-current="page">Home</a>
+        </li>
+        {% if request.url_rule.endpoint == "main_bp.countries" %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1098">
+        {% else %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1098">
+        {% endif %}
+          <a href="/countries">iFEED Results</a>
         </li>
         {% if request.url_rule.endpoint == "main_bp.about" %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1142">
@@ -43,20 +52,13 @@
         {% endif %}
           <a href="/modelling">iFEED Methods</a>
         </li>
-        {% if request.url_rule.endpoint == "main_bp.countries" %}
-        <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1098">
-        {% else %}
-        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1098">
-        {% endif %}
-          <a href="/countries">Country-Level Results</a>
-        </li>
-        <!--{% if request.url_rule.endpoint == "main_bp.contact" %}
+        {% if request.url_rule.endpoint == "main_bp.contact" %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1222">
         {% else %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1222">
         {% endif %}
           <a href="/contact">Contact</a>
-        </li>-->
+        </li>
       </ul>
       <ul class="navbar-right">
         {% if session.usertype == "Admins"%}
@@ -89,10 +91,10 @@
         {% else %}
         {% if request.url_rule.endpoint == "main_bp.login" %}
         <li class="nav navbar-nav current-menu-item">
+          <a href="/login"><span class="glyphicon glyphicon-log-in"> Login</a>
         {% else %}
         <li class="nav navbar-nav">
         {% endif %}
-          <a href="/login"><span class="glyphicon glyphicon-log-in"> Login</a>
         </li>
         {% endif %}
       </ul>
@@ -127,7 +129,7 @@
 {% elif request.url_rule.endpoint == "main_bp.countries" %}
 <div class="page-hero">
   <div class="inside-page-hero grid-container grid-parent">
-    <h1>Country-Level Data</h1>
+    <h1>iFEED Results</h1>
 {% elif request.url_rule.endpoint == "main_bp.infographic" %}
 <div class="page-hero">
   <div class="inside-page-hero grid-container grid-parent">

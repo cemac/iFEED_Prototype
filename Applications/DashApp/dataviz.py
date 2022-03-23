@@ -5,9 +5,12 @@ import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from Applications.DashApp.axisdicts import countrydict, cropdict, fielddict, quaddict
 
+DATA_PATH = "/var/www/production/data"
+
 def get_cubedata(ccode, quad, field):
 
     import os
+    import pandas as pd
 
     if ccode == None:
         ccode = "MWI"
@@ -18,10 +21,14 @@ def get_cubedata(ccode, quad, field):
     if quad==None:
         quad='00'
 
-    if (ccode == 'MWI' or ccode == 'TZA'):
-        fname = '/var/www/development/data/malawi.nc'
+    if (ccode == 'ZMB'):
+        fname = os.path.join(DATA_PATH, 'zambia.nc')
+    elif (ccode == 'ZAF'):
+        fname = os.path.join(DATA_PATH, 'safrica.nc')
+    elif (ccode == 'TZA'):
+        fname = os.path.join(DATA_PATH, 'tanzania.nc')
     else:
-        fname = '/var/www/development/data/malawi.nc'
+        fname = os.path.join(DATA_PATH, 'malawi.nc')
 
     if not os.path.exists(fname):
         print('Could not load file')
@@ -79,10 +86,31 @@ def get_cubedata(ccode, quad, field):
             rcp=0
             irr_lev=0.1
 
-    ds = xr.open_dataset(fname)
+    ds = None
 
-    da = ds[field].loc[dict(rcp=rcp, irr_lev=irr_lev)]
-    da = da.where((da <= 1e+20))
+    try:
+        ds = xr.open_dataset(fname)
+
+        da = ds[field].loc[dict(rcp=rcp, irr_lev=irr_lev)]
+        da = da.where((da <= 1e+20))
+    except:
+        if ds: ds.close()
+        try:
+            ds = xr.open_dataset(fname)
+
+            da = ds[field].loc[dict(rcp=rcp, irr_lev=irr_lev)]
+            da = da.where((da <= 1e+20))
+        except:
+            dflst = []
+            linedf = pd.DataFrame(np.zeros((99,5)))
+            box1df = pd.DataFrame(np.zeros((18,21)))
+            box2df = pd.DataFrame(np.zeros((18,21)))
+            linedf.columns = [0.0, 0.25, 0.5, 0.75, 1.0]
+            box1df.columns = [x for x in range (1990,2011)]
+            box2df.columns = [x for x in range (2040,2061)]
+            for c in range(4):
+                dflst.append([linedf, box1df, box2df])
+            return dflst
 
     weights = np.cos(np.deg2rad(da.lat))
     if field == "yield" or field == "biomass":
@@ -109,7 +137,6 @@ def get_cubedata(ccode, quad, field):
         df = weighted.loc[dict(crop=crop, prod_lev=prod_lev)].to_pandas()
 
         linedf = df.quantile(q=[0.0, 0.25, 0.5, 0.75, 1.0], axis=1).T
-
         box1df = df.iloc[0:21,:].T
         box2df = df.iloc[50:71,:].T
 
