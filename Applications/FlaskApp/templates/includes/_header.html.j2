@@ -31,7 +31,7 @@
         {% endif %}
           <a href="/" aria-current="page">Home</a>
         </li>
-        {% if request.url_rule.endpoint == "main_bp.countries" %}
+        {% if ( request.url_rule.endpoint == "main_bp.countries" or request.url_rule.endpoint == "main_bp.CountryQuad" )%}
         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1216 current_page_item menu-item-1098">
         {% else %}
         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1098">

@@ -114,7 +114,7 @@ def get_cubedata(ccode, quad, field):
 
     weights = np.cos(np.deg2rad(da.lat))
     if field == "yield" or field == "biomass":
-        weighted = da.weighted(weights).sum(("lon","lat"), skipna=True)
+        weighted = da.weighted(weights).mean(("lon","lat"), skipna=True)
     else:
         weighted = da.weighted(weights).mean(("lon","lat"), skipna=True)
 
@@ -252,7 +252,7 @@ def cropgraph(ccode, quad, crop, croplst, field):
     fig.add_trace(
         go.Box(
             y=dfbox1.to_numpy().flatten(),
-            name=list(dfbox1.columns)[10],
+            name=int(list(dfbox1.columns)[10]),
             boxpoints=False,
             line=dict(
                 color='firebrick'),

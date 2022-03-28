@@ -6,19 +6,17 @@ countrydict = {
 }
 
 cropdict = {
-    0: 'Maize',
-    1: 'Potato',
-    2: 'Soybean',
-    3: 'Groundnut'
+    2: 'Maize',
+    0: 'Potato',
+    3: 'Soybean',
+    1: 'Groundnut'
 }
 
 fielddict = {
     'yield': 'Yield',
-    'plant_date': 'Planting Date',
-    'evtrans1': 'Evotranspiration',
     'biomass': 'Biomass',
     'dur': 'Duration',
-    'rlai_2': 'Leaf Area Index'
+    'plant_date': 'Planting Date'
 }
 
 quaddict = {
