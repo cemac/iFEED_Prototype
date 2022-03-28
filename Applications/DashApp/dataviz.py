@@ -3,11 +3,11 @@ import re
 import xarray as xr
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
-from Applications.DashApp.axisdicts import countrydict, cropdict, fielddict, quaddict
+from Applications.DashApp.axisdicts import countrydict, cropdict, fielddict, quaddict, rcpdict
 
 DATA_PATH = "/var/www/production/data"
 
-def get_cubedata(ccode, quad, field):
+def get_cubedata(ccode, quad, crop, field):
 
     import os
     import pandas as pd
@@ -20,18 +20,6 @@ def get_cubedata(ccode, quad, field):
 
     if quad==None:
         quad='00'
-
-    if (ccode == 'ZMB'):
-        fname = os.path.join(DATA_PATH, 'zambia.nc')
-    elif (ccode == 'ZAF'):
-        fname = os.path.join(DATA_PATH, 'safrica.nc')
-    elif (ccode == 'TZA'):
-        fname = os.path.join(DATA_PATH, 'tanzania.nc')
-    else:
-        fname = os.path.join(DATA_PATH, 'malawi.nc')
-
-    if not os.path.exists(fname):
-        print('Could not load file')
 
     if ccode == 'MWI':
         if quad == '01':
@@ -88,8 +76,14 @@ def get_cubedata(ccode, quad, field):
 
     ds = None
 
+    fname = os.path.join(DATA_PATH,countrydict[ccode].lower()+"_"+cropdict[crop].lower()+"_"+rcpdict[rcp]+".nc")
+
+    if not os.path.exists(fname):
+        print('Could not load file '+fname)
+
     try:
-        ds = xr.open_dataset(fname)
+        ds = xr.open_dataset(fname, decode_cf=False)
+        # decode_cf flag needed so data types aren't automatically chosen from units
 
         da = ds[field].loc[dict(rcp=rcp, irr_lev=irr_lev)]
         da = da.where((da <= 1e+20))
@@ -108,8 +102,9 @@ def get_cubedata(ccode, quad, field):
             linedf.columns = [0.0, 0.25, 0.5, 0.75, 1.0]
             box1df.columns = [x for x in range (1990,2011)]
             box2df.columns = [x for x in range (2040,2061)]
-            for c in range(4):
-                dflst.append([linedf, box1df, box2df])
+
+            dflst.append([linedf, box1df, box2df])
+
             return dflst
 
     weights = np.cos(np.deg2rad(da.lat))
@@ -120,27 +115,26 @@ def get_cubedata(ccode, quad, field):
 
     dflst = []
 
-    for crop in range(weighted.crop.shape[0]):
-        if crop == 0 or crop == 1:
-            prod_lev = 0.1
-        elif crop == 2:
-            if ccode == 'ZMB':
-                prod_lev = 0.7
-            else:
-                prod_lev = 0.6
-        elif crop == 3:
-            if ccode == 'ZAF':
-                prod_lev = 0.3
-            else:
-                prod_lev = 0.2
+    if crop == 0 or crop == 1:
+        prod_lev = 0.1
+    elif crop == 2:
+        if ccode == 'ZMB':
+            prod_lev = 0.7
+        else:
+            prod_lev = 0.6
+    elif crop == 3:
+        if ccode == 'ZAF':
+            prod_lev = 0.3
+        else:
+            prod_lev = 0.2
 
-        df = weighted.loc[dict(crop=crop, prod_lev=prod_lev)].to_pandas()
+    df = weighted.loc[dict(crop=crop, prod_lev=prod_lev)].to_pandas()
 
-        linedf = df.quantile(q=[0.0, 0.25, 0.5, 0.75, 1.0], axis=1).T
-        box1df = df.iloc[0:21,:].T
-        box2df = df.iloc[50:71,:].T
+    linedf = df.quantile(q=[0.0, 0.25, 0.5, 0.75, 1.0], axis=1).T
+    box1df = df.iloc[0:21,:].T
+    box2df = df.iloc[50:71,:].T
 
-        dflst.append([linedf, box1df, box2df])
+    dflst = [linedf, box1df, box2df]
 
     ds.close()
 
@@ -152,9 +146,9 @@ def cropgraph(ccode, quad, crop, croplst, field):
     if quad==None:
         quad='00'
 
-    df = croplst[crop][0]
-    dfbox1 = croplst[crop][1]
-    dfbox2 = croplst[crop][2]
+    df = croplst[0]
+    dfbox1 = croplst[1]
+    dfbox2 = croplst[2]
 
     x = list(df.index)
     x_rev = x[::-1]
@@ -303,7 +297,7 @@ def compgraph(ccode, quad, crop, croplst, field):
     if quad==None:
         quad='00'
 
-    df = croplst[crop][0]
+    df = croplst[0]
     #dfbox = croplst[crop][1]
 
     x = list(df.index)

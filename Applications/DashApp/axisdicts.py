@@ -19,6 +19,11 @@ fielddict = {
     'plant_date': 'Planting Date'
 }
 
+rcpdict = {
+    0: 'rcp26',
+    2: 'rcp85'
+}
+
 quaddict = {
     'ZMB':{
         '00':'Low Climate Risk, High Market Connectivity',

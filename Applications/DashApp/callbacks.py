@@ -14,7 +14,7 @@ def update_graph(crop, field, loclst):
     ccode=loclst[0]
     quad = loclst[1]
 
-    df = dataviz.get_cubedata(ccode, quad, field)
+    df = dataviz.get_cubedata(ccode, quad, crop, field)
     fig = dataviz.cropgraph(ccode, quad, crop, df, field)
 
     return fig
@@ -29,7 +29,7 @@ def update_quad1_graph(crop1, field1, quad1, loclst):
 
     ccode=loclst[0]
 
-    df = dataviz.get_cubedata(ccode, quad1, field1)
+    df = dataviz.get_cubedata(ccode, quad1, crop1, field1)
     fig = dataviz.compgraph(ccode, quad1, crop1, df, field1)
 
     return fig
@@ -44,7 +44,7 @@ def update_quad2_graph(crop2, field2, quad2, loclst):
 
     ccode=loclst[0]
 
-    df = dataviz.get_cubedata(ccode, quad2, field2)
+    df = dataviz.get_cubedata(ccode, quad2, crop2, field2)
     fig = dataviz.compgraph(ccode, quad2, crop2, df, field2)
 
     return fig
@@ -61,7 +61,7 @@ def update_count1_graph(ccode1, crop1, field1, quad1, loclst):
     if quad1 == None:
         quad1 == '00'
 
-    df = dataviz.get_cubedata(ccode1, quad1, field1)
+    df = dataviz.get_cubedata(ccode1, quad1, crop1, field1)
     fig = dataviz.compgraph(ccode1, quad1, crop1, df, field1)
 
     return fig
@@ -78,7 +78,7 @@ def update_count2_graph(ccode2, crop2, field2, quad2, loclst):
     if quad2 == None:
         quad2 == '00'
 
-    df = dataviz.get_cubedata(ccode2, quad2, field2)
+    df = dataviz.get_cubedata(ccode2, quad2, crop2, field2)
     fig = dataviz.compgraph(ccode2, quad2, crop2, df, field2)
 
     return fig
