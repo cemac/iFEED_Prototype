@@ -24,6 +24,13 @@ rcpdict = {
     2: 'rcp85'
 }
 
+unitdict = {
+    'yield': ' (kg/ha)',
+    'biomass': ' (kg/ha)',
+    'dur': ' (days)',
+    'plant_date': ' (days)'
+}
+
 quaddict = {
     'ZMB':{
         '00':'Low Climate Risk, High Market Connectivity',
