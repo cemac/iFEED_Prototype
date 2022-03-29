@@ -15,7 +15,7 @@ def layoutquad(ccode, quad):
             dcc.Dropdown(
                 id='crop',
                 options=[{'label': v, 'value': k} for k,v in cropdict.items()],
-                value=0
+                value=2
             )
         ], style={'width': '20%', 'display': 'inline-block'}),
         html.Div([
@@ -29,7 +29,69 @@ def layoutquad(ccode, quad):
                     children=[dcc.Graph(id='cropgraph')],
                     type='circle',
                     )
-    ])
+    ], style={'width': '75%', 'margin':'auto'})
+
+    return layout
+
+def layoutquadcustom(ccode, clim):
+
+    country = countrydict[ccode]
+
+    layout = html.Div([
+        html.H3(children='Data Exploration for {country} with {clim} Climate Risk'.format(country=country, clim=clim),
+                style={'textAlign': 'center', "margin-bottom":"15px"}),
+        html.Br(),
+        html.H6(children='Here you can directly view how parameters such as yield and growing duration vary with irrigation and yield gap parameter (YGP) for futures with {} Climate Risk.  Zero irrigation here indicates crops are purely rain-fed. Default yield gap parameter values are given for each crop.'.format(clim), style={'textAlign': 'center', "margin-bottom":"15px"}),
+        html.Br(),
+        html.Div([
+            html.Div([
+                html.H6(children='Crop',style={'textAlign': 'center',}),
+                dcc.Dropdown(
+                    id='crop',
+                    options=[{'label': v, 'value': k} for k,v in cropdict.items()],
+                    value=2
+                )
+            ], style={'width': '25%', 'display': 'inline-block', 'margin-right':'4%'}),
+            html.Div([
+                html.H6(children='Parameter',style={'textAlign': 'center',}),
+                dcc.Dropdown(
+                    id='field',
+                    options=[{'label': v, 'value': k} for k,v in fielddict.items()],
+                    value='yield'
+                )
+            ], style={'width': '25%', 'display': 'inline-block', 'margin-left':'4%'})
+        ], style={ 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}),
+        html.Div([
+            html.Div([
+                html.H6(children='Irrigation',style={'textAlign': 'center',}),
+                dcc.Slider(
+                    min = 0,
+                    max = 1,
+                    step = 0.1,
+                    value=0,
+                    marks={"{:.1f}".format(i * 0.1):"{:.1f}".format(i * 0.1) for i in range(0,10,1)},
+                    id='irr'
+                    )
+                ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}
+            ),
+            html.Div([
+                html.H6(children='YGP',style={'textAlign': 'center',}),
+                dcc.Slider(
+                    min = 0.1,
+                    max = 1,
+                    step = 0.1,
+                    value=0.1,
+                    marks={"{:.1f}".format(i * 0.1):"{:.1f}".format(i * 0.1) for i in range(0,10,1)},
+                    id='ygp',
+                    )
+                ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}
+            )
+        ], style={ 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}),
+        dcc.Loading(id='loading-1',
+                    children=[dcc.Graph(id='cropgraph2')],
+                    type='circle',
+                    )
+    ], style={'width': '75%', 'margin':'auto'})
 
     return layout
 
@@ -38,33 +100,61 @@ def layoutquadcompar(ccode):
     country = countrydict[ccode]
 
     layout = html.Div([
-        html.H3(children='Data Exploration for {country} with cross-quadrant comparisons'.format(country=country),
+        html.H3(children='Data Exploration for {country} with Comparisons Across Climate Scenarios'.format(country=country),
                 style={'textAlign': 'center', "margin-bottom":"15px"}),
+        html.Br(),
+        html.H6(children='Here you can directly compare how parameters such as yield and growing duration vary with irrigation and yield gap parameter for both Low Climate Risk and High Climate Risk scenarios.  Zero irrigation here indicates crops are purely rain-fed. Default yield gap parameter values are given for each crop.', style={'textAlign': 'center', "margin-bottom":"15px"}),
+        html.Br(),
         html.Div([
             html.Div([
-                dcc.Dropdown(
-                    id='quad1',
-                    options=[{'label': v, 'value': k} for k,v in quaddict[ccode].items()],
-                    value="00"
-                    )
-                ], style={'width': '50%'}
-            ),
+                html.H5(children='Low Climate Risk', style={'textAlign':'center'})
+            ]),
             html.Div([
-                dcc.Dropdown(
-                    id='crop1',
-                    options=[{'label': v, 'value': k} for k,v in cropdict.items()],
-                    value=0
-                    )
-                ], style={'width': '25%', 'display': 'inline-block'}
-            ),
+                html.Div([
+                    html.H6(children='Crop',style={'textAlign': 'center',}),
+                    dcc.Dropdown(
+                        id='crop1',
+                        options=[{'label': v, 'value': k} for k,v in cropdict.items()],
+                        value=2
+                        )
+                    ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}
+                ),
+                html.Div([
+                    html.H6(children='Parameter',style={'textAlign': 'center',}),
+                    dcc.Dropdown(
+                        id='field1',
+                        options=[{'label': v, 'value': k} for k,v in fielddict.items()],
+                        value='yield'
+                        )
+                    ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}
+                ),
+            ], style={ 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}),
             html.Div([
-                dcc.Dropdown(
-                    id='field1',
-                    options=[{'label': v, 'value': k} for k,v in fielddict.items()],
-                    value='yield'
-                    )
-                ], style={'width': '25%', 'display': 'inline-block'}
-            ),
+                html.Div([
+                    html.H6(children='Irrigation',style={'textAlign': 'center',}),
+                    dcc.Slider(
+                        min = 0,
+                        max = 1,
+                        step = 0.1,
+                        value=0,
+                        marks={"{:.1f}".format(i * 0.1):"{:.1f}".format(i * 0.1) for i in range(0,10,2)},
+                        id='irr1'
+                        )
+                    ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}
+                ),
+                html.Div([
+                    html.H6(children='YGP',style={'textAlign': 'center',}),
+                    dcc.Slider(
+                        min = 0.1,
+                        max = 1,
+                        step = 0.1,
+                        value=0.1,
+                        marks={"{:.1f}".format(i * 0.1):"{:.1f}".format(i * 0.1) for i in range(0,10,2)},
+                        id='ygp1',
+                        )
+                    ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}
+                )
+            ], style={ 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}),
             html.Div([
                 dcc.Loading(
                     id='loading-1',
@@ -76,29 +166,54 @@ def layoutquadcompar(ccode):
         ], style={'width': '50%', 'display': 'inline-block'}),
         html.Div([
             html.Div([
-                dcc.Dropdown(
-                    id='quad2',
-                    options=[{'label': v, 'value': k} for k,v in quaddict[ccode].items()],
-                    value="11"
-                    )
-                ], style={'width': '50%'}
-            ),
+                html.H5(children='High Climate Risk', style={'textAlign':'center'})
+            ]),
             html.Div([
-                dcc.Dropdown(
-                    id='crop2',
-                    options=[{'label': v, 'value': k} for k,v in cropdict.items()],
-                    value=0
-                    )
-                ], style={'width': '25%', 'display': 'inline-block'}
-            ),
+                html.Div([
+                    html.H6(children='Crop',style={'textAlign': 'center',}),
+                    dcc.Dropdown(
+                        id='crop2',
+                        options=[{'label': v, 'value': k} for k,v in cropdict.items()],
+                        value=2
+                        )
+                    ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}
+                ),
+                html.Div([
+                    html.H6(children='Parameter',style={'textAlign': 'center',}),
+                    dcc.Dropdown(
+                        id='field2',
+                        options=[{'label': v, 'value': k} for k,v in fielddict.items()],
+                        value='yield'
+                        )
+                    ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}
+                ),
+            ], style={ 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}),
             html.Div([
-                dcc.Dropdown(
-                    id='field2',
-                    options=[{'label': v, 'value': k} for k,v in fielddict.items()],
-                    value='yield'
-                    )
-                ], style={'width': '25%', 'display': 'inline-block'}
-            ),
+                html.Div([
+                    html.H6(children='Irrigation',style={'textAlign': 'center',}),
+                    dcc.Slider(
+                        min = 0,
+                        max = 1,
+                        step = 0.1,
+                        value=0,
+                        marks={"{:.1f}".format(i * 0.1):"{:.1f}".format(i * 0.1) for i in range(0,10,2)},
+                        id='irr2'
+                        )
+                    ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}
+                ),
+                html.Div([
+                    html.H6(children='YGP',style={'textAlign': 'center',}),
+                    dcc.Slider(
+                        min = 0.1,
+                        max = 1,
+                        step = 0.1,
+                        value=0.1,
+                        marks={"{:.1f}".format(i * 0.1):"{:.1f}".format(i * 0.1) for i in range(0,10,2)},
+                        id='ygp2',
+                        )
+                    ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}
+                )
+            ], style={ 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}),
             html.Div([
                 dcc.Loading(
                     id='loading-2',
@@ -108,7 +223,7 @@ def layoutquadcompar(ccode):
                 ], style={"border":"thin solid #999999", "height":"550px"}
             )
         ], style={'width': '50%', 'display': 'inline-block'})
-    ], style={'width': '95%'})
+    ], style={'width': '75%', 'margin':'auto'})
 
     return layout
 
@@ -194,6 +309,6 @@ def layoutfullcompar():
                 ], style={"border":"thin solid #999999", "height":"550px"}
             )
         ], style={'width': '50%', 'display': 'inline-block'})
-    ], style={'width': '95%', 'margin': '0 auto 0 auto'})
+    ], style={'width': '75%', 'margin': '0 auto 0 auto'})
 
     return layout

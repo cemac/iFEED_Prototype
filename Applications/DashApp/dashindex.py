@@ -5,7 +5,7 @@ from dash.dependencies import Input, Output
 from Applications.app import app
 import Applications.DashApp.callbacks
 from Applications.DashApp import dataviz
-from Applications.DashApp.layouts import layoutquad, layoutquadcompar, layoutfullcompar
+from Applications.DashApp.layouts import layoutquad, layoutquadcompar, layoutfullcompar, layoutquadcustom
 from Applications.DashApp.errors import layout404
 
 app.layout = html.Div([
@@ -20,7 +20,7 @@ app.layout = html.Div([
 def display_page(pathname):
 
     ccodelst = ['MWI','TZA','ZAF','ZMB','ALL']
-    quadlst = ['00','01','10','11','comp']
+    quadlst = ['00','01','10','11','comp','Low','High']
 
     err=False
 
@@ -37,5 +37,7 @@ def display_page(pathname):
         return layoutfullcompar(), [pathname[18:21],pathname[21:]]
     elif (pathname[21:] == 'comp' and pathname[18:21] != 'ALL'):
         return layoutquadcompar(pathname[18:21]), [pathname[18:21],pathname[21:]]
+    elif (pathname[21:] == 'High' or pathname[21:] == 'Low'):
+        return layoutquadcustom(pathname[18:21],pathname[21:]), [pathname[18:21],pathname[21:]]
     else:
         return layoutquad(pathname[18:21],pathname[21:]), [pathname[18:21],pathname[21:]]

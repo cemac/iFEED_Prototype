@@ -1,6 +1,6 @@
 external_stylesheets = [
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
-    '/static/styles/fontawesome.min.css',
+    'https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css',
+    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
     'https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic|Roboto+Condensed:300,300italic,regular,italic,700,700italic',
     '/static/styles/wp_style.min.css',
     '/static/styles/blocks.style.build.css',
@@ -18,10 +18,12 @@ external_stylesheets = [
     ]
 
 external_scripts = [
-    #'/static/js/menu.min.js',
-    #'/static/js/main.min.js',
-    'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
+    '/static/js/menu.min.js',
+    '/static/js/main.min.js',
+    'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js',
+    'https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js',
+    'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js',
+    'https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js'
     ]
 
 meta_tags = [
