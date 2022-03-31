@@ -185,7 +185,7 @@ def get_cubedata2(ccode, irr_lev, prod_lev, rcp, crop, field):
     else:
         countrystr=countrydict[ccode].lower()
 
-    fname = os.path.join(DATA_PATH,countrydict[ccode].lower()+"_"+cropdict[crop].lower()+"_"+rcpdict[rcp]+".nc")
+    fname = os.path.join(DATA_PATH,countrystr+"_"+cropdict[crop].lower()+"_"+rcpdict[rcp]+".nc")
 
     if not os.path.exists(fname):
         print('Could not load file '+fname)
