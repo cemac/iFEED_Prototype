@@ -3,8 +3,29 @@
 {% block body %}
 
 <div class="grdcol col-12" style="text-align: justify;">
-  <p>iFEED predicts how climate change and government policy will impact crop yields, land and water use, and nutritious diets in sub-Saharan Africa in 2050. The tool explores possible future scenarios for Malawi, South Africa, Tanzania and Zambia based on different levels of climate risk and policy making. Over 200 scientists, researchers and decision makers from five countries have worked together to develop iFEED.</p>
-  <p><center><h3 style="font-weight: bold;"> Please select your country of interest </h3></center></p>
+  <p>iFEED predicts how climate change and government policy will impact crop yields, land and water use, and nutritious diets in sub-Saharan Africa in 2050. The tool explores possible future scenarios for Malawi, South Africa, Tanzania and Zambia based on different levels of climate risk and policy making. Over 200 scientists, researchers and decision makers from five countries have worked together to develop iFEED.<br><br>On this page you can view the Policy Topic Summaries for all countries, or select your country of interest to see information about the different countries and scenarios.</p>
+
+  <div class="homecol col-12 shadow panel-group" id="PolSummaries" role="tablist" aria-multiselectable="true" style="padding: 0">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingPolicy" style="padding: 0px 30px">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#PolSummaries" href="#collapsePolicy" aria-expanded="true" aria-controls="collapsePolicy">
+            <center><h3 style="font-weight: bold;">Click Here to View Policy Topic Summaries</h3></center>
+          </a>
+        </h4>
+      </div>
+      <div id="collapsePolicy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPolicy">
+        <div id="PolicyLinks" class="panel-body" style="background-color: #fff5e3; padding: 30px" >
+          <a href='/static/data/docs/Policy_Topic_Summaries/iFEED_Policy_Topic_Summary-Agri_Resistance_pdf.pdf' target='_blank'>Agricultural Resilience Under Climate Risks</a><br>
+          <a href='/static/data/docs/Policy_Topic_Summaries/iFEED_Policy_Topic_Summary-Commercialisation_pdf.pdf' target='_blank'>Agricultural Commercialisation In The Context Of Climate Risks</a><br>
+          <a href='/static/data/docs/Policy_Topic_Summaries/iFEED_Policy_Topic_Summary-Land_pdf.pdf' target='_blank'>Agricultural Land In The Context Of Climate Risks</a><br>
+          <a href='/static/data/docs/Policy_Topic_Summaries/iFEED_Policy_Topic_Summary-Nutrition_pdf.pdf' target='_blank'>Nutrition Security In The Context Of Climate Risks</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p><center><h3 style="font-weight: bold;">Or<br><br>Select your country of interest </h3></center></p>
   <div class="btn-group row" style="width:100%">
     <label class="btn-container col-sm-3 col-6" style="width: 15%" id="MWIradbutton">
       <input type="radio" name="radio">
@@ -82,10 +103,42 @@
     </div>
   </div>
   <br><br>
-  <div id="furtherReading" class="homecol col-12 shadow" style="background-color: #fff5e3">
+  <div class="homecol col-12 shadow panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="padding: 0">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="furtherReadHeading" style="padding: 0px 30px">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Further Reading
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div id="furtherReadingSpec" class="panel-body" style="background-color: #fff5e3; padding: 30px" >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<div id="furtherReading" class="homecol col-12 shadow" style="background-color: #fff5e3">
     <p><h2 style='font-weight: bold; text-align: center;'>Further Reading</h2></p>
     <p id="furtherReadingSpec"></p>
-</div>
+</div>-->
+
+<script type="text/javascript">
+
+  jQuery( document ).ready(function( $ ){
+
+    $('.panel-collapse').on('show.bs.collapse', function () {
+      $(this).siblings('.panel-heading').addClass('active');
+    });
+
+    $('.panel-collapse').on('hide.bs.collapse', function () {
+      $(this).siblings('.panel-heading').removeClass('active');
+    });
+
+  });
+
+</script>
 
 <script type="text/javascript" language="javascript">
 
