@@ -92,8 +92,8 @@
                 <tspan x="30" dy="17">Security</tspan>
               </text>
             </g>
-            <line x1="165" x2="230" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
-            <line x1="465" x2="530" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
+            <line x1="165" x2="230" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#larrow)"/>
+            <line x1="465" x2="530" y1="100" y2="100" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#larrow)"/>
             <!--<line x1="600" x2="600" y1="148" y2="198" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#uarrow)"/>-->
             <line x1="85" x2="85" y1="148" y2="198" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-start="url(#uarrow)"/>
             <line x1="200" x2="230" y1="220" y2="220" stroke-width="2" stroke="#443c3d" stroke-dasharray="2,1" marker-end="url(#rarrow)"/>
@@ -167,7 +167,7 @@
 <div class="btn-group row" style="width:75%;">
   <a class="btn-container col-6" id="dataexplink" target="_blank" >
     <div class="genbutton" style="font-weight: bold">
-      Explore Modelling Data for This Scenario
+      Explore crop model data for this climate scenario
     </div>
   </a>
   <a class="btn-container col-6" id="calibrated" href='/calibrated'>
@@ -213,20 +213,28 @@
   const ccode = ({{ ccode|tojson }});
   const quadcode = ({{ quadcode|tojson }});
 
-  document.getElementById("dataexplink").href = "/data_exploration/"+ccode+quadcode;
+  var clim = ""
+
+  if (quadcode == "00" || quadcode == "10") {
+    clim = "Low"
+  } else {
+    clim = "High"
+  }
+
+  document.getElementById("dataexplink").href = "/data_exploration/"+ccode+clim;
 
   if (ccode == "MWI") {
 
     if (quadcode == "00") {
       document.getElementById("header1").innerHTML = "The Path to Heaven is a scenario that explores a future with low climate risk (RCP2.6) and effective agricultural policy implementation. This future assumes a continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
-    if (quadcode == "01") {
+    else if (quadcode == "01") {
       document.getElementById("header1").innerHTML = "Demanding but Coping is a scenario that explores a future with high climate risk (RCP8.5) and effective agricultural policy implementation. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
-    if (quadcode == "10") {
+    else if (quadcode == "10") {
       document.getElementById("header1").innerHTML = "Degrading Economy is a scenario that explores a future with low climate risk (RCP2.6) and ineffective agricultural policy implementation. This future assumes no change to agricultural areas areas and status quo crop varieties. "
     }
-    if (quadcode == "11") {
+    else if (quadcode == "11") {
       document.getElementById("header1").innerHTML = "The Road to Hell is a scenario that explores a future with high climate risk (RCP8.5) and ineffective agricultural policy implementation. This future assumes a reduction in agricultural areas and status quo crop varieties."
     }
 
@@ -235,13 +243,13 @@
     if (quadcode == "00") {
       document.getElementById("header1").innerHTML = "Technofix is a scenario that explores a future with low climate risk (RCP2.6) and high technological development. By 2050, the frequency and severity of climate extremes are similar to what Tanzania experiences currently. Strong advances in agricultural technology address some of the impacts of these climate effects. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
-    if (quadcode == "01") {
+    else if (quadcode == "01") {
       document.getElementById("header1").innerHTML = "Intensive Vulnerability is a scenario that explores a future with high climate risk (RCP8.5) and high technological development. By 2050, the frequency and severity of climate extremes are very pronounced and hinder Tanzania’s development ambitions. Despite the climate extremes, technological advances and land expansion lead to strong increases in crop and livestock production. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion."
     }
-    if (quadcode == "10") {
+    else if (quadcode == "10") {
       document.getElementById("header1").innerHTML = "Human Capital is a scenario that explores a future with low climate risk and low technological development. By 2050, the frequency and severity of climate extremes are similar to what Tanzania experiences currently. Tanzania has made slow progress in developing and deploying food systems technologies. This future assumes an increase in agricultural areas and crop diversification. "
     }
-    if (quadcode == "11") {
+    else if (quadcode == "11") {
       document.getElementById("header1").innerHTML = "Climate Chaos is a scenario that explores a future with high climate risk and low technological development. By 2050, the frequency and severity of climate extremes are very pronounced and hinder Tanzania’s development ambitions. Tanzania has made slow progress in developing and deploying food systems technologies. This future assumes an increase in agricultural areas and status quo crop varieties. "
     }
 
@@ -250,13 +258,13 @@
     if (quadcode == "00") {
       document.getElementById("header1").innerHTML = "Structural Change is a scenario that explores a future with low climate risk (RCP2.6) and significant land reform. By 2050, there is an increase in average temperatures and a slight increase in the frequency and intensity of temperature and rainfall extremes. The South African government has implemented substantial land reform. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
-    if (quadcode == "01") {
+    else if (quadcode == "01") {
       document.getElementById("header1").innerHTML = "All Change is a scenario that explores a future with high climate risk (RCP8.5) and significant land reform. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The South African government has implemented substantial land reform. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
-    if (quadcode == "10") {
+    else if (quadcode == "10") {
       document.getElementById("header1").innerHTML = "Familiar Futures is a scenario that explores a future with low climate risk (RCP2.6) and insignificant land reform. By 2050, there is an increase in average temperatures and a slight increase in the frequency and intensity of temperature and rainfall extremes. The South African government has not implemented substantial land reform. This future assumes no change to agricultural areas areas and status quo crop varieties."
     }
-    if (quadcode == "11") {
+    else if (quadcode == "11") {
       document.getElementById("header1").innerHTML = "Hot and bothered is a scenario  that explores a future with high climate risk (RCP8.5) and insignificant land reform. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The South African government has not implemented substantial land reform. This future assumes a reduction in agricultural areas and status quo crop varieties."
     }
 
@@ -265,13 +273,13 @@
     if (quadcode == "00") {
       document.getElementById("header1").innerHTML = "Opportunity and Exposure is a scenario that explores a future with low climate risk (RCP2.6) and high market connectivity and function. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The government has implemented effective policy for technology development. This future assumes continuation of historical yield trends, crop diversification, agricultural area and irrigation expansion."
     }
-    if (quadcode == "01") {
+    else if (quadcode == "01") {
       document.getElementById("header1").innerHTML = "Risk and Reward is a scenario that explores a future with high climate risk (RCP8.5) and high market connectivity and function. By 2050, there is an increase in average temperatures and a pronounced increase in the frequency and intensity of temperature and rainfall extremes. The government has implemented effective policy for technology development. This future assumes continuation of historical yield trends, agricultural area and irrigation expansion."
     }
-    if (quadcode == "10") {
+    else if (quadcode == "10") {
       document.getElementById("header1").innerHTML = "Solitude and Self-sufficiency is a scenario that explores a future with low climate risk (RCP2.6) and low market connectivity and function. By 2050, there is an increase in average temperatures and an increase in the frequency and intensity of temperature and rainfall extremes. The government hasn’t implemented effective policy for technology development. This future assumes little change to agricultural areas, but increased crop diversification."
     }
-    if (quadcode == "11") {
+    else if (quadcode == "11") {
       document.getElementById("header1").innerHTML = "Isolation and Imperative is a scenario that explores a future with high climate risk (RCP8.5) and low market connectivity and function. By 2050, there is an increase in average temperatures and a pronounced increase in the frequency and intensity of temperature and rainfall extremes. The government hasn’t implemented effective policy for technology development. This future assumes crop diversification, a fall in agricultural area and irrigation expansion."
     }
 
