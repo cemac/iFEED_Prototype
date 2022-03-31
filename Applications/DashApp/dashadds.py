@@ -21,7 +21,7 @@ external_scripts = [
     '/static/js/menu.min.js',
     '/static/js/main.min.js',
     'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js',
-    'https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js',
+    'https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js',
     'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js',
     'https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js'
     ]

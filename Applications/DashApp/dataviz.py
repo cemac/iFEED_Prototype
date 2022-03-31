@@ -180,6 +180,11 @@ def get_cubedata2(ccode, irr_lev, prod_lev, rcp, crop, field):
 
     ds = None
 
+    if ccode == 'ZAF':
+        countrystr='safrica'
+    else:
+        countrystr=countrydict[ccode].lower()
+
     fname = os.path.join(DATA_PATH,countrydict[ccode].lower()+"_"+cropdict[crop].lower()+"_"+rcpdict[rcp]+".nc")
 
     if not os.path.exists(fname):
