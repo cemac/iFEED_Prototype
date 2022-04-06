@@ -41,7 +41,7 @@ def layoutquadcustom(ccode, clim):
         html.H3(children='Data Exploration for {country} with {clim} Climate Risk'.format(country=country, clim=clim),
                 style={'textAlign': 'center', "margin-bottom":"15px"}),
         html.Br(),
-        html.H6(children='Here you can directly view how parameters such as yield and growing duration vary with irrigation and yield gap parameter (YGP) for futures with {} Climate Risk.  Zero irrigation here indicates crops are purely rain-fed. Default yield gap parameter values are given for each crop.'.format(clim), style={'textAlign': 'center', "margin-bottom":"15px"}),
+        html.H6(children='Here you can directly view how parameters such as yield and growing season duration vary with irrigation and yield gap parameter (YGP) for futures with {} Climate Risk.  Zero irrigation indicates crops are purely rainfed. Irrigation of 1 refers to fully irrigated simulations (i.e. no water stress), with intermediate values corresponding to intermediate irrigation scenarios. A yield gap parameter of 1 indicates climatic potential yields. Default yield gap parameter values - representative of observed yield values for the year 2000 - are given for each crop.'.format(clim), style={'textAlign': 'center', "margin-bottom":"15px"}),
         html.Br(),
         html.Div([
             html.Div([
