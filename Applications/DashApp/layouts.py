@@ -69,7 +69,7 @@ def layoutquadcustom(ccode, clim):
                     max = 1,
                     step = 0.1,
                     value=0,
-                    marks={"{:.1f}".format(i * 0.1):"{:.1f}".format(i * 0.1) for i in range(0,10,1)},
+                    marks={"{:.1f}".format(i * 0.1):"{:.1f}".format(i * 0.1) for i in range(0,11,1)},
                     id='irr'
                     )
                 ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}
@@ -81,7 +81,7 @@ def layoutquadcustom(ccode, clim):
                     max = 1,
                     step = 0.1,
                     value=0.1,
-                    marks={"{:.1f}".format(i * 0.1):"{:.1f}".format(i * 0.1) for i in range(0,10,1)},
+                    marks={"{:.1f}".format((i+1) * 0.1):"{:.1f}".format((i+1) * 0.1) for i in range(0,10,1)},
                     id='ygp',
                     )
                 ], style={'width': '33%', 'display': 'inline-block', 'margin-bottom': '20px'}

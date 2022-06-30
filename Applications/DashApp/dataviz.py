@@ -199,7 +199,7 @@ def get_cubedata2(ccode, irr_lev, prod_lev, rcp, crop, field):
     except:
         if ds: ds.close()
         try:
-            ds = xr.open_dataset(fname)
+            ds = xr.open_dataset(fname, decode_cf=False)
 
             da = ds[field].loc[dict(rcp=rcp, irr_lev=irr_lev, prod_lev=prod_lev, crop=crop)]
             da = da.where((da <= 1e+20))
