@@ -1,0 +1,19 @@
+name: iFEEDTest
+channels:
+  - defaults
+dependencies:
+  - dash-renderer
+  - dash-core-components
+  - plotly
+  - flask
+  - pandas
+  - numpy
+  - wtforms
+  - dash-html-components
+  - sqlite
+  - python=3.7
+  - xarray
+  - dash
+  - passlib
+  - flask-assets
+  - netcdf4
