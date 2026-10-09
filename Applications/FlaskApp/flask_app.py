@@ -13,8 +13,8 @@ from .access import is_logged_in, is_logged_in_as_admin
 from .access import InsertUser, DeleteUser, AssignRole
 
 # Connect to database
-DATABASE = '/var/www/production/iFEED.db'
-#DATABASE = os.path.join(os.getcwd(),'iFEED.db')
+#DATABASE = '/var/www/production/iFEED.db'
+DATABASE = os.path.join(os.getcwd(),'iFEED.db')
 assert os.path.exists(DATABASE), "Unable to locate database"
 app.secret_key = 'secret'
 conn = sqlite3.connect(DATABASE, check_same_thread=False)
